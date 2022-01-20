@@ -8,7 +8,7 @@ function App() {
         <img src="../kelogo.png" className="App-logo" alt="logo" />
       </header>
       <body className="App-body">
-        "Welcome to KE Land!"
+        Welcome to KE Land!
       </body>
     </div>
   );
