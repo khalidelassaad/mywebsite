@@ -1,12 +1,13 @@
-import * as React from 'react';
+import * as React from "react";
 
 interface Props {
-    label: string
+  label: string;
+  onClick: () => any;
 }
 
-function HeaderButton({ label }: Props) {
+function HeaderButton({ label, onClick }: Props) {
   return (
-    <button className="App-button" type="button">
+    <button className="App-button" type="button" onClick={onClick}>
       {label}
     </button>
   );

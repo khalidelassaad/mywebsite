@@ -1,8 +1,17 @@
-import * as React from 'react';
-import HeaderButton from './header/headerButton';
-import './App.css';
+import * as React from "react";
+import "./App.css";
+import HeaderBar from "./header/headerBar";
 
-const bodystring = 'Welcome to KE Land! This is the best place.';
+const bodystring = "Welcome to KE Land! This is the best place.";
+const headerButtonLabels = ["Hello", "Button 2"];
+const headerButtonOnClicks = [
+  () => {
+    console.log("dibbidy");
+  },
+  () => {
+    console.log("dibbidy doo");
+  },
+];
 
 function App() {
   return (
@@ -10,10 +19,8 @@ function App() {
       <header className="App-header">
         <img src="../kelogo.png" className="App-logo" alt="logo" />
       </header>
-      <body className="App-body">
-        {bodystring}
-      </body>
-      <HeaderButton label="hi" />
+      <HeaderBar labels={headerButtonLabels} onClicks={headerButtonOnClicks} />
+      <body className="App-body">{bodystring}</body>
     </div>
   );
 }
