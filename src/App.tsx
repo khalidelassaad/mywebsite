@@ -1,6 +1,8 @@
 import * as React from 'react';
 import './App.css';
 
+const bodystring = 'Welcome to KE Land! This is the best place.';
+
 function App() {
   return (
     <div className="App">
@@ -8,7 +10,7 @@ function App() {
         <img src="../kelogo.png" className="App-logo" alt="logo" />
       </header>
       <body className="App-body">
-        Welcome to KE Land!
+        {bodystring}
       </body>
     </div>
   );

@@ -26,8 +26,10 @@ module.exports = {
     }],
     'import/extensions': [
       'error',
-      { tsx: 'always' },
+      { tsx: 'never' },
     ],
+  },
+  settings: {
     'import/resolver': {
       node: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
