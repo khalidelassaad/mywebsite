@@ -1,4 +1,5 @@
 import * as React from 'react';
+import HeaderButton from './header/headerButton';
 import './App.css';
 
 const bodystring = 'Welcome to KE Land! This is the best place.';
@@ -12,6 +13,7 @@ function App() {
       <body className="App-body">
         {bodystring}
       </body>
+      <HeaderButton label="hi" />
     </div>
   );
 }
