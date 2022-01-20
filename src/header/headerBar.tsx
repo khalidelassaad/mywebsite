@@ -1,5 +1,5 @@
-import * as React from "react";
-import HeaderButton from "./headerButton";
+import * as React from 'react';
+import HeaderButton from './headerButton';
 
 interface Props {
   labels: string[];
