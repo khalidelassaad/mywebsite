@@ -50,8 +50,13 @@
 }
 
 .headerBar-listItem {
-  float: 'left';
+  display: inline;
+  margin-inline: 20px;
+  background-color: blue;
 }
 
-.headerBar-list {
+.headerBar-button {
+  margin: 10px;
+  padding: 10px;
+  background-color: green;
 }

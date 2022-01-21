@@ -3,10 +3,16 @@ import './App.css';
 import HeaderBar from './header/headerBar';
 
 const bodystring = 'Welcome to KE Land! This is the best place.';
-const headerButtonLabels = ['Hello', 'Button 2'];
+const headerButtonLabels = ['Hello', 'Button 2', '2', '555'];
 const headerButtonOnClicks = [
   () => {
     console.log('dibbidy');
+  },
+  () => {
+    console.log('dibbidy doo');
+  },
+  () => {
+    console.log('dibbidy doo');
   },
   () => {
     console.log('dibbidy doo');

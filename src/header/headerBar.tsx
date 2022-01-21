@@ -11,15 +11,15 @@ interface Props {
 
 function HeaderBar({ labels, onClicks }: Props) {
   return (
-    <ul className={listClassName}>
+    <div className={listClassName}>
       {labels.map((label, index) => {
         return (
-          <li key={label} className={listItemClassName}>
+          <div key={label} className={listItemClassName}>
             <HeaderButton key={label} label={label} onClick={onClicks[index]} />
-          </li>
+          </div>
         );
       })}
-    </ul>
+    </div>
   );
 }
 
