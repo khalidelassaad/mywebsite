@@ -9,11 +9,11 @@ interface Props {
 function HeaderBar({ labels, onClicks }: Props) {
   return (
     <ol>
-      {labels.map((label, index) => {
-        <li>
-          <HeaderButton key={index} label={label} onClick={onClicks[index]} />
-        </li>;
-      })}
+      {labels.map((label, index) => (
+        <li key={label}>
+          <HeaderButton key={label} label={label} onClick={onClicks[index]} />
+        </li>
+      ))}
     </ol>
   );
 }
