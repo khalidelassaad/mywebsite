@@ -1,7 +1,6 @@
 import * as React from 'react';
 import HeaderButton from './headerButton';
 
-const listItemClassName: string = 'headerBar-listItem';
 const listClassName: string = 'headerBar-list';
 
 interface Props {
@@ -14,9 +13,7 @@ function HeaderBar({ labels, onClicks }: Props) {
     <div className={listClassName}>
       {labels.map((label, index) => {
         return (
-          <div key={label} className={listItemClassName}>
-            <HeaderButton key={label} label={label} onClick={onClicks[index]} />
-          </div>
+          <HeaderButton key={label} label={label} onClick={onClicks[index]} />
         );
       })}
     </div>

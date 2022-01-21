@@ -9,9 +9,9 @@ interface Props {
 
 function HeaderButton({ label, onClick }: Props) {
   return (
-    <button className={buttonClassName} type="button" onClick={onClick}>
+    <div className={buttonClassName} onClick={onClick}>
       {label}
-    </button>
+    </div>
   );
 }
 
