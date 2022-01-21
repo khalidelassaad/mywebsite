@@ -15,13 +15,18 @@ const headerButtonOnClicks = [
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src="../kelogo.png" className="App-logo" alt="logo" />
-      </header>
-      <HeaderBar labels={headerButtonLabels} onClicks={headerButtonOnClicks} />
-      <body className="App-body">{bodystring}</body>
-    </div>
+    <>
+      <div className="App">
+        <header className="App-header">
+          <img src="../kelogo.png" className="App-logo" alt="logo" />
+        </header>
+        <HeaderBar
+          labels={headerButtonLabels}
+          onClicks={headerButtonOnClicks}
+        />
+      </div>
+      <div className="App-body">{bodystring}</div>
+    </>
   );
 }
 

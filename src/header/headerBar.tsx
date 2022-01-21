@@ -8,7 +8,7 @@ interface Props {
 
 function HeaderBar({ labels, onClicks }: Props) {
   return (
-    <ol>
+    <ul>
       {labels.map((label, index) => {
         return (
           <li key={label}>
@@ -16,7 +16,7 @@ function HeaderBar({ labels, onClicks }: Props) {
           </li>
         );
       })}
-    </ol>
+    </ul>
   );
 }
 
