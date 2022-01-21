@@ -48,3 +48,10 @@
     transform: rotate(360deg);
   }
 }
+
+.headerBar-listItem {
+  float: 'left';
+}
+
+.headerBar-list {
+}
