@@ -22,25 +22,23 @@ function App() {
         </header>
         <HeaderBar navButtons={navButtons} />
       </div>
-      <Routes>
-        <Route
-          path="/"
-          element={<div className="App-body">{bodystring}</div>}
-        />
-        <Route
-          path="/codefolio"
-          element={<div className="App-body">{'CODE!!! :>'}</div>}
-        />
-        <Route
-          path="/*"
-          element={
-            <div className="App-body">
-              {error404string}
-              <Link to="/">Back to home page</Link>
-            </div>
-          }
-        />
-      </Routes>
+      <div className="App-body">
+        <Routes>
+          <Route path="/" element={bodystring} />
+          <Route path="/codefolio" element={'CODE!!! :>'} />
+          <Route path="/athletics" element={'SPORTS!!! :>'} />
+          <Route path="/contact" element={"Don't talk to me!!! :>"} />
+          <Route
+            path="/*"
+            element={
+              <>
+                {error404string}
+                <Link to="/">Back to home page</Link>
+              </>
+            }
+          />
+        </Routes>
+      </div>
     </>
   );
 }
