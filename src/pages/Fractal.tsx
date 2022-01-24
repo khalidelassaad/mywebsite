@@ -2,7 +2,6 @@ import * as React from 'react';
 
 // TODO for this class:
 // - Optimize with dynamic programming (save rendered image data)
-// - Allow for specification of viewport coords (default -1.5, -1, 1.5, 1)
 
 // Beautiful region at -0.8, 0.2
 
@@ -60,7 +59,7 @@ function _handleStateUpdates(
       (newChunkX / chunksPerAxis) * 2 - 1,
       (newChunkY / chunksPerAxis) * 2 - 1,
     );
-    console.log('');
+    // console.log('');
   }
 }
 
@@ -131,31 +130,35 @@ function drawJulia(
   //-----------------------------------------------------------------------
 
   // prepare image and pixels
+  const xAxisLength = viewportCoords.endX - viewportCoords.startX;
+  const yAxisLength = viewportCoords.endY - viewportCoords.startY;
+  const xOffset = (viewportCoords.endX + viewportCoords.startX) / 2;
+  const yOffset = (viewportCoords.endY + viewportCoords.startY) / 2;
+
   var image_data = context.createImageData(canvas.width, canvas.height);
   var d = image_data.data;
 
-  let [x0, y0] = renderCoords;
-  const max_iterations = maxIterations;
+  let x0 = renderCoords[0]*(xAxisLength/2) + xOffset;
+  let y0 = renderCoords[1]*(yAxisLength/2) + yOffset;
+
+  console.log('sized  %f, %f', x0, y0);
+  console.log('')
+
   for (var i = 0; i < canvas.height; i++) {
     for (var j = 0; j < canvas.width; j++) {
       // limit the axis
-      const xAxisLength = viewportCoords.endX - viewportCoords.startX;
-      const yAxisLength = viewportCoords.endY - viewportCoords.startY;
-      const xOffset = (viewportCoords.endX + viewportCoords.startX) / 2;
-      const yOffset = (viewportCoords.endY + viewportCoords.startY) / 2;
-
-
       let x = (xAxisLength * -0.5 + (j * xAxisLength) / canvas.width) + xOffset;
       let y = (yAxisLength * -0.5 + (i  * yAxisLength) / canvas.height) + yOffset;
 
       let iteration = 0;
 
-      while (x * x + y * y < 4 && iteration < max_iterations) {
+      while (x * x + y * y < 4 && iteration < maxIterations) {
         let x_n = x * x - y * y + x0;
         let y_n = 2 * x * y + y0;
         x = x_n;
         y = y_n;
         iteration++;
+        if (iteration * colorStep > 255) {break}
       }
 
       // set pixel color [r,g,b,a]
