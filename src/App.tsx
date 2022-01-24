@@ -7,17 +7,17 @@ import Fractal from './pages/Fractal';
 const bodystring: string = 'Welcome to KE Land! This is the best place.';
 const error404string: string = 'Uh oh! Nothing to see here, move along...';
 
-const fractalChunksPerAxis = 100;
+const fractalChunksPerAxis = 20;
 const fractalMaxIterations = 100; // Default author provides: 100
 const fractalResolution = null;
 // fractalResolution uses 1:1 with size of canvas on screen if null
-const fractalColorStep = 4;
-const fractalTransformSpeedModifier = 1;
+const fractalColorStep = 3;
+const fractalTransformSpeedModifier = 0.24;
 const fractalViewportCoords = {
-  startX: -1.5,
-  startY: -1.0,
-  endX: 1.5,
-  endY: 1.0,
+  startX: -0.8,
+  startY: 0.2,
+  endX: -0.9,
+  endY: 0.3,
 };
 
 const navButtons: [string, string][] = [

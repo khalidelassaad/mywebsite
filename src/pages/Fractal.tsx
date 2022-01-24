@@ -147,6 +147,8 @@ function drawJulia(
   console.log('sized  %f, %f', x0, y0);
   console.log('')
 
+  maxIterations = Math.min(maxIterations , Math.floor(255 / colorStep))
+
   for (var i = 0; i < canvas.height; i++) {
     for (var j = 0; j < canvas.width; j++) {
       // limit the axis
@@ -161,7 +163,6 @@ function drawJulia(
         x = x_n;
         y = y_n;
         iteration++;
-        if (iteration * colorStep > 255) {break}
       }
 
       // set pixel color [r,g,b,a]
