@@ -21,6 +21,7 @@ interface FractalProps {
   maxIterations: number;
   viewportCoords: ViewportCoords;
   transformSpeedModifier: number;
+  classSuffix?: string;
 }
 
 function _handleStateUpdates(
@@ -91,7 +92,11 @@ function Fractal(props: FractalProps) {
     <>
       <canvas
         ref={canvasRef}
-        className={canvasClassName}
+        className={
+          props.classSuffix
+            ? canvasClassName + '-' + props.classSuffix
+            : canvasClassName
+        }
         onMouseMove={(e) => {
           _handleStateUpdates(
             [e.clientX, e.clientY],

@@ -9,7 +9,7 @@ const error404string: string = 'Uh oh! Nothing to see here, move along...';
 
 const fractalProps: FractalProps = {
   colorStep: 3,
-  chunksPerAxis: 20,
+  chunksPerAxis: 3,
   resolution: null,
   maxIterations: 100,
   viewportCoords: {
@@ -19,6 +19,22 @@ const fractalProps: FractalProps = {
     endY: 0.2,
   },
   transformSpeedModifier: 0.24,
+  classSuffix: 'main',
+};
+
+const backgroundFractalProps: FractalProps = {
+  colorStep: 3,
+  chunksPerAxis: 30,
+  resolution: 100,
+  maxIterations: 100,
+  viewportCoords: {
+    startX: -1.5,
+    startY: -1.5,
+    endX: 1.5,
+    endY: 1.5,
+  },
+  transformSpeedModifier: 1,
+  classSuffix: 'background',
 };
 
 const navButtons: [string, string][] = [
@@ -32,7 +48,8 @@ const navButtons: [string, string][] = [
 function App() {
   return (
     <>
-      <div className="App-background">
+      <Fractal {...backgroundFractalProps} />
+      <div className="App-sleeve">
         <div className="App">
           <header className="App-header">
             <img src="../kelogo.png" className="App-logo" alt="logo" />
