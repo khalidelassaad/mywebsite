@@ -4,6 +4,8 @@ import * as React from 'react';
 // - Optimize with dynamic programming (save rendered image data)
 // - Allow for specification of viewport coords (default -1.5, -1, 1.5, 1)
 
+// Beautiful region at -0.8, 0.2
+
 const canvasClassName = 'Fractal-canvas';
 
 interface ViewportCoords {
@@ -52,13 +54,13 @@ function _handleStateUpdates(
       (newChunkX / chunksPerAxis) * 2 - 1,
       (newChunkY / chunksPerAxis) * 2 - 1,
     ]);
-    // console.log('chunk %d, %d', newChunkX, newChunkY);
-    // console.log(
-    //   'render %f, %f',
-    //   (newChunkX / chunksPerAxis) * 2 - 1,
-    //   (newChunkY / chunksPerAxis) * 2 - 1,
-    // );
-    // console.log('');
+    console.log('chunk %d, %d', newChunkX, newChunkY);
+    console.log(
+      'render %f, %f',
+      (newChunkX / chunksPerAxis) * 2 - 1,
+      (newChunkY / chunksPerAxis) * 2 - 1,
+    );
+    console.log('');
   }
 }
 
@@ -137,8 +139,14 @@ function drawJulia(
   for (var i = 0; i < canvas.height; i++) {
     for (var j = 0; j < canvas.width; j++) {
       // limit the axis
-      let x = 3.0 * -0.5 + (j * 3.0) / canvas.width;
-      let y = 2.0 * -0.5 + (i * 2.0) / canvas.height;
+      const xAxisLength = viewportCoords.endX - viewportCoords.startX;
+      const yAxisLength = viewportCoords.endY - viewportCoords.startY;
+      const xOffset = (viewportCoords.endX + viewportCoords.startX) / 2;
+      const yOffset = (viewportCoords.endY + viewportCoords.startY) / 2;
+
+
+      let x = (xAxisLength * -0.5 + (j * xAxisLength) / canvas.width) + xOffset;
+      let y = (yAxisLength * -0.5 + (i  * yAxisLength) / canvas.height) + yOffset;
 
       let iteration = 0;
 

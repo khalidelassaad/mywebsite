@@ -13,9 +13,9 @@ const fractalResolution = null;
 // fractalResolution uses 1:1 with size of canvas on screen if null
 const fractalColorStep = 4;
 const fractalViewportCoords = {
-  startX: -1.5,
-  startY: -1,
-  endX: 1.5,
+  startX: 0.6,
+  startY: 0.6,
+  endX: 1,
   endY: 1,
 };
 
