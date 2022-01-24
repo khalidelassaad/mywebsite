@@ -1,12 +1,12 @@
 import * as React from 'react';
 
 const canvasClassName = 'Fractal-canvas';
-const cursorStepDistance = 200; // Set state only after cursor moves this many pixels
-const maxIterations = 90; // Default author provides: 100
 
 interface Props {
   resolution: number;
   colorStep: number;
+  cursorStepDistance: number;
+  maxIterations: number;
 }
 
 function _handleStateUpdates(
@@ -21,12 +21,15 @@ function _handleStateUpdates(
     (arg0: number[]): void;
   },
   canvasRef: React.MutableRefObject<any>,
+  cursorStepDistance: number,
 ) {
   const canvasX: number = canvasRef.current.offsetWidth; //TODO: FLIP HERE IF BUGGY
   const canvasY: number = canvasRef.current.offsetHeight;
 
   const [newCursorX, newCursorY] = newCursorCoords;
   const [cursorX, cursorY] = cursorCoords;
+
+  // canvas;
 
   if (
     Math.abs(newCursorX - cursorX) > cursorStepDistance ||
@@ -37,12 +40,14 @@ function _handleStateUpdates(
       (newCursorX / canvasX) * 2 - 1,
       (newCursorY / canvasY) * 2 - 1,
     ]);
-    console.log('X, Y detected: %d, %d', canvasX, canvasY);
+    console.log('X, Y detected: %d, %d', newCursorX, newCursorY);
+    console.log('Canvas size: %d, %d', canvasX, canvasY);
     console.log(
       'coordinates updated: %f, %f',
       (newCursorX / canvasX) * 2 - 1,
       (newCursorY / canvasY) * 2 - 1,
     );
+    console.log('');
   }
 }
 
@@ -55,7 +60,13 @@ function Fractal(props: Props) {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
 
-    drawJulia(canvas, context, props.colorStep, renderCoords);
+    drawJulia(
+      canvas,
+      context,
+      props.colorStep,
+      renderCoords,
+      props.maxIterations,
+    );
   });
 
   return (
@@ -70,6 +81,7 @@ function Fractal(props: Props) {
             setCursorCoords,
             setRenderCoords,
             canvasRef,
+            props.cursorStepDistance,
           );
         }}
         width={props.resolution}
@@ -81,7 +93,13 @@ function Fractal(props: Props) {
 
 export default Fractal;
 
-function drawJulia(canvas, context, colorStep: number, renderCoords: number[]) {
+function drawJulia(
+  canvas,
+  context,
+  colorStep: number,
+  renderCoords: number[],
+  maxIterations: number,
+) {
   // Author: delimitry
   // Repo: https://github.com/delimitry/fractals-js/
   //-----------------------------------------------------------------------
