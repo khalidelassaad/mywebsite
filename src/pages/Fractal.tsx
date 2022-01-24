@@ -14,7 +14,7 @@ interface ViewportCoords {
   endY: number;
 }
 
-interface Props {
+interface FractalProps {
   resolution?: number;
   colorStep: number;
   chunksPerAxis: number;
@@ -55,17 +55,17 @@ function _handleStateUpdates(
       (((newChunkX / chunksPerAxis) * 2 - 1) * transformSpeedModifier),
       (((newChunkY / chunksPerAxis) * 2 - 1) * transformSpeedModifier),
     ]);
-    console.log('chunk %d, %d', newChunkX, newChunkY);
-    console.log(
-      'render %f, %f',
-      (newChunkX / chunksPerAxis) * 2 - 1,
-      (newChunkY / chunksPerAxis) * 2 - 1,
-    );
+    // console.log('chunk %d, %d', newChunkX, newChunkY);
+    // console.log(
+    //   'render %f, %f',
+    //   (newChunkX / chunksPerAxis) * 2 - 1,
+    //   (newChunkY / chunksPerAxis) * 2 - 1,
+    // );
     // console.log('');
   }
 }
 
-function Fractal(props: Props) {
+function Fractal(props: FractalProps) {
   const canvasRef = React.useRef(null);
   const [chunkCoords, setChunkCoords] = React.useState([0, 0]);
   const [renderCoords, setRenderCoords] = React.useState([0, 0]);
@@ -118,8 +118,6 @@ function Fractal(props: Props) {
   );
 }
 
-export default Fractal;
-
 function drawJulia(
   canvas,
   context,
@@ -144,8 +142,8 @@ function drawJulia(
   let x0 = renderCoords[0]*(xAxisLength/2) + xOffset;
   let y0 = renderCoords[1]*(yAxisLength/2) + yOffset;
 
-  console.log('sized  %f, %f', x0, y0);
-  console.log('')
+  // console.log('sized  %f, %f', x0, y0);
+  // console.log('')
 
   maxIterations = Math.min(maxIterations , Math.floor(255 / colorStep))
 
@@ -177,4 +175,4 @@ function drawJulia(
   context.draw;
 }
 
-//   context.clearRect(0, 0, canvas.width, canvas.height);
+export {Fractal, FractalProps};
