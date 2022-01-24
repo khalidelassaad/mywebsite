@@ -29,14 +29,16 @@ function App() {
           <Route path="/athletics" element={'SPORTS!!! :>'} />
           <Route path="/contact" element={"Don't talk to me!!! :>"} />
           <Route
-            path="/*"
+            path="/404"
             element={
               <>
+                <h1>404</h1>
                 {error404string}
                 <Link to="/">Back to home page</Link>
               </>
             }
           />
+          <Route path="/*">{}</Route>
         </Routes>
       </div>
     </>
