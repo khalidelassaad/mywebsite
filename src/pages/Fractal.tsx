@@ -102,12 +102,12 @@ function Fractal(props: Props) {
         width={
           props.resolution != null
             ? props.resolution
-            : (canvasRef.current != null ? canvasRef.current.offsetWidth : 100)
+            : (canvasRef.current != null ? canvasRef.current.offsetWidth : 1)
         }
         height={
           props.resolution != null
             ? props.resolution
-            : (canvasRef.current != null ? canvasRef.current.offsetHeight : 100)
+            : (canvasRef.current != null ? canvasRef.current.offsetHeight : 1)
         }
       ></canvas>
     </>
