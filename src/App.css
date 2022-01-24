@@ -3,7 +3,7 @@
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 20vh;
   pointer-events: none;
 }
 
@@ -15,8 +15,7 @@
 
 .App-header {
   background-color: #8b93a5;
-  min-height: 20vh;
-  max-height: 20vh;
+  height: 20vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,7 +26,7 @@
 
 .App-body {
   background-color: #282c34;
-  min-height: 80vh;
+  min-height: 75vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -50,15 +49,21 @@
 }
 
 .headerBar-list {
-  height: 80px;
+  height: 5vh;
+  display: flex;
+  justify-content: space-around;
+  padding-inline: 15vw;
 }
 
 .headerBar-button {
   display: inline-flex;
-  padding: 10px;
+  padding: 1vh;
+  margin-inline: 1vw;
   width: 15vw;
+  height: 3vh;
+  font-size: 3vmin;
   background-color: green;
-  align-content: stretch;
+  align-items: center;
   justify-content: space-around;
 }
 
