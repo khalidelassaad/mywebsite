@@ -1,5 +1,5 @@
 import * as React from 'react';
-import HeaderButton from './headerButton';
+import HeaderButton from './HeaderButton';
 
 const listClassName: string = 'headerBar-list';
 

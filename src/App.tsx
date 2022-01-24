@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Link, Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
-import HeaderBar from './header/headerBar';
-import Fractal from './pages/fractal';
+import HeaderBar from './header/HeaderBar';
+import Fractal from './pages/Fractal';
 
 const bodystring: string = 'Welcome to KE Land! This is the best place.';
 const error404string: string = 'Uh oh! Nothing to see here, move along...';
