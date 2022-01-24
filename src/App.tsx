@@ -33,12 +33,7 @@ function App() {
             <Route path="/contact" element={"Don't talk to me!!! :>"} />
             <Route
               path="/fractal"
-              element={
-                <Fractal
-                  colorStep={2}
-                  canvasProps={{ width: 1000, height: 1000 }}
-                />
-              }
+              element={<Fractal colorStep={4} resolution={500} />}
             />
             <Route
               path="/404"
