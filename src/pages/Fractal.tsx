@@ -52,8 +52,8 @@ function _handleStateUpdates(
   if (newChunkX != oldChunkX || newChunkY != oldChunkY) {
     setChunkCoords([newChunkX, newChunkY]);
     setRenderCoords([
-      (((newChunkX / chunksPerAxis) * 2 - 1) * transformSpeedModifier),
-      (((newChunkY / chunksPerAxis) * 2 - 1) * transformSpeedModifier),
+      ((newChunkX / chunksPerAxis) * 2 - 1) * transformSpeedModifier,
+      ((newChunkY / chunksPerAxis) * 2 - 1) * transformSpeedModifier,
     ]);
     // console.log('chunk %d, %d', newChunkX, newChunkY);
     // console.log(
@@ -100,18 +100,22 @@ function Fractal(props: FractalProps) {
             setRenderCoords,
             canvasRef,
             props.chunksPerAxis,
-            props.transformSpeedModifier
+            props.transformSpeedModifier,
           );
         }}
         width={
           props.resolution != null
             ? props.resolution
-            : (canvasRef.current != null ? canvasRef.current.offsetWidth : 1)
+            : canvasRef.current != null
+            ? canvasRef.current.offsetWidth
+            : 1
         }
         height={
           props.resolution != null
             ? props.resolution
-            : (canvasRef.current != null ? canvasRef.current.offsetHeight : 1)
+            : canvasRef.current != null
+            ? canvasRef.current.offsetHeight
+            : 1
         }
       ></canvas>
     </>
@@ -139,19 +143,19 @@ function drawJulia(
   var image_data = context.createImageData(canvas.width, canvas.height);
   var d = image_data.data;
 
-  let x0 = renderCoords[0]*(xAxisLength/2) + xOffset;
-  let y0 = renderCoords[1]*(yAxisLength/2) + yOffset;
+  let x0 = renderCoords[0] * (xAxisLength / 2) + xOffset;
+  let y0 = renderCoords[1] * (yAxisLength / 2) + yOffset;
 
   // console.log('sized  %f, %f', x0, y0);
   // console.log('')
 
-  maxIterations = Math.min(maxIterations , Math.floor(255 / colorStep))
+  maxIterations = Math.min(maxIterations, Math.floor(255 / colorStep));
 
   for (var i = 0; i < canvas.height; i++) {
     for (var j = 0; j < canvas.width; j++) {
       // limit the axis
-      let x = (xAxisLength * -0.5 + (j * xAxisLength) / canvas.width) + xOffset;
-      let y = (yAxisLength * -0.5 + (i  * yAxisLength) / canvas.height) + yOffset;
+      let x = xAxisLength * -0.5 + (j * xAxisLength) / canvas.width + xOffset;
+      let y = yAxisLength * -0.5 + (i * yAxisLength) / canvas.height + yOffset;
 
       let iteration = 0;
 
@@ -175,4 +179,4 @@ function drawJulia(
   context.draw;
 }
 
-export {Fractal, FractalProps};
+export { Fractal, FractalProps };

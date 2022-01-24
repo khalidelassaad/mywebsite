@@ -70,7 +70,7 @@
 }
 
 .headerBar-button {
-  display: inline-flex;
+  display: flex;
   padding: 1vh;
   margin-inline: 1vw;
   width: 15vw;

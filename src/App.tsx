@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Link, Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import HeaderBar from './header/HeaderBar';
-import {Fractal, FractalProps} from './pages/Fractal';
+import { Fractal, FractalProps } from './pages/Fractal';
 
 const bodystring: string = 'Welcome to KE Land! This is the best place.';
 const error404string: string = 'Uh oh! Nothing to see here, move along...';
@@ -18,9 +18,8 @@ const fractalProps: FractalProps = {
     endX: -0.8,
     endY: 0.2,
   },
-  transformSpeedModifier: 0.24
-}
-
+  transformSpeedModifier: 0.24,
+};
 
 const navButtons: [string, string][] = [
   ['HOME', '/'],
@@ -46,14 +45,7 @@ function App() {
             <Route path="/codefolio" element={'CODE!!! :>'} />
             <Route path="/athletics" element={'SPORTS!!! :>'} />
             <Route path="/contact" element={"Don't talk to me!!! :>"} />
-            <Route
-              path="/fractal"
-              element={
-                <Fractal
-                  {...fractalProps}
-                />
-              }
-            />
+            <Route path="/fractal" element={<Fractal {...fractalProps} />} />
             <Route
               path="/404"
               element={
