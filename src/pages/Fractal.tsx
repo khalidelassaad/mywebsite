@@ -14,7 +14,7 @@ interface ViewportCoords {
 }
 
 interface Props {
-  resolution: number;
+  resolution?: number;
   colorStep: number;
   chunksPerAxis: number;
   maxIterations: number;
@@ -99,8 +99,16 @@ function Fractal(props: Props) {
             props.chunksPerAxis,
           );
         }}
-        width={props.resolution}
-        height={props.resolution}
+        width={
+          props.resolution != null
+            ? props.resolution
+            : canvasRef.current.offsetWidth
+        }
+        height={
+          props.resolution != null
+            ? props.resolution
+            : canvasRef.current.offsetHeight
+        }
       ></canvas>
     </>
   );

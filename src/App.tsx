@@ -9,7 +9,8 @@ const error404string: string = 'Uh oh! Nothing to see here, move along...';
 
 const fractalChunksPerAxis = 10;
 const fractalMaxIterations = 60; // Default author provides: 100
-const fractalResolution = 1000;
+const fractalResolution = null;
+// fractalResolution uses 1:1 with size of canvas on screen if null
 const fractalColorStep = 4;
 const fractalViewportCoords = {
   startX: -1.5,
