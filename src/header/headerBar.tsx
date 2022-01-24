@@ -4,17 +4,14 @@ import HeaderButton from './headerButton';
 const listClassName: string = 'headerBar-list';
 
 interface Props {
-  labels: string[];
-  onClicks: (() => any)[];
+  navButtons: [string, () => any][];
 }
 
-function HeaderBar({ labels, onClicks }: Props) {
+function HeaderBar({ navButtons }: Props) {
   return (
     <div className={listClassName}>
-      {labels.map((label, index) => {
-        return (
-          <HeaderButton key={label} label={label} onClick={onClicks[index]} />
-        );
+      {navButtons.map(([label, onClick], index) => {
+        return <HeaderButton key={label} label={label} onClick={onClick} />;
       })}
     </div>
   );

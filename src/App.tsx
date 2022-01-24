@@ -2,21 +2,32 @@ import * as React from 'react';
 import './App.css';
 import HeaderBar from './header/headerBar';
 
-const bodystring = 'Welcome to KE Land! This is the best place.';
-const headerButtonLabels = ['Hello', 'Button 2', '2', '555'];
-const headerButtonOnClicks = [
-  () => {
-    console.log('dibbidy');
-  },
-  () => {
-    console.log('dibbidy doo');
-  },
-  () => {
-    console.log('dibbidy doo');
-  },
-  () => {
-    console.log('dibbidy doo');
-  },
+const bodystring: string = 'Welcome to KE Land! This is the best place.';
+const navButtons: [string, () => any][] = [
+  [
+    'Home',
+    () => {
+      // navigate to Home page
+    },
+  ],
+  [
+    'Codefolio',
+    () => {
+      // navigate to Codefolio page
+    },
+  ],
+  [
+    'Athletics',
+    () => {
+      // navigate to Athletics page
+    },
+  ],
+  [
+    'Contact',
+    () => {
+      // navigate to Contact page
+    },
+  ],
 ];
 
 function App() {
@@ -26,10 +37,7 @@ function App() {
         <header className="App-header">
           <img src="../kelogo.png" className="App-logo" alt="logo" />
         </header>
-        <HeaderBar
-          labels={headerButtonLabels}
-          onClicks={headerButtonOnClicks}
-        />
+        <HeaderBar navButtons={navButtons} />
       </div>
       <div className="App-body">{bodystring}</div>
     </>
