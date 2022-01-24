@@ -26,10 +26,10 @@ function _handleStateUpdates(
   const canvasX: number = canvasRef.current.offsetWidth; //TODO: FLIP HERE IF BUGGY
   const canvasY: number = canvasRef.current.offsetHeight;
 
-  const [newCursorX, newCursorY] = newCursorCoords;
-  const [cursorX, cursorY] = cursorCoords;
+  const newCursorX = newCursorCoords[0] - canvasRef.current.offsetLeft;
+  const newCursorY = newCursorCoords[1] - canvasRef.current.offsetTop;
 
-  // canvas;
+  const [cursorX, cursorY] = cursorCoords;
 
   if (
     Math.abs(newCursorX - cursorX) > cursorStepDistance ||
@@ -40,14 +40,32 @@ function _handleStateUpdates(
       (newCursorX / canvasX) * 2 - 1,
       (newCursorY / canvasY) * 2 - 1,
     ]);
-    console.log('X, Y detected: %d, %d', newCursorX, newCursorY);
-    console.log('Canvas size: %d, %d', canvasX, canvasY);
-    console.log(
-      'coordinates updated: %f, %f',
-      (newCursorX / canvasX) * 2 - 1,
-      (newCursorY / canvasY) * 2 - 1,
-    );
-    console.log('');
+    // console.log('X, Y detected: %d, %d', newCursorX, newCursorY);
+    // console.log('Canvas size: %d, %d', canvasX, canvasY);
+    // console.log(
+    //   'Canvas size client: %d, %d',
+    //   canvasRef.current.clientWidth,
+    //   canvasRef.current.clientHeight,
+    // );
+
+    // console.log(
+    //   'Canvas position: %d, %d',
+    //   canvasRef.current.offsetLeft,
+    //   canvasRef.current.offsetTop,
+    // );
+    // console.log(
+    //   'coordinates updated: %f, %f',
+    //   (newCursorX / canvasX) * 2 - 1,
+    //   (newCursorY / canvasY) * 2 - 1,
+    // );
+    // console.log('parent: %s', canvasRef.current.offsetParent);
+    // console.log(
+    //   'parent pos: %d, %d',
+    //   canvasRef.current.offsetParent.offsetWidth,
+    //   canvasRef.current.offsetParent.offsetHeight,
+    // );
+
+    // console.log('');
   }
 }
 
@@ -76,7 +94,7 @@ function Fractal(props: Props) {
         className={canvasClassName}
         onMouseMove={(e) => {
           _handleStateUpdates(
-            [e.screenX, e.screenY],
+            [e.clientX, e.clientY],
             cursorCoords,
             setCursorCoords,
             setRenderCoords,
