@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Link, Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import HeaderBar from './header/headerBar';
 
@@ -38,7 +38,7 @@ function App() {
               </>
             }
           />
-          <Route path="/*">{}</Route>
+          <Route path="/*" element={<Navigate replace to="/404" />} />
         </Routes>
       </div>
     </>
