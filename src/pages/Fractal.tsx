@@ -2,15 +2,23 @@ import * as React from 'react';
 
 // TODO for this class:
 // - Optimize with dynamic programming (save rendered image data)
-// - Allow for specification of viewport coords (default -1, -1, 1, 1)
+// - Allow for specification of viewport coords (default -1.5, -1, 1.5, 1)
 
 const canvasClassName = 'Fractal-canvas';
+
+interface ViewportCoords {
+  startX: number;
+  startY: number;
+  endX: number;
+  endY: number;
+}
 
 interface Props {
   resolution: number;
   colorStep: number;
   chunksPerAxis: number;
   maxIterations: number;
+  viewportCoords: ViewportCoords;
 }
 
 function _handleStateUpdates(
@@ -44,6 +52,13 @@ function _handleStateUpdates(
       (newChunkX / chunksPerAxis) * 2 - 1,
       (newChunkY / chunksPerAxis) * 2 - 1,
     ]);
+    // console.log('chunk %d, %d', newChunkX, newChunkY);
+    // console.log(
+    //   'render %f, %f',
+    //   (newChunkX / chunksPerAxis) * 2 - 1,
+    //   (newChunkY / chunksPerAxis) * 2 - 1,
+    // );
+    // console.log('');
   }
 }
 
@@ -65,6 +80,7 @@ function Fractal(props: Props) {
       props.colorStep,
       renderCoords,
       props.maxIterations,
+      props.viewportCoords,
     );
   });
 
@@ -98,6 +114,7 @@ function drawJulia(
   colorStep: number,
   renderCoords: number[],
   maxIterations: number,
+  viewportCoords: ViewportCoords,
 ) {
   // Author: delimitry
   // Repo: https://github.com/delimitry/fractals-js/

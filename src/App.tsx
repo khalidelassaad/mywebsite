@@ -9,8 +9,14 @@ const error404string: string = 'Uh oh! Nothing to see here, move along...';
 
 const fractalChunksPerAxis = 10;
 const fractalMaxIterations = 60; // Default author provides: 100
-const fractalResolution = 600;
+const fractalResolution = 1000;
 const fractalColorStep = 4;
+const fractalViewportCoords = {
+  startX: -1.5,
+  startY: -1,
+  endX: 1.5,
+  endY: 1,
+};
 
 const navButtons: [string, string][] = [
   ['HOME', '/'],
@@ -44,6 +50,7 @@ function App() {
                   resolution={fractalResolution}
                   chunksPerAxis={fractalChunksPerAxis}
                   maxIterations={fractalMaxIterations}
+                  viewportCoords={fractalViewportCoords}
                 />
               }
             />
