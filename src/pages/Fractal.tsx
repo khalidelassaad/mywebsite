@@ -20,6 +20,7 @@ interface Props {
   chunksPerAxis: number;
   maxIterations: number;
   viewportCoords: ViewportCoords;
+  transformSpeedModifier: number;
 }
 
 function _handleStateUpdates(
@@ -35,6 +36,7 @@ function _handleStateUpdates(
   },
   canvasRef: React.MutableRefObject<any>,
   chunksPerAxis: number,
+  transformSpeedModifier: number,
 ) {
   const canvasX: number = canvasRef.current.offsetWidth;
   const canvasY: number = canvasRef.current.offsetHeight;
@@ -50,8 +52,8 @@ function _handleStateUpdates(
   if (newChunkX != oldChunkX || newChunkY != oldChunkY) {
     setChunkCoords([newChunkX, newChunkY]);
     setRenderCoords([
-      (newChunkX / chunksPerAxis) * 2 - 1,
-      (newChunkY / chunksPerAxis) * 2 - 1,
+      (((newChunkX / chunksPerAxis) * 2 - 1) * transformSpeedModifier),
+      (((newChunkY / chunksPerAxis) * 2 - 1) * transformSpeedModifier),
     ]);
     console.log('chunk %d, %d', newChunkX, newChunkY);
     console.log(
@@ -98,6 +100,7 @@ function Fractal(props: Props) {
             setRenderCoords,
             canvasRef,
             props.chunksPerAxis,
+            props.transformSpeedModifier
           );
         }}
         width={

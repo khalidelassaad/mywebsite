@@ -12,6 +12,7 @@ const fractalMaxIterations = 100; // Default author provides: 100
 const fractalResolution = null;
 // fractalResolution uses 1:1 with size of canvas on screen if null
 const fractalColorStep = 4;
+const fractalTransformSpeedModifier = 1;
 const fractalViewportCoords = {
   startX: -1.5,
   startY: -1.0,
@@ -52,6 +53,7 @@ function App() {
                   chunksPerAxis={fractalChunksPerAxis}
                   maxIterations={fractalMaxIterations}
                   viewportCoords={fractalViewportCoords}
+                  transformSpeedModifier={fractalTransformSpeedModifier}
                 />
               }
             />
