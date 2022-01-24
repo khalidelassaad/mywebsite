@@ -11,6 +11,7 @@ const navButtons: [string, string][] = [
   ['CODEFOLIO', '/codefolio'],
   ['ATHLETICS', '/athletics'],
   ['CONTACT', '/contact'],
+  ['FRACTAL', '/fractal'],
 ];
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
             <Route path="/codefolio" element={'CODE!!! :>'} />
             <Route path="/athletics" element={'SPORTS!!! :>'} />
             <Route path="/contact" element={"Don't talk to me!!! :>"} />
+            <Route path="/fractal" element={'fwattle :>'} />
             <Route
               path="/404"
               element={
