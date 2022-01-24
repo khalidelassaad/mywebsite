@@ -9,7 +9,7 @@ interface Props {
 }
 
 function HeaderButton({ label, linkTo }: Props) {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   return (
     <div
       className={buttonClassName}
