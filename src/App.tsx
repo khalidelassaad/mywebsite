@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Link, Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import HeaderBar from './header/headerBar';
+import Fractal from './pages/fractal';
 
 const bodystring: string = 'Welcome to KE Land! This is the best place.';
 const error404string: string = 'Uh oh! Nothing to see here, move along...';
@@ -30,7 +31,7 @@ function App() {
             <Route path="/codefolio" element={'CODE!!! :>'} />
             <Route path="/athletics" element={'SPORTS!!! :>'} />
             <Route path="/contact" element={"Don't talk to me!!! :>"} />
-            <Route path="/fractal" element={'fwattle :>'} />
+            <Route path="/fractal" element={<Fractal />} />
             <Route
               path="/404"
               element={
