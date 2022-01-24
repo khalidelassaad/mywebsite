@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import HeaderBar from './header/headerBar';
 
@@ -39,7 +40,12 @@ function App() {
         </header>
         <HeaderBar navButtons={navButtons} />
       </div>
-      <div className="App-body">{bodystring}</div>
+      <Routes>
+        <Route
+          path="/"
+          element={<div className="App-body">{bodystring}</div>}
+        />
+      </Routes>
     </>
   );
 }
