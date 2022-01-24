@@ -39,8 +39,6 @@ function _handleStateUpdates(
   const newChunkY = Math.floor((newCursorY / canvasY) * chunksPerAxis);
 
   if (newChunkX != oldChunkX || newChunkY != oldChunkY) {
-    console.log('new chunk: %d, %d', newChunkX, newChunkY);
-    console.log('');
     setChunkCoords([newChunkX, newChunkY]);
     setRenderCoords([
       (newChunkX / chunksPerAxis) * 2 - 1,
