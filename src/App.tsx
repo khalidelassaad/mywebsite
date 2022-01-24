@@ -36,7 +36,7 @@ function App() {
               element={
                 <Fractal
                   colorStep={2}
-                  canvasProps={{ width: 900, height: 900 }}
+                  canvasProps={{ width: 1000, height: 1000 }}
                 />
               }
             />
