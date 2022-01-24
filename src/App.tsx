@@ -1,32 +1,37 @@
 import * as React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Link, Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
 import HeaderBar from './header/headerBar';
 
 const bodystring: string = 'Welcome to KE Land! This is the best place.';
+const error404string: string = 'Uh oh! Nothing to see here, move along...';
+
+const navigate = useNavigate();
+
 const navButtons: [string, () => any][] = [
   [
     'Home',
     () => {
-      // navigate to Home page
+      navigate('/');
     },
   ],
   [
     'Codefolio',
     () => {
-      // navigate to Codefolio page
+      navigate('/codefolio');
+      console.log('code');
     },
   ],
   [
     'Athletics',
     () => {
-      // navigate to Athletics page
+      navigate('/athletics');
     },
   ],
   [
     'Contact',
     () => {
-      // navigate to Contact page
+      navigate('/contact');
     },
   ],
 ];
@@ -44,6 +49,19 @@ function App() {
         <Route
           path="/"
           element={<div className="App-body">{bodystring}</div>}
+        />
+        <Route
+          path="/codefolio"
+          element={<div className="App-body">{'CODE!!! :>'}</div>}
+        />
+        <Route
+          path="/*"
+          element={
+            <div className="App-body">
+              {error404string}
+              <Link to="/">Back to home page</Link>
+            </div>
+          }
         />
       </Routes>
     </>
