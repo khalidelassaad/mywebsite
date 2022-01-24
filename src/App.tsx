@@ -16,30 +16,32 @@ const navButtons: [string, string][] = [
 function App() {
   return (
     <>
-      <div className="App">
-        <header className="App-header">
-          <img src="../kelogo.png" className="App-logo" alt="logo" />
-        </header>
-        <HeaderBar navButtons={navButtons} />
-      </div>
-      <div className="App-body">
-        <Routes>
-          <Route path="/" element={bodystring} />
-          <Route path="/codefolio" element={'CODE!!! :>'} />
-          <Route path="/athletics" element={'SPORTS!!! :>'} />
-          <Route path="/contact" element={"Don't talk to me!!! :>"} />
-          <Route
-            path="/404"
-            element={
-              <>
-                <h1>404</h1>
-                {error404string}
-                <Link to="/">Back to home page</Link>
-              </>
-            }
-          />
-          <Route path="/*" element={<Navigate replace to="/404" />} />
-        </Routes>
+      <div className="App-background">
+        <div className="App">
+          <header className="App-header">
+            <img src="../kelogo.png" className="App-logo" alt="logo" />
+          </header>
+          <HeaderBar navButtons={navButtons} />
+        </div>
+        <div className="App-body">
+          <Routes>
+            <Route path="/" element={bodystring} />
+            <Route path="/codefolio" element={'CODE!!! :>'} />
+            <Route path="/athletics" element={'SPORTS!!! :>'} />
+            <Route path="/contact" element={"Don't talk to me!!! :>"} />
+            <Route
+              path="/404"
+              element={
+                <>
+                  <h1>404</h1>
+                  {error404string}
+                  <Link to="/">Back to home page</Link>
+                </>
+              }
+            />
+            <Route path="/*" element={<Navigate replace to="/404" />} />
+          </Routes>
+        </div>
       </div>
     </>
   );

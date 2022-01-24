@@ -5,6 +5,7 @@
 .App-logo {
   height: 20vh;
   pointer-events: none;
+  user-select: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -33,6 +34,18 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.App-background {
+  display: flex;
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 1) 20%,
+    rgba(0, 121, 0, 1) 70%,
+    rgba(0, 200, 50, 1) 100%
+  );
+  flex-direction: column;
+  padding-inline: 10vw;
 }
 
 .App-link {
@@ -66,6 +79,7 @@
   background-color: green;
   align-items: center;
   justify-content: space-around;
+  user-select: none;
 }
 
 .headerBar-button:hover {
