@@ -1,12 +1,18 @@
 import * as React from 'react';
 
-interface Props {}
+interface Props {
+  canvasProps?: any;
+}
 
-function Fractal({}: Props) {
+function Fractal(props: Props) {
+  const canvasRef = React.useRef(null);
+  const canvas = canvasRef.current;
+  const context = canvas.getContext('2d');
+
   return (
     <>
       Fractals!!!
-      <canvas></canvas>
+      <canvas ref={canvasRef} {...props.canvasProps}></canvas>
     </>
   );
 }
