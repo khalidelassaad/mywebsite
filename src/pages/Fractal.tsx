@@ -3,7 +3,7 @@ import * as React from 'react';
 const canvasClassName = 'Fractal-canvas';
 
 interface Props {
-  canvasProps?: any;
+  canvasProps: any;
   colorStep: number;
 }
 
