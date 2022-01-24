@@ -76,6 +76,7 @@
   width: 15vw;
   height: 3vh;
   font-size: 3vmin;
+  font-weight: 200;
   background-color: green;
   align-items: center;
   justify-content: space-around;

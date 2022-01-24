@@ -7,10 +7,10 @@ const bodystring: string = 'Welcome to KE Land! This is the best place.';
 const error404string: string = 'Uh oh! Nothing to see here, move along...';
 
 const navButtons: [string, string][] = [
-  ['Home', '/'],
-  ['Codefolio', '/codefolio'],
-  ['Athletics', '/athletics'],
-  ['Contact', '/contact'],
+  ['HOME', '/'],
+  ['CODEFOLIO', '/codefolio'],
+  ['ATHLETICS', '/athletics'],
+  ['CONTACT', '/contact'],
 ];
 
 function App() {
