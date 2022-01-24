@@ -27,7 +27,7 @@
 
 .App-body {
   background-color: #282c34;
-  min-height: 75vh;
+  height: 75vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -86,4 +86,9 @@
 .headerBar-button:hover {
   background-color: rgb(1, 192, 1);
   cursor: pointer;
+}
+
+.Fractal-canvas {
+  width: 80vw;
+  height: 75vh;
 }

@@ -1,7 +1,10 @@
 import * as React from 'react';
 
+const canvasClassName = 'Fractal-canvas';
+
 interface Props {
   canvasProps?: any;
+  colorStep: number;
 }
 
 function Fractal(props: Props) {
@@ -11,20 +14,23 @@ function Fractal(props: Props) {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
 
-    drawJulia(canvas, context);
+    drawJulia(canvas, context, props.colorStep);
   });
 
   return (
     <>
-      Fractals!!!
-      <canvas ref={canvasRef} {...props.canvasProps}></canvas>
+      <canvas
+        ref={canvasRef}
+        className={canvasClassName}
+        {...props.canvasProps}
+      ></canvas>
     </>
   );
 }
 
 export default Fractal;
 
-function drawJulia(canvas, context) {
+function drawJulia(canvas, context, colorStep: number) {
   // Author: delimitry
   // Repo: https://github.com/delimitry/fractals-js/
   //-----------------------------------------------------------------------
@@ -53,9 +59,7 @@ function drawJulia(canvas, context) {
       }
 
       // set pixel color [r,g,b,a]
-      d[i * canvas.width * 4 + j * 4 + 0] = iteration * 25;
-      d[i * canvas.width * 4 + j * 4 + 1] = iteration * 5;
-      d[i * canvas.width * 4 + j * 4 + 2] = iteration * 8;
+      d[i * canvas.width * 4 + j * 4 + 1] = iteration * colorStep;
       d[i * canvas.width * 4 + j * 4 + 3] = 255;
     }
   }

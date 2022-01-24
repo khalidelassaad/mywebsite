@@ -31,7 +31,15 @@ function App() {
             <Route path="/codefolio" element={'CODE!!! :>'} />
             <Route path="/athletics" element={'SPORTS!!! :>'} />
             <Route path="/contact" element={"Don't talk to me!!! :>"} />
-            <Route path="/fractal" element={<Fractal />} />
+            <Route
+              path="/fractal"
+              element={
+                <Fractal
+                  colorStep={2}
+                  canvasProps={{ width: 900, height: 900 }}
+                />
+              }
+            />
             <Route
               path="/404"
               element={
