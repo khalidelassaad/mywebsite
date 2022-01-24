@@ -50,7 +50,10 @@ function Fractal(props: Props) {
 
   React.useEffect(() => {
     const canvas = canvasRef.current;
-    const context = canvas.getContext('2d');
+    const context = canvas.getContext('2d', {
+      alpha: false,
+      desynchronized: true,
+    });
 
     drawJulia(
       canvas,
@@ -105,8 +108,8 @@ function drawJulia(
   for (var i = 0; i < canvas.height; i++) {
     for (var j = 0; j < canvas.width; j++) {
       // limit the axis
-      let x = -1.5 + (j * 3.0) / canvas.width;
-      let y = -1.0 + (i * 2.0) / canvas.height;
+      let x = 3.0 * -0.5 + (j * 3.0) / canvas.width;
+      let y = 2.0 * -0.5 + (i * 2.0) / canvas.height;
 
       let iteration = 0;
 
@@ -126,6 +129,8 @@ function drawJulia(
 
   // draw image
   context.putImageData(image_data, 0, 0);
+
+  context.draw;
 }
 
 //   context.clearRect(0, 0, canvas.width, canvas.height);
