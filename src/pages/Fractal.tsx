@@ -1,18 +1,22 @@
 import * as React from 'react';
 
+// TODO for this class:
+// - Optimize with dynamic programming (save rendered image data)
+// - Allow for specification of viewport coords (default -1, -1, 1, 1)
+
 const canvasClassName = 'Fractal-canvas';
 
 interface Props {
   resolution: number;
   colorStep: number;
-  cursorStepDistance: number;
+  chunksPerAxis: number;
   maxIterations: number;
 }
 
 function _handleStateUpdates(
   newCursorCoords: number[],
-  cursorCoords: number[],
-  setCursorCoords: {
+  chunkCoords: number[],
+  setChunkCoords: {
     (value: React.SetStateAction<number[]>): void;
     (arg0: number[]): void;
   },
@@ -21,7 +25,7 @@ function _handleStateUpdates(
     (arg0: number[]): void;
   },
   canvasRef: React.MutableRefObject<any>,
-  cursorStepDistance: number,
+  chunksPerAxis: number,
 ) {
   const canvasX: number = canvasRef.current.offsetWidth;
   const canvasY: number = canvasRef.current.offsetHeight;
@@ -29,23 +33,25 @@ function _handleStateUpdates(
   const newCursorX = newCursorCoords[0] - canvasRef.current.offsetLeft;
   const newCursorY = newCursorCoords[1] - canvasRef.current.offsetTop;
 
-  const [cursorX, cursorY] = cursorCoords;
+  const [oldChunkX, oldChunkY] = chunkCoords;
 
-  if (
-    Math.abs(newCursorX - cursorX) > cursorStepDistance ||
-    Math.abs(newCursorY - cursorY) > cursorStepDistance
-  ) {
-    setCursorCoords(newCursorCoords);
+  const newChunkX = Math.floor((newCursorX / canvasX) * chunksPerAxis);
+  const newChunkY = Math.floor((newCursorY / canvasY) * chunksPerAxis);
+
+  if (newChunkX != oldChunkX || newChunkY != oldChunkY) {
+    console.log('new chunk: %d, %d', newChunkX, newChunkY);
+    console.log('');
+    setChunkCoords([newChunkX, newChunkY]);
     setRenderCoords([
-      (newCursorX / canvasX) * 2 - 1,
-      (newCursorY / canvasY) * 2 - 1,
+      (newChunkX / chunksPerAxis) * 2 - 1,
+      (newChunkY / chunksPerAxis) * 2 - 1,
     ]);
   }
 }
 
 function Fractal(props: Props) {
   const canvasRef = React.useRef(null);
-  const [cursorCoords, setCursorCoords] = React.useState([0, 0]);
+  const [chunkCoords, setChunkCoords] = React.useState([0, 0]);
   const [renderCoords, setRenderCoords] = React.useState([0, 0]);
 
   React.useEffect(() => {
@@ -72,11 +78,11 @@ function Fractal(props: Props) {
         onMouseMove={(e) => {
           _handleStateUpdates(
             [e.clientX, e.clientY],
-            cursorCoords,
-            setCursorCoords,
+            chunkCoords,
+            setChunkCoords,
             setRenderCoords,
             canvasRef,
-            props.cursorStepDistance,
+            props.chunksPerAxis,
           );
         }}
         width={props.resolution}

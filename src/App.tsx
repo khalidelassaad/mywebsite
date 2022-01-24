@@ -7,7 +7,7 @@ import Fractal from './pages/Fractal';
 const bodystring: string = 'Welcome to KE Land! This is the best place.';
 const error404string: string = 'Uh oh! Nothing to see here, move along...';
 
-const fractalCursorStepDistance = 5; // Set state only after cursor moves this many pixels
+const fractalChunksPerAxis = 10;
 const fractalMaxIterations = 60; // Default author provides: 100
 const fractalResolution = 600;
 const fractalColorStep = 4;
@@ -42,7 +42,7 @@ function App() {
                 <Fractal
                   colorStep={fractalColorStep}
                   resolution={fractalResolution}
-                  cursorStepDistance={fractalCursorStepDistance}
+                  chunksPerAxis={fractalChunksPerAxis}
                   maxIterations={fractalMaxIterations}
                 />
               }
