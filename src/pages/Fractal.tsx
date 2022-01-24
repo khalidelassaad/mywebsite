@@ -23,7 +23,7 @@ function _handleStateUpdates(
   canvasRef: React.MutableRefObject<any>,
   cursorStepDistance: number,
 ) {
-  const canvasX: number = canvasRef.current.offsetWidth; //TODO: FLIP HERE IF BUGGY
+  const canvasX: number = canvasRef.current.offsetWidth;
   const canvasY: number = canvasRef.current.offsetHeight;
 
   const newCursorX = newCursorCoords[0] - canvasRef.current.offsetLeft;
@@ -40,32 +40,6 @@ function _handleStateUpdates(
       (newCursorX / canvasX) * 2 - 1,
       (newCursorY / canvasY) * 2 - 1,
     ]);
-    // console.log('X, Y detected: %d, %d', newCursorX, newCursorY);
-    // console.log('Canvas size: %d, %d', canvasX, canvasY);
-    // console.log(
-    //   'Canvas size client: %d, %d',
-    //   canvasRef.current.clientWidth,
-    //   canvasRef.current.clientHeight,
-    // );
-
-    // console.log(
-    //   'Canvas position: %d, %d',
-    //   canvasRef.current.offsetLeft,
-    //   canvasRef.current.offsetTop,
-    // );
-    // console.log(
-    //   'coordinates updated: %f, %f',
-    //   (newCursorX / canvasX) * 2 - 1,
-    //   (newCursorY / canvasY) * 2 - 1,
-    // );
-    // console.log('parent: %s', canvasRef.current.offsetParent);
-    // console.log(
-    //   'parent pos: %d, %d',
-    //   canvasRef.current.offsetParent.offsetWidth,
-    //   canvasRef.current.offsetParent.offsetHeight,
-    // );
-
-    // console.log('');
   }
 }
 
