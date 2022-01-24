@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #8b93a5;
+  background-color: #199133;
   height: 20vh;
   display: flex;
   flex-direction: column;
@@ -49,6 +49,7 @@
 }
 
 .headerBar-list {
+  background-color: rgb(36, 109, 40);
   height: 5vh;
   display: flex;
   justify-content: space-around;
@@ -69,4 +70,5 @@
 
 .headerBar-button:hover {
   background-color: rgb(1, 192, 1);
+  cursor: pointer;
 }
