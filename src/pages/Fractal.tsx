@@ -16,12 +16,14 @@ interface ViewportCoords {
 
 interface FractalProps {
   resolution?: number;
+  resolutionFraction?: number;
   colorStep: number;
   chunksPerAxis: number;
   maxIterations: number;
   viewportCoords: ViewportCoords;
   transformSpeedModifier: number;
   classSuffix?: string;
+  disabled?: boolean;
 }
 
 function _handleStateUpdates(
@@ -67,6 +69,9 @@ function _handleStateUpdates(
 }
 
 function Fractal(props: FractalProps) {
+  if (props.disabled) {
+    return <></>;
+  }
   const canvasRef = React.useRef(null);
   const [chunkCoords, setChunkCoords] = React.useState([0, 0]);
   const [renderCoords, setRenderCoords] = React.useState([0, 0]);
@@ -112,14 +117,18 @@ function Fractal(props: FractalProps) {
           props.resolution != null
             ? props.resolution
             : canvasRef.current != null
-            ? canvasRef.current.offsetWidth
+            ? props.resolutionFraction
+              ? canvasRef.current.offsetWidth * props.resolutionFraction
+              : canvasRef.current.offsetWidth
             : 1
         }
         height={
           props.resolution != null
             ? props.resolution
             : canvasRef.current != null
-            ? canvasRef.current.offsetHeight
+            ? props.resolutionFraction
+              ? canvasRef.current.offsetHeight * props.resolutionFraction
+              : canvasRef.current.offsetHeight
             : 1
         }
       ></canvas>
