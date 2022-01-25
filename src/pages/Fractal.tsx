@@ -46,6 +46,7 @@ function _handleStateUpdates(
   const canvasY: number = canvasRef.current.offsetHeight;
 
   const newCursorX = newCursorCoords[0] - canvasRef.current.offsetLeft;
+  //BUG HERE: offsetleft is evaluate to 0 after the App-sleeve adjustment
   const newCursorY = newCursorCoords[1] - canvasRef.current.offsetTop;
 
   const [oldChunkX, oldChunkY] = chunkCoords;
@@ -59,6 +60,15 @@ function _handleStateUpdates(
       ((newChunkX / chunksPerAxis) * 2 - 1) * transformSpeedModifier,
       ((newChunkY / chunksPerAxis) * 2 - 1) * transformSpeedModifier,
     ]);
+
+    console.log(
+      'canvasXOffset: %d\nnewCursorX: %d\ncanvasX: %d\nquotient: %f\nnewChunkX: %d',
+      canvasRef.current.offsetLeft,
+      newCursorX,
+      canvasX,
+      newCursorX / canvasX,
+      newChunkX,
+    );
     console.log('chunk %d, %d', newChunkX, newChunkY);
     console.log(
       'render %f, %f',
