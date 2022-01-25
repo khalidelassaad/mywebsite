@@ -3,7 +3,6 @@ import * as React from 'react';
 // TODO for this class:
 // Optimize with dynamic programming (save rendered image data)
 // - State necessary: canvas dimensions and ChunksToDataArray
-// - Bugfix necessary: must make chunk coords strictly < props chunksPerAxis
 //    - Save fractal canvas dimensions
 //      - if same,
 //        - lookup chunk coords in ChunksToDataArray
@@ -52,6 +51,10 @@ function _handleStateUpdates(
   canvasRef: React.MutableRefObject<any>,
   chunksPerAxis: number,
   transformSpeedModifier: number,
+  canvasPixelDimensions: number[],
+  setCanvasPixelDimensions,
+  chunkToDataArray: any[],
+  setChunkToDataArray,
 ) {
   const canvasX: number = canvasRef.current.offsetWidth;
   const canvasY: number = canvasRef.current.offsetHeight;
@@ -69,6 +72,7 @@ function _handleStateUpdates(
     chunksPerAxis - 1,
     Math.max(0, Math.floor((newCursorY / canvasY) * chunksPerAxis)),
   );
+
   if (newChunkX != oldChunkX || newChunkY != oldChunkY) {
     setChunkCoords([newChunkX, newChunkY]);
     setRenderCoords([
@@ -76,21 +80,21 @@ function _handleStateUpdates(
       ((newChunkY / chunksPerAxis) * 2 - 1) * transformSpeedModifier,
     ]);
 
-    console.log(
-      'canvasXOffset: %d\nnewCursorX: %d\ncanvasX: %d\nquotient: %f\nnewChunkX: %d',
-      canvasRef.current.offsetLeft,
-      newCursorX,
-      canvasX,
-      newCursorX / canvasX,
-      newChunkX,
-    );
-    console.log('chunk %d, %d', newChunkX, newChunkY);
-    console.log(
-      'render %f, %f',
-      (newChunkX / chunksPerAxis) * 2 - 1,
-      (newChunkY / chunksPerAxis) * 2 - 1,
-    );
-    console.log('');
+    //   console.log(
+    //     'canvasXOffset: %d\nnewCursorX: %d\ncanvasX: %d\nquotient: %f\nnewChunkX: %d',
+    //     canvasRef.current.offsetLeft,
+    //     newCursorX,
+    //     canvasX,
+    //     newCursorX / canvasX,
+    //     newChunkX,
+    //   );
+    //   console.log('chunk %d, %d', newChunkX, newChunkY);
+    //   console.log(
+    //     'render %f, %f',
+    //     (newChunkX / chunksPerAxis) * 2 - 1,
+    //     (newChunkY / chunksPerAxis) * 2 - 1,
+    //   );
+    //   console.log(0 ? 1 : 0);
   }
 }
 
@@ -111,6 +115,12 @@ function Fractal(props: FractalProps) {
   const canvasRef = React.useRef(null);
   const [chunkCoords, setChunkCoords] = React.useState([0, 0]);
   const [renderCoords, setRenderCoords] = React.useState([0, 0]);
+  const [canvasPixelDimensions, setCanvasPixelDimensions] = React.useState([
+    0, 0,
+  ]);
+  const [chunkToDataArray, setChunkToDataArray] = React.useState(
+    new Array(props.chunksPerAxis ** 2),
+  );
 
   React.useEffect(() => {
     const canvas = canvasRef.current;
@@ -128,7 +138,7 @@ function Fractal(props: FractalProps) {
       props.viewportCoords,
       colorMax,
     );
-  });
+  }, [renderCoords]);
 
   return (
     <>
@@ -148,6 +158,10 @@ function Fractal(props: FractalProps) {
             canvasRef,
             props.chunksPerAxis,
             props.transformSpeedModifier,
+            canvasPixelDimensions,
+            setCanvasPixelDimensions,
+            chunkToDataArray,
+            setChunkToDataArray,
           );
         }}
         width={
@@ -198,8 +212,8 @@ function drawJulia(
   let x0 = renderCoords[0] * (xAxisLength / 2) + xOffset;
   let y0 = renderCoords[1] * (yAxisLength / 2) + yOffset;
 
-  console.log('sized  %f, %f', x0, y0);
-  console.log('');
+  // console.log('sized  %f, %f', x0, y0);
+  // console.log('');
 
   maxIterations = Math.min(maxIterations, Math.floor(colorMax / colorStep));
 
