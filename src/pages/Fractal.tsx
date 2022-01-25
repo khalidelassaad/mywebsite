@@ -34,6 +34,17 @@ function _debug(...args) {
   }
 }
 
+function _calculateRenderCoordsFromChunkCoords(
+  chunkCoords,
+  chunksPerAxis,
+  transformSpeedModifier,
+) {
+  return [
+    ((chunkCoords[0] / chunksPerAxis) * 2 - 1) * transformSpeedModifier,
+    ((chunkCoords[1] / chunksPerAxis) * 2 - 1) * transformSpeedModifier,
+  ];
+}
+
 function _storeValueInChunkArrayAtCoords(
   value,
   chunkToDataArray,
@@ -57,10 +68,6 @@ function _handleStateUpdates(
   newCursorCoords: number[],
   chunkCoords: number[],
   setChunkCoords: {
-    (value: React.SetStateAction<number[]>): void;
-    (arg0: number[]): void;
-  },
-  setRenderCoords: {
     (value: React.SetStateAction<number[]>): void;
     (arg0: number[]): void;
   },
@@ -110,10 +117,6 @@ function _handleStateUpdates(
     }
 
     setChunkCoords([newChunkX, newChunkY]);
-    setRenderCoords([
-      ((newChunkX / chunksPerAxis) * 2 - 1) * transformSpeedModifier,
-      ((newChunkY / chunksPerAxis) * 2 - 1) * transformSpeedModifier,
-    ]);
 
     //   _debug(
     //     'canvasXOffset: %d\nnewCursorX: %d\ncanvasX: %d\nquotient: %f\nnewChunkX: %d',
@@ -149,7 +152,6 @@ function Fractal(props: FractalProps) {
   const colorMax = props.colorMax ? props.colorMax : 255;
   const canvasRef = React.useRef(null);
   const [chunkCoords, setChunkCoords] = React.useState([-1, -1]);
-  const [renderCoords, setRenderCoords] = React.useState([0, 0]);
   const [canvasPixelDimensions, setCanvasPixelDimensions] = React.useState([
     0, 0,
   ]);
@@ -164,20 +166,20 @@ function Fractal(props: FractalProps) {
       desynchronized: true,
     });
 
-    drawJulia(
+    drawJuliaFromMemory(
       canvas,
       context,
       props.colorStep,
       chunkCoords,
       props.chunksPerAxis,
-      renderCoords,
       props.maxIterations,
       props.viewportCoords,
       colorMax,
       chunkToDataArray,
       setChunkToDataArray,
+      props.transformSpeedModifier,
     );
-  }, [renderCoords]);
+  }, [chunkCoords]);
 
   return (
     <>
@@ -193,7 +195,6 @@ function Fractal(props: FractalProps) {
             [e.clientX, e.clientY],
             chunkCoords,
             setChunkCoords,
-            setRenderCoords,
             canvasRef,
             props.chunksPerAxis,
             props.transformSpeedModifier,
@@ -225,18 +226,53 @@ function Fractal(props: FractalProps) {
   );
 }
 
-function drawJulia(
+function _iterateJulia(
+  canvas,
+  xAxisLength,
+  yAxisLength,
+  xOffset,
+  yOffset,
+  maxIterations,
+  x0,
+  y0,
+  colorStep,
+  resultDataArray,
+) {
+  for (var i = 0; i < canvas.height; i++) {
+    for (var j = 0; j < canvas.width; j++) {
+      // limit the axis
+      let x = xAxisLength * -0.5 + (j * xAxisLength) / canvas.width + xOffset;
+      let y = yAxisLength * -0.5 + (i * yAxisLength) / canvas.height + yOffset;
+
+      let iteration = 0;
+
+      while (x * x + y * y < 4 && iteration < maxIterations) {
+        let x_n = x * x - y * y + x0;
+        let y_n = 2 * x * y + y0;
+        x = x_n;
+        y = y_n;
+        iteration++;
+      }
+
+      // set pixel color [r,g,b,a]
+      resultDataArray[i * canvas.width * 4 + j * 4 + 1] = iteration * colorStep;
+      resultDataArray[i * canvas.width * 4 + j * 4 + 3] = 255;
+    }
+  }
+}
+
+function drawJuliaFromMemory(
   canvas,
   context,
   colorStep: number,
   chunkCoords: number[],
   chunksPerAxis: number,
-  renderCoords: number[],
   maxIterations: number,
   viewportCoords: ViewportCoords,
   colorMax: number,
   chunkToDataArray,
   setChunkToDataArray,
+  transformSpeedModifier,
 ) {
   // Author: delimitry
   // Repo: https://github.com/delimitry/fractals-js/
@@ -249,7 +285,7 @@ function drawJulia(
   const yOffset = (viewportCoords.endY + viewportCoords.startY) / 2;
 
   var image_data = context.createImageData(canvas.width, canvas.height);
-  var d = image_data.data;
+  var resultDataArray = image_data.data;
 
   const dataInChunkArray = _getValueInChunkArrayAtCoords(
     chunkToDataArray,
@@ -262,11 +298,16 @@ function drawJulia(
     _debug('data length', dataInChunkArray.length);
     _debug('data2 length', image_data.data.length);
     for (var i = 0; i < dataInChunkArray.length; i++) {
-      d[i] = dataInChunkArray[i];
+      resultDataArray[i] = dataInChunkArray[i];
     }
     _debug('to render');
-    _debug(d);
+    _debug(resultDataArray);
   } else {
+    let renderCoords = _calculateRenderCoordsFromChunkCoords(
+      chunkCoords,
+      chunksPerAxis,
+      transformSpeedModifier,
+    );
     let x0 = renderCoords[0] * (xAxisLength / 2) + xOffset;
     let y0 = renderCoords[1] * (yAxisLength / 2) + yOffset;
 
@@ -275,32 +316,23 @@ function drawJulia(
 
     maxIterations = Math.min(maxIterations, Math.floor(colorMax / colorStep));
 
-    for (var i = 0; i < canvas.height; i++) {
-      for (var j = 0; j < canvas.width; j++) {
-        // limit the axis
-        let x = xAxisLength * -0.5 + (j * xAxisLength) / canvas.width + xOffset;
-        let y =
-          yAxisLength * -0.5 + (i * yAxisLength) / canvas.height + yOffset;
+    _iterateJulia(
+      canvas,
+      xAxisLength,
+      yAxisLength,
+      xOffset,
+      yOffset,
+      maxIterations,
+      x0,
+      y0,
+      colorStep,
+      resultDataArray,
+    );
 
-        let iteration = 0;
-
-        while (x * x + y * y < 4 && iteration < maxIterations) {
-          let x_n = x * x - y * y + x0;
-          let y_n = 2 * x * y + y0;
-          x = x_n;
-          y = y_n;
-          iteration++;
-        }
-
-        // set pixel color [r,g,b,a]
-        d[i * canvas.width * 4 + j * 4 + 1] = iteration * colorStep;
-        d[i * canvas.width * 4 + j * 4 + 3] = 255;
-      }
-    }
     _debug('storing value in chunk array');
-    _debug(d);
+    _debug(resultDataArray);
     _storeValueInChunkArrayAtCoords(
-      d,
+      resultDataArray,
       chunkToDataArray,
       chunksPerAxis,
       chunkCoords,
