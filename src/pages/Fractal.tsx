@@ -2,6 +2,7 @@ import * as React from 'react';
 
 // TODO for this class:
 // - Optimize with dynamic programming (save rendered image data)
+// - Make background detect mouse movement on top of everything
 
 // Beautiful region at -0.8, 0.2
 
