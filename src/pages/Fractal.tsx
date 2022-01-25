@@ -149,7 +149,6 @@ function Fractal(props: FractalProps) {
     );
   }
 
-  const colorMax = props.colorMax ? props.colorMax : 255;
   const canvasRef = React.useRef(null);
   const [chunkCoords, setChunkCoords] = React.useState([-1, -1]);
   const [canvasPixelDimensions, setCanvasPixelDimensions] = React.useState([
@@ -171,7 +170,6 @@ function Fractal(props: FractalProps) {
       canvas,
       context,
       chunkCoords,
-      colorMax,
       chunkToDataArray,
       setChunkToDataArray,
     );
@@ -266,7 +264,6 @@ function drawJuliaFromMemory(
   canvas,
   context,
   chunkCoords: number[],
-  colorMax: number,
   chunkToDataArray,
   setChunkToDataArray,
 ) {
