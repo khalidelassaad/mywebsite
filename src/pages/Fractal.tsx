@@ -16,6 +16,7 @@ import * as React from 'react';
 // Beautiful region at -0.8, 0.2
 
 const canvasClassName = 'Fractal-canvas';
+const debug = true;
 
 interface ViewportCoords {
   startX: number;
@@ -35,6 +36,29 @@ interface FractalProps {
   classSuffix?: string;
   disabled?: boolean;
   colorMax?: number;
+}
+
+function _debug(...args) {
+  if (debug) {
+    console.log(...args);
+  }
+}
+
+function _storeValueInChunkArrayAtCoords(
+  value,
+  chunkToDataArray,
+  chunksPerAxis,
+  chunkCoords,
+) {
+  chunkToDataArray[chunkCoords[0] * chunksPerAxis + chunkCoords[1]] = value;
+}
+
+function _getValueInChunkArrayAtCoords(
+  chunkToDataArray,
+  chunksPerAxis,
+  chunkCoords,
+) {
+  return chunkToDataArray[chunkCoords[0] * chunksPerAxis + chunkCoords[1]];
 }
 
 function _handleStateUpdates(
@@ -73,14 +97,34 @@ function _handleStateUpdates(
     Math.max(0, Math.floor((newCursorY / canvasY) * chunksPerAxis)),
   );
 
+  const isCanvasSameDimensions =
+    canvasX == canvasPixelDimensions[0] && canvasY == canvasPixelDimensions[1];
+
   if (newChunkX != oldChunkX || newChunkY != oldChunkY) {
+    // - State necessary: canvas dimensions and ChunksToDataArray
+    //    - Save fractal canvas dimensions
+    //      - if same,
+    //        - lookup chunk coords in ChunksToDataArray
+    //          - If exists, draw it
+    //          - If not exists, calc it, save it, draw it
+    //      - if different,
+    //        - Re-init ChunksToDataArray
+
+    if (isCanvasSameDimensions) {
+      _debug('same dimensions!');
+    } else {
+      setCanvasPixelDimensions([canvasX, canvasY]);
+      setChunkToDataArray(new Array(chunksPerAxis ** 2));
+      _debug('set new dimensions and wiped chunk array!');
+    }
+
     setChunkCoords([newChunkX, newChunkY]);
     setRenderCoords([
       ((newChunkX / chunksPerAxis) * 2 - 1) * transformSpeedModifier,
       ((newChunkY / chunksPerAxis) * 2 - 1) * transformSpeedModifier,
     ]);
 
-    //   console.log(
+    //   _debug(
     //     'canvasXOffset: %d\nnewCursorX: %d\ncanvasX: %d\nquotient: %f\nnewChunkX: %d',
     //     canvasRef.current.offsetLeft,
     //     newCursorX,
@@ -88,13 +132,13 @@ function _handleStateUpdates(
     //     newCursorX / canvasX,
     //     newChunkX,
     //   );
-    //   console.log('chunk %d, %d', newChunkX, newChunkY);
-    //   console.log(
+    //   _debug('chunk %d, %d', newChunkX, newChunkY);
+    //   _debug(
     //     'render %f, %f',
     //     (newChunkX / chunksPerAxis) * 2 - 1,
     //     (newChunkY / chunksPerAxis) * 2 - 1,
     //   );
-    //   console.log(0 ? 1 : 0);
+    //   _debug(0 ? 1 : 0);
   }
 }
 
@@ -212,8 +256,8 @@ function drawJulia(
   let x0 = renderCoords[0] * (xAxisLength / 2) + xOffset;
   let y0 = renderCoords[1] * (yAxisLength / 2) + yOffset;
 
-  // console.log('sized  %f, %f', x0, y0);
-  // console.log('');
+  // _debug('sized  %f, %f', x0, y0);
+  // _debug('');
 
   maxIterations = Math.min(maxIterations, Math.floor(colorMax / colorStep));
 
