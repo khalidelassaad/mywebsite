@@ -61,9 +61,14 @@ function _handleStateUpdates(
 
   const [oldChunkX, oldChunkY] = chunkCoords;
 
-  const newChunkX = Math.floor((newCursorX / canvasX) * chunksPerAxis);
-  const newChunkY = Math.floor((newCursorY / canvasY) * chunksPerAxis);
-
+  const newChunkX = Math.min(
+    chunksPerAxis - 1,
+    Math.max(0, Math.floor((newCursorX / canvasX) * chunksPerAxis)),
+  );
+  const newChunkY = Math.min(
+    chunksPerAxis - 1,
+    Math.max(0, Math.floor((newCursorY / canvasY) * chunksPerAxis)),
+  );
   if (newChunkX != oldChunkX || newChunkY != oldChunkY) {
     setChunkCoords([newChunkX, newChunkY]);
     setRenderCoords([
@@ -85,7 +90,7 @@ function _handleStateUpdates(
       (newChunkX / chunksPerAxis) * 2 - 1,
       (newChunkY / chunksPerAxis) * 2 - 1,
     );
-    // console.log('');
+    console.log('');
   }
 }
 
