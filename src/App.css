@@ -87,6 +87,7 @@
 .Fractal-canvas-main {
   width: 80vw;
   height: 75vh;
+  filter: blur(0.5px);
 }
 
 .Fractal-canvas-background {
