@@ -24,7 +24,7 @@ const fractalProps: FractalProps = {
 const backgroundFractalProps: FractalProps = {
   colorStep: 4,
   chunksPerAxis: 70,
-  resolutionFraction: 0.5,
+  resolutionFraction: 0.25,
   maxIterations: 100,
   viewportCoords: {
     startX: -1.5,
@@ -48,7 +48,7 @@ function App() {
   const location = useLocation();
 
   return (
-    <>
+    <div className="backdrop">
       <Fractal
         {...backgroundFractalProps}
         disabled={location.pathname.indexOf('/fractal') != -1}
@@ -81,7 +81,7 @@ function App() {
           </Routes>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
