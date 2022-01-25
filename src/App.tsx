@@ -13,13 +13,14 @@ const fractalProps: FractalProps = {
   resolutionFraction: 0.5,
   maxIterations: 100,
   viewportCoords: {
-    startX: -0.9,
-    startY: 0.3,
-    endX: -0.8,
-    endY: 0.2,
+    startX: -1.5,
+    startY: -1,
+    endX: 1.5,
+    endY: 1,
   },
-  transformSpeedModifier: 0.24,
+  transformSpeedModifier: 1,
   classSuffix: 'main',
+  colorMax: 200,
 };
 
 const backgroundFractalProps: FractalProps = {

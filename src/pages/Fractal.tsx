@@ -24,6 +24,7 @@ interface FractalProps {
   transformSpeedModifier: number;
   classSuffix?: string;
   disabled?: boolean;
+  colorMax?: number;
 }
 
 function _handleStateUpdates(
@@ -58,12 +59,12 @@ function _handleStateUpdates(
       ((newChunkX / chunksPerAxis) * 2 - 1) * transformSpeedModifier,
       ((newChunkY / chunksPerAxis) * 2 - 1) * transformSpeedModifier,
     ]);
-    // console.log('chunk %d, %d', newChunkX, newChunkY);
-    // console.log(
-    //   'render %f, %f',
-    //   (newChunkX / chunksPerAxis) * 2 - 1,
-    //   (newChunkY / chunksPerAxis) * 2 - 1,
-    // );
+    console.log('chunk %d, %d', newChunkX, newChunkY);
+    console.log(
+      'render %f, %f',
+      (newChunkX / chunksPerAxis) * 2 - 1,
+      (newChunkY / chunksPerAxis) * 2 - 1,
+    );
     // console.log('');
   }
 }
@@ -80,6 +81,8 @@ function Fractal(props: FractalProps) {
       />
     );
   }
+
+  const colorMax = props.colorMax ? props.colorMax : 255;
   const canvasRef = React.useRef(null);
   const [chunkCoords, setChunkCoords] = React.useState([0, 0]);
   const [renderCoords, setRenderCoords] = React.useState([0, 0]);
@@ -98,6 +101,7 @@ function Fractal(props: FractalProps) {
       renderCoords,
       props.maxIterations,
       props.viewportCoords,
+      colorMax,
     );
   });
 
@@ -151,6 +155,7 @@ function drawJulia(
   renderCoords: number[],
   maxIterations: number,
   viewportCoords: ViewportCoords,
+  colorMax: number,
 ) {
   // Author: delimitry
   // Repo: https://github.com/delimitry/fractals-js/
@@ -168,10 +173,10 @@ function drawJulia(
   let x0 = renderCoords[0] * (xAxisLength / 2) + xOffset;
   let y0 = renderCoords[1] * (yAxisLength / 2) + yOffset;
 
-  // console.log('sized  %f, %f', x0, y0);
-  // console.log('')
+  console.log('sized  %f, %f', x0, y0);
+  console.log('');
 
-  maxIterations = Math.min(maxIterations, Math.floor(255 / colorStep));
+  maxIterations = Math.min(maxIterations, Math.floor(colorMax / colorStep));
 
   for (var i = 0; i < canvas.height; i++) {
     for (var j = 0; j < canvas.width; j++) {
