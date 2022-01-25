@@ -24,8 +24,8 @@ const fractalProps: FractalProps = {
 };
 
 const backgroundFractalProps: FractalProps = {
-  colorStep: 3,
-  chunksPerAxis: 30,
+  colorStep: 4,
+  chunksPerAxis: 70,
   resolution: null,
   resolutionFraction: 0.5,
   maxIterations: 100,
