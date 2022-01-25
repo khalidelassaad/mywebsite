@@ -165,13 +165,11 @@ function Fractal(props: FractalProps) {
       desynchronized: true,
     });
 
-    drawJuliaFromMemory(
+    _drawJuliaFromChunkToDataArray(
       props,
-      canvas,
       context,
       chunkCoords,
       chunkToDataArray,
-      setChunkToDataArray,
     );
   }, [chunkCoords]);
 
@@ -219,7 +217,7 @@ function Fractal(props: FractalProps) {
   );
 }
 
-function _iterateJulia(
+function _iterateJuliaIntoResultDataArray(
   props: FractalProps,
   canvas,
   xAxisLength,
@@ -259,79 +257,73 @@ function _iterateJulia(
   }
 }
 
-function drawJuliaFromMemory(
+function _createChunkToDataArray(props: FractalProps, canvas, context) {
+  let returnChunkToDataArray = new Array(props.chunksPerAxis ** 2);
+
+  const xAxisLength = props.viewportCoords.endX - props.viewportCoords.startX;
+  const yAxisLength = props.viewportCoords.endY - props.viewportCoords.startY;
+  const xOffset = (props.viewportCoords.endX + props.viewportCoords.startX) / 2;
+  const yOffset = (props.viewportCoords.endY + props.viewportCoords.startY) / 2;
+
+  for (let chunkX = 0; chunkX < props.chunksPerAxis; chunkX++) {
+    for (let chunkY = 0; chunkY < props.chunksPerAxis; chunkY++) {
+      const chunkCoords = [chunkX, chunkY];
+
+      let image_data = context.createImageData(canvas.width, canvas.height);
+      let resultDataArray = image_data.data;
+
+      let renderCoords = _calculateRenderCoordsFromChunkCoords(
+        chunkCoords,
+        props.chunksPerAxis,
+        props.transformSpeedModifier,
+      );
+      let x0 = renderCoords[0] * (xAxisLength / 2) + xOffset;
+      let y0 = renderCoords[1] * (yAxisLength / 2) + yOffset;
+
+      _iterateJuliaIntoResultDataArray(
+        props,
+        canvas,
+        xAxisLength,
+        yAxisLength,
+        xOffset,
+        yOffset,
+        x0,
+        y0,
+        resultDataArray,
+      );
+
+      _storeValueInChunkArrayAtCoords(
+        props,
+        resultDataArray,
+        returnChunkToDataArray,
+        chunkCoords,
+      );
+    }
+  }
+
+  return returnChunkToDataArray;
+}
+
+function _drawJuliaFromChunkToDataArray(
   props: FractalProps,
-  canvas,
   context,
   chunkCoords: number[],
   chunkToDataArray,
-  setChunkToDataArray,
 ) {
   // Author: delimitry
   // Repo: https://github.com/delimitry/fractals-js/
   //-----------------------------------------------------------------------
 
   // prepare image and pixels
-  const xAxisLength = props.viewportCoords.endX - props.viewportCoords.startX;
-  const yAxisLength = props.viewportCoords.endY - props.viewportCoords.startY;
-  const xOffset = (props.viewportCoords.endX + props.viewportCoords.startX) / 2;
-  const yOffset = (props.viewportCoords.endY + props.viewportCoords.startY) / 2;
-
-  var image_data = context.createImageData(canvas.width, canvas.height);
-  var resultDataArray = image_data.data;
 
   const dataInChunkArray = _getValueInChunkArrayAtCoords(
     chunkToDataArray,
     props.chunksPerAxis,
     chunkCoords,
   );
-  if (dataInChunkArray) {
-    _debug('data found in chunk array');
-    _debug(dataInChunkArray);
-    _debug('data length', dataInChunkArray.length);
-    _debug('data2 length', image_data.data.length);
-    for (var i = 0; i < dataInChunkArray.length; i++) {
-      resultDataArray[i] = dataInChunkArray[i];
-    }
-    _debug('to render');
-    _debug(resultDataArray);
-  } else {
-    let renderCoords = _calculateRenderCoordsFromChunkCoords(
-      chunkCoords,
-      props.chunksPerAxis,
-      props.transformSpeedModifier,
-    );
-    let x0 = renderCoords[0] * (xAxisLength / 2) + xOffset;
-    let y0 = renderCoords[1] * (yAxisLength / 2) + yOffset;
-
-    // _debug('sized  %f, %f', x0, y0);
-    // _debug('');
-
-    _iterateJulia(
-      props,
-      canvas,
-      xAxisLength,
-      yAxisLength,
-      xOffset,
-      yOffset,
-      x0,
-      y0,
-      resultDataArray,
-    );
-
-    _debug('storing value in chunk array');
-    _debug(resultDataArray);
-    _storeValueInChunkArrayAtCoords(
-      props,
-      resultDataArray,
-      chunkToDataArray,
-      chunkCoords,
-    );
-    setChunkToDataArray(chunkToDataArray);
-  }
 
   // draw image
-  context.putImageData(image_data, 0, 0);
+  context.putImageData(dataInChunkArray, 0, 0);
 
   context.draw;
 }
