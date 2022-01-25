@@ -1,8 +1,18 @@
 import * as React from 'react';
 
 // TODO for this class:
-// - Optimize with dynamic programming (save rendered image data)
-// - Make background detect mouse movement on top of everything
+// Optimize with dynamic programming (save rendered image data)
+// - State necessary: canvas dimensions and ChunksToDataArray
+// - Bugfix necessary: must make chunk coords strictly < props chunksPerAxis
+//    - Save fractal canvas dimensions
+//      - if same,
+//        - lookup chunk coords in ChunksToDataArray
+//          - If exists, draw it
+//          - If not exists, calc it, save it, draw it
+//      - if different,
+//        - Re-init ChunksToDataArray
+//
+// Make background detect mouse movement on top of everything
 
 // Beautiful region at -0.8, 0.2
 
