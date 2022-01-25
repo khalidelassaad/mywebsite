@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link, Navigate, Route, Routes } from 'react-router-dom';
+import { Link, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
 import HeaderBar from './header/HeaderBar';
 import { Fractal, FractalProps } from './pages/Fractal';
@@ -10,7 +10,6 @@ const error404string: string = 'Uh oh! Nothing to see here, move along...';
 const fractalProps: FractalProps = {
   colorStep: 3,
   chunksPerAxis: 60,
-  resolution: null,
   maxIterations: 100,
   viewportCoords: {
     startX: -0.9,
@@ -20,13 +19,11 @@ const fractalProps: FractalProps = {
   },
   transformSpeedModifier: 0.24,
   classSuffix: 'main',
-  disabled: true,
 };
 
 const backgroundFractalProps: FractalProps = {
   colorStep: 4,
   chunksPerAxis: 70,
-  resolution: null,
   resolutionFraction: 0.5,
   maxIterations: 100,
   viewportCoords: {
@@ -48,9 +45,14 @@ const navButtons: [string, string][] = [
 ];
 
 function App() {
+  const location = useLocation();
+
   return (
     <>
-      <Fractal {...backgroundFractalProps} />
+      <Fractal
+        {...backgroundFractalProps}
+        disabled={location.pathname.indexOf('/fractal') != -1}
+      />
       <div className="App-sleeve">
         <div className="App">
           <header className="App-header">

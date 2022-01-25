@@ -70,7 +70,15 @@ function _handleStateUpdates(
 
 function Fractal(props: FractalProps) {
   if (props.disabled) {
-    return <></>;
+    return (
+      <div
+        className={
+          props.classSuffix
+            ? canvasClassName + '-' + props.classSuffix
+            : canvasClassName
+        }
+      />
+    );
   }
   const canvasRef = React.useRef(null);
   const [chunkCoords, setChunkCoords] = React.useState([0, 0]);
