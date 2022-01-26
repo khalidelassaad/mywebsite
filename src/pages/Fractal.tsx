@@ -6,7 +6,7 @@ import * as React from 'react';
 // Beautiful region at -0.8, 0.2
 
 const canvasClassName = 'Fractal-canvas';
-const debug = false;
+const debug = true;
 
 interface ViewportCoords {
   startX: number;
@@ -32,6 +32,16 @@ function _debug(...args) {
   if (debug) {
     console.log(...args);
   }
+}
+
+function _findCanvasAndContext(canvasRef) {
+  return [
+    canvasRef.current,
+    canvasRef.current.getContext('2d', {
+      alpha: false,
+      desynchronized: true,
+    }),
+  ];
 }
 
 function _calculateRenderCoordsFromChunkCoords(
@@ -108,14 +118,6 @@ function _handleStateUpdates(
     //      - if different,
     //        - Re-init ChunksToDataArray
 
-    if (isCanvasSameDimensions) {
-      _debug('same dimensions!');
-    } else {
-      setCanvasPixelDimensions([canvasX, canvasY]);
-      setChunkToDataArray(new Array(props.chunksPerAxis ** 2));
-      _debug('set new dimensions and wiped chunk array!');
-    }
-
     setChunkCoords([newChunkX, newChunkY]);
 
     //   _debug(
@@ -136,6 +138,13 @@ function _handleStateUpdates(
   }
 }
 
+function _haveCanvasDimensionsChanged(canvas, canvasPixelDimensions) {
+  return !(
+    canvas.width == canvasPixelDimensions[0] &&
+    canvas.height == canvasPixelDimensions[1]
+  );
+}
+
 function Fractal(props: FractalProps) {
   if (props.disabled) {
     return (
@@ -150,27 +159,51 @@ function Fractal(props: FractalProps) {
   }
 
   const canvasRef = React.useRef(null);
-  const [chunkCoords, setChunkCoords] = React.useState([-1, -1]);
+
+  let canvas;
+  let context;
+
+  const [chunkCoords, setChunkCoords] = React.useState([0, 0]);
   const [canvasPixelDimensions, setCanvasPixelDimensions] = React.useState([
-    0, 0,
+    1, 1,
   ]);
   const [chunkToDataArray, setChunkToDataArray] = React.useState(
     new Array(props.chunksPerAxis ** 2),
   );
+  const [hasComputedChunkToDataArray, setHasComputedChunkToDataArray] =
+    React.useState(false);
 
   React.useEffect(() => {
-    const canvas = canvasRef.current;
-    const context = canvas.getContext('2d', {
-      alpha: false,
-      desynchronized: true,
-    });
+    // INITIAL RENDER
+    if (canvasRef.current !== null) {
+      _debug('first effect');
+      [canvas, context] = _findCanvasAndContext(canvasRef);
+      _debug(
+        'set canvas pixel dimensions to %d, %d',
+        canvas.width,
+        canvas.height,
+      );
+      setCanvasPixelDimensions([canvas.width, canvas.height]);
+      // if (hasComputedChunkToDataArray) {
+      //   setChunkToDataArray(_createChunkToDataArray(props, canvas, context));
+      //   setHasComputedChunkToDataArray(true);
+      // }
+    }
+  }, []);
 
-    _drawJuliaFromChunkToDataArray(
-      props,
-      context,
-      chunkCoords,
-      chunkToDataArray,
-    );
+  React.useEffect(() => {
+    if (canvasRef.current !== null) {
+      [canvas, context] = _findCanvasAndContext(canvasRef);
+      if (hasComputedChunkToDataArray) {
+        _drawJuliaFromChunkToDataArray(
+          props,
+          canvas,
+          context,
+          chunkCoords,
+          chunkToDataArray,
+        );
+      }
+    }
   }, [chunkCoords]);
 
   return (
@@ -255,6 +288,8 @@ function _iterateJuliaIntoResultDataArray(
       resultDataArray[i * canvas.width * 4 + j * 4 + 3] = 255;
     }
   }
+
+  return resultDataArray;
 }
 
 function _createChunkToDataArray(props: FractalProps, canvas, context) {
@@ -306,25 +341,27 @@ function _createChunkToDataArray(props: FractalProps, canvas, context) {
 
 function _drawJuliaFromChunkToDataArray(
   props: FractalProps,
+  canvas,
   context,
   chunkCoords: number[],
   chunkToDataArray,
 ) {
-  // Author: delimitry
-  // Repo: https://github.com/delimitry/fractals-js/
-  //-----------------------------------------------------------------------
-
-  // prepare image and pixels
-
   const dataInChunkArray = _getValueInChunkArrayAtCoords(
     chunkToDataArray,
     props.chunksPerAxis,
     chunkCoords,
   );
 
-  // draw image
-  context.putImageData(dataInChunkArray, 0, 0);
+  if (dataInChunkArray.length != canvas.width * canvas.height * 4) {
+    throw 'Data size mismatch: saved data does not match expected canvas size';
+  }
 
+  const imageData = context.createImageData(canvas.width, canvas.height);
+  for (var i = 0; i < dataInChunkArray.length; i++) {
+    imageData[i] = dataInChunkArray[i];
+  }
+
+  context.putImageData(imageData, 0, 0);
   context.draw;
 }
 
