@@ -75,7 +75,7 @@ function _getValueInChunkArrayAtCoords(
   return chunkToDataArray[chunkCoords[0] * chunksPerAxis + chunkCoords[1]];
 }
 
-function _handleStateUpdates(
+function _calculateNewChunkCoords(
   props: FractalProps,
   newCursorCoords: number[],
   chunkCoords: number[],
@@ -84,9 +84,6 @@ function _handleStateUpdates(
     (arg0: number[]): void;
   },
   canvasRef: React.MutableRefObject<any>,
-  canvasPixelDimensions: number[],
-  setCanvasPixelDimensions,
-  setChunkToDataArray,
 ) {
   const canvasX: number = canvasRef.current.offsetWidth;
   const canvasY: number = canvasRef.current.offsetHeight;
@@ -105,36 +102,8 @@ function _handleStateUpdates(
     Math.max(0, Math.floor((newCursorY / canvasY) * props.chunksPerAxis)),
   );
 
-  const isCanvasSameDimensions =
-    canvasX == canvasPixelDimensions[0] && canvasY == canvasPixelDimensions[1];
-
   if (newChunkX != oldChunkX || newChunkY != oldChunkY) {
-    // - State necessary: canvas dimensions and ChunksToDataArray
-    //    - Save fractal canvas dimensions
-    //      - if same,
-    //        - lookup chunk coords in ChunksToDataArray
-    //          - If exists, draw it
-    //          - If not exists, calc it, save it, draw it
-    //      - if different,
-    //        - Re-init ChunksToDataArray
-
     setChunkCoords([newChunkX, newChunkY]);
-
-    //   _debug(
-    //     'canvasXOffset: %d\nnewCursorX: %d\ncanvasX: %d\nquotient: %f\nnewChunkX: %d',
-    //     canvasRef.current.offsetLeft,
-    //     newCursorX,
-    //     canvasX,
-    //     newCursorX / canvasX,
-    //     newChunkX,
-    //   );
-    //   _debug('chunk %d, %d', newChunkX, newChunkY);
-    //   _debug(
-    //     'render %f, %f',
-    //     (newChunkX / chunksPerAxis) * 2 - 1,
-    //     (newChunkY / chunksPerAxis) * 2 - 1,
-    //   );
-    //   _debug(0 ? 1 : 0);
   }
 }
 
@@ -158,12 +127,10 @@ function Fractal(props: FractalProps) {
     );
   }
 
-  const canvasRef = React.useRef(null);
-
-  let canvas;
-  let context;
-
-  const [chunkCoords, setChunkCoords] = React.useState([0, 0]);
+  const [chunkCoords, setChunkCoords] = React.useState([
+    0,
+    Math.floor(props.chunksPerAxis / 2),
+  ]);
   const [canvasPixelDimensions, setCanvasPixelDimensions] = React.useState([
     1, 1,
   ]);
@@ -173,23 +140,41 @@ function Fractal(props: FractalProps) {
   const [hasComputedChunkToDataArray, setHasComputedChunkToDataArray] =
     React.useState(false);
 
+  const canvasRef = React.useRef(null);
+
+  let canvas;
+  let context;
+
+  // React.useEffect(() => {canvasRef.current});
+
+  React.useEffect(() => {
+    _debug('test');
+    const resized = () => {
+      _debug('resized!');
+    };
+    const canvas = canvasRef.current;
+    window.addEventListener('resize', resized);
+  });
+
   React.useEffect(() => {
     // INITIAL RENDER
     if (canvasRef.current !== null) {
-      _debug('first effect');
+      _debug('first check');
       [canvas, context] = _findCanvasAndContext(canvasRef);
-      _debug(
-        'set canvas pixel dimensions to %d, %d',
-        canvas.width,
-        canvas.height,
-      );
-      setCanvasPixelDimensions([canvas.width, canvas.height]);
+      if (_haveCanvasDimensionsChanged(canvas, canvasPixelDimensions)) {
+        _debug(
+          'new canvas pixel dimensions to %d, %d',
+          canvas.width,
+          canvas.height,
+        );
+        setCanvasPixelDimensions([canvas.width, canvas.height]);
+      }
       // if (hasComputedChunkToDataArray) {
       //   setChunkToDataArray(_createChunkToDataArray(props, canvas, context));
       //   setHasComputedChunkToDataArray(true);
       // }
     }
-  }, []);
+  }, [canvasRef.current]);
 
   React.useEffect(() => {
     if (canvasRef.current !== null) {
@@ -216,15 +201,12 @@ function Fractal(props: FractalProps) {
             : canvasClassName
         }
         onMouseMove={(e) => {
-          _handleStateUpdates(
+          _calculateNewChunkCoords(
             props,
             [e.clientX, e.clientY],
             chunkCoords,
             setChunkCoords,
             canvasRef,
-            canvasPixelDimensions,
-            setCanvasPixelDimensions,
-            setChunkToDataArray,
           );
         }}
         width={
