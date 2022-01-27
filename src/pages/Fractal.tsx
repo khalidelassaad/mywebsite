@@ -70,8 +70,8 @@ function _getValueInChunkArrayAtCoords(
   chunksPerAxis,
   chunkCoords,
 ) {
-  _debug('reading array');
-  _debug(chunkToDataArray);
+  _debug('reading array %d, %d', chunkCoords[0], chunkCoords[1]);
+  // _debug(chunkToDataArray);
   return chunkToDataArray[chunkCoords[0] * chunksPerAxis + chunkCoords[1]];
 }
 
@@ -156,7 +156,7 @@ function _iterateJuliaIntoResultDataArray(
   return resultDataArray;
 }
 
-function _createChunkToDataArray(props: FractalProps, canvas, context) {
+function _createAndFillChunkToDataArray(props: FractalProps, canvas, context) {
   let returnChunkToDataArray = new Array(props.chunksPerAxis ** 2);
 
   const xAxisLength = props.viewportCoords.endX - props.viewportCoords.startX;
@@ -219,24 +219,41 @@ function _drawJuliaFromChunkToDataArray(
 
   if (dataInChunkArray.length != canvas.width * canvas.height * 4) {
     _debug(
-      'Data size mismatch: saved data does not match expected canvas size',
+      'Data size mismatch: saved data does not match expected canvas size\n\tresizing to %d, %d',
+      canvas.width,
+      canvas.height,
     );
+
     setCanvasPixelDimensions(canvas.width, canvas.height);
   }
 
-  const imageData = context.createImageData(canvas.width, canvas.height);
+  let imageData = context.createImageData(canvas.width, canvas.height);
   for (var i = 0; i < dataInChunkArray.length; i++) {
-    imageData[i] = dataInChunkArray[i];
+    imageData.data[i] = dataInChunkArray[i];
   }
 
+  _debug('drawdata for chunk %d, %d', chunkCoords[0], chunkCoords[1]);
+  // _debug(imageData);
   context.putImageData(imageData, 0, 0);
   context.draw;
 }
 
 function _computeAndSaveNewDataArray(
+  props,
+  canvas,
+  context,
   setChunkToDataArray,
-  canvasPixelDimensions,
-) {}
+) {
+  // initialize new chunkToDataArray with canvasPixelDimensions
+  // fill new chunkToDataArray with data from computation
+  const chunkToDataArray = _createAndFillChunkToDataArray(
+    props,
+    canvas,
+    context,
+  );
+  // use setChunkToDataArray to save new array in state
+  setChunkToDataArray(chunkToDataArray);
+}
 
 function Fractal(props: FractalProps) {
   if (props.disabled) {
@@ -269,8 +286,12 @@ function Fractal(props: FractalProps) {
   let context;
 
   React.useEffect(() => {
-    _computeAndSaveNewDataArray(setChunkToDataArray, canvasPixelDimensions);
-    setRecomputeCounter(+1);
+    if (canvasRef.current !== null) {
+      [canvas, context] = _findCanvasAndContext(canvasRef);
+      _debug('Computing new array');
+      _computeAndSaveNewDataArray(props, canvas, context, setChunkToDataArray);
+      setRecomputeCounter(recomputeCounter + 1);
+    }
   }, [canvasPixelDimensions]);
 
   React.useEffect(() => {
@@ -283,6 +304,7 @@ function Fractal(props: FractalProps) {
       if (
         _areCanvasDimensionsDifferentFromState(canvas, canvasPixelDimensions)
       ) {
+        _debug('set new canvas dimensions %d, %d', canvas.width, canvas.height);
         setCanvasPixelDimensions([canvas.width, canvas.height]);
       } else {
         if (recomputeCounter > 1) {
