@@ -84,7 +84,7 @@
   cursor: pointer;
 }
 
-.Fractal-container {
+.Fractal-container-main {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -99,11 +99,11 @@
   height: 100%;
 }
 
-.Fractal-caption {
+.Fractal-caption-main {
   position: absolute;
   font-size: 1.5vh;
   bottom: 0px;
-  font-weight: 100;
+  font-weight: 600;
   color: #aaaaaa;
 }
 

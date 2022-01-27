@@ -344,7 +344,13 @@ function Fractal(props: FractalProps) {
   return (
     <>
       {' '}
-      <div className={fractalContainerClassName}>
+      <div
+        className={
+          props.classSuffix
+            ? fractalContainerClassName + '-' + props.classSuffix
+            : fractalContainerClassName
+        }
+      >
         <canvas
           ref={canvasRef}
           className={
@@ -381,7 +387,13 @@ function Fractal(props: FractalProps) {
           }
         ></canvas>
         {props.captionText ? (
-          <div className={captionTextClassName}>{props.captionText}</div>
+          props.classSuffix ? (
+            <div className={captionTextClassName + '-' + props.classSuffix}>
+              {props.captionText}
+            </div>
+          ) : (
+            <div className={captionTextClassName}>{props.captionText}</div>
+          )
         ) : (
           <></>
         )}
