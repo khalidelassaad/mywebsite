@@ -75,7 +75,7 @@ function _getValueInChunkArrayAtCoords(
   return chunkToDataArray[chunkCoords[0] * chunksPerAxis + chunkCoords[1]];
 }
 
-function _calculateNewChunkCoords(
+function _calculateNewChunkCoordsFromCursorCoords(
   props: FractalProps,
   newCursorCoords: number[],
   chunkCoords: number[],
@@ -107,7 +107,7 @@ function _calculateNewChunkCoords(
   }
 }
 
-function _haveCanvasDimensionsChanged(canvas, canvasPixelDimensions) {
+function _areCanvasDimensionsDifferentFromState(canvas, canvasPixelDimensions) {
   return !(
     canvas.width == canvasPixelDimensions[0] &&
     canvas.height == canvasPixelDimensions[1]
@@ -161,7 +161,9 @@ function Fractal(props: FractalProps) {
     if (canvasRef.current !== null) {
       _debug('first check');
       [canvas, context] = _findCanvasAndContext(canvasRef);
-      if (_haveCanvasDimensionsChanged(canvas, canvasPixelDimensions)) {
+      if (
+        _areCanvasDimensionsDifferentFromState(canvas, canvasPixelDimensions)
+      ) {
         _debug(
           'new canvas pixel dimensions to %d, %d',
           canvas.width,
@@ -201,7 +203,7 @@ function Fractal(props: FractalProps) {
             : canvasClassName
         }
         onMouseMove={(e) => {
-          _calculateNewChunkCoords(
+          _calculateNewChunkCoordsFromCursorCoords(
             props,
             [e.clientX, e.clientY],
             chunkCoords,
