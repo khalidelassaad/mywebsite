@@ -6,7 +6,7 @@ import * as React from 'react';
 // Beautiful region at -0.8, 0.2
 
 const canvasClassName = 'Fractal-canvas';
-const debug = true;
+const debug = false;
 
 interface ViewportCoords {
   startX: number;
