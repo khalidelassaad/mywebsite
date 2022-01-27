@@ -84,10 +84,27 @@
   cursor: pointer;
 }
 
-.Fractal-canvas-main {
+.Fractal-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 80vw;
   height: 75vh;
+}
+
+.Fractal-canvas-main {
   filter: blur(0.5px);
+  width: 100%;
+  height: 100%;
+}
+
+.Fractal-caption {
+  position: absolute;
+  font-size: 1.5vh;
+  bottom: 0px;
+  font-weight: 100;
+  color: #aaaaaa;
 }
 
 .Fractal-canvas-background {

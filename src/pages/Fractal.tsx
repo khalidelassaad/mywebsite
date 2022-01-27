@@ -6,6 +6,9 @@ import * as React from 'react';
 // Beautiful region at -0.8, 0.2
 
 const canvasClassName = 'Fractal-canvas';
+const captionTextClassName = 'Fractal-caption';
+const fractalContainerClassName = 'Fractal-container';
+
 const debug = false;
 
 interface ViewportCoords {
@@ -26,6 +29,7 @@ interface FractalProps {
   classSuffix?: string;
   disabled?: boolean;
   colorMax?: number;
+  captionText?: string;
 }
 
 function _debug(...args) {
@@ -339,41 +343,49 @@ function Fractal(props: FractalProps) {
 
   return (
     <>
-      <canvas
-        ref={canvasRef}
-        className={
-          props.classSuffix
-            ? canvasClassName + '-' + props.classSuffix
-            : canvasClassName
-        }
-        onMouseMove={(e) => {
-          _calculateNewChunkCoordsFromCursorCoords(
-            props,
-            [e.clientX, e.clientY],
-            chunkCoords,
-            setChunkCoords,
-            canvasRef,
-          );
-        }}
-        width={
-          props.resolution != null
-            ? props.resolution
-            : canvasRef.current != null
-            ? props.resolutionFraction
-              ? canvasRef.current.offsetWidth * props.resolutionFraction
-              : canvasRef.current.offsetWidth
-            : 1
-        }
-        height={
-          props.resolution != null
-            ? props.resolution
-            : canvasRef.current != null
-            ? props.resolutionFraction
-              ? canvasRef.current.offsetHeight * props.resolutionFraction
-              : canvasRef.current.offsetHeight
-            : 1
-        }
-      ></canvas>
+      {' '}
+      <div className={fractalContainerClassName}>
+        <canvas
+          ref={canvasRef}
+          className={
+            props.classSuffix
+              ? canvasClassName + '-' + props.classSuffix
+              : canvasClassName
+          }
+          onMouseMove={(e) => {
+            _calculateNewChunkCoordsFromCursorCoords(
+              props,
+              [e.clientX, e.clientY],
+              chunkCoords,
+              setChunkCoords,
+              canvasRef,
+            );
+          }}
+          width={
+            props.resolution != null
+              ? props.resolution
+              : canvasRef.current != null
+              ? props.resolutionFraction
+                ? canvasRef.current.offsetWidth * props.resolutionFraction
+                : canvasRef.current.offsetWidth
+              : 1
+          }
+          height={
+            props.resolution != null
+              ? props.resolution
+              : canvasRef.current != null
+              ? props.resolutionFraction
+                ? canvasRef.current.offsetHeight * props.resolutionFraction
+                : canvasRef.current.offsetHeight
+              : 1
+          }
+        ></canvas>
+        {props.captionText ? (
+          <div className={captionTextClassName}>{props.captionText}</div>
+        ) : (
+          <></>
+        )}
+      </div>
     </>
   );
 }

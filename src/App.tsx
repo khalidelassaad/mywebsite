@@ -21,6 +21,8 @@ const fractalProps: FractalProps = {
   transformSpeedModifier: 1.4,
   classSuffix: 'main',
   colorMax: 200,
+  captionText:
+    'This Julia set computation uses dynamic programming to save previous renders.',
 };
 
 const backgroundFractalProps: FractalProps = {
