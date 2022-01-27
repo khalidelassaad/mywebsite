@@ -289,6 +289,7 @@ function Fractal(props: FractalProps) {
   }, [canvasRef.current]);
 
   React.useEffect(() => {
+    // Draw frame if chunkcoords change
     if (canvasRef.current !== null) {
       [canvas, context] = _findCanvasAndContext(canvasRef);
       if (hasComputedChunkToDataArray) {
