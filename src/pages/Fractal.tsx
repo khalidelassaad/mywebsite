@@ -70,7 +70,7 @@ function _getValueInChunkArrayAtCoords(
   chunksPerAxis,
   chunkCoords,
 ) {
-  _debug('reading array %d, %d', chunkCoords[0], chunkCoords[1]);
+  // _debug('reading array %d, %d', chunkCoords[0], chunkCoords[1]);
   // _debug(chunkToDataArray);
   return chunkToDataArray[chunkCoords[0] * chunksPerAxis + chunkCoords[1]];
 }
@@ -156,67 +156,48 @@ function _iterateJuliaIntoResultDataArray(
   return resultDataArray;
 }
 
-function _createAndFillChunkToDataArray(props: FractalProps, canvas, context) {
-  let returnChunkToDataArray = new Array(props.chunksPerAxis ** 2);
-
+function _computeDataArrayAtChunkCoords(
+  props: FractalProps,
+  canvas,
+  context,
+  chunkCoords,
+) {
   const xAxisLength = props.viewportCoords.endX - props.viewportCoords.startX;
   const yAxisLength = props.viewportCoords.endY - props.viewportCoords.startY;
   const xOffset = (props.viewportCoords.endX + props.viewportCoords.startX) / 2;
   const yOffset = (props.viewportCoords.endY + props.viewportCoords.startY) / 2;
 
-  for (let chunkX = 0; chunkX < props.chunksPerAxis; chunkX++) {
-    for (let chunkY = 0; chunkY < props.chunksPerAxis; chunkY++) {
-      const chunkCoords = [chunkX, chunkY];
+  let image_data = context.createImageData(canvas.width, canvas.height);
+  let resultDataArray = image_data.data;
 
-      let image_data = context.createImageData(canvas.width, canvas.height);
-      let resultDataArray = image_data.data;
-
-      let renderCoords = _calculateRenderCoordsFromChunkCoords(
-        chunkCoords,
-        props.chunksPerAxis,
-        props.transformSpeedModifier,
-      );
-      let x0 = renderCoords[0] * (xAxisLength / 2) + xOffset;
-      let y0 = renderCoords[1] * (yAxisLength / 2) + yOffset;
-
-      _iterateJuliaIntoResultDataArray(
-        props,
-        canvas,
-        xAxisLength,
-        yAxisLength,
-        xOffset,
-        yOffset,
-        x0,
-        y0,
-        resultDataArray,
-      );
-
-      _storeValueInChunkArrayAtCoords(
-        props,
-        resultDataArray,
-        returnChunkToDataArray,
-        chunkCoords,
-      );
-    }
-  }
-
-  return returnChunkToDataArray;
-}
-
-function _drawJuliaFromChunkToDataArray(
-  props: FractalProps,
-  canvas,
-  context,
-  chunkCoords: number[],
-  chunkToDataArray,
-  setCanvasPixelDimensions,
-) {
-  const dataInChunkArray = _getValueInChunkArrayAtCoords(
-    chunkToDataArray,
-    props.chunksPerAxis,
+  let renderCoords = _calculateRenderCoordsFromChunkCoords(
     chunkCoords,
+    props.chunksPerAxis,
+    props.transformSpeedModifier,
+  );
+  let x0 = renderCoords[0] * (xAxisLength / 2) + xOffset;
+  let y0 = renderCoords[1] * (yAxisLength / 2) + yOffset;
+
+  _iterateJuliaIntoResultDataArray(
+    props,
+    canvas,
+    xAxisLength,
+    yAxisLength,
+    xOffset,
+    yOffset,
+    x0,
+    y0,
+    resultDataArray,
   );
 
+  return resultDataArray;
+}
+
+function _breakToHandleResizeIfNeeded(
+  dataInChunkArray,
+  canvas,
+  setCanvasPixelDimensions,
+) {
   if (dataInChunkArray.length != canvas.width * canvas.height * 4) {
     _debug(
       'Data size mismatch: saved data does not match expected canvas size\n\tresizing to %d, %d',
@@ -226,33 +207,66 @@ function _drawJuliaFromChunkToDataArray(
 
     setCanvasPixelDimensions(canvas.width, canvas.height);
   }
+}
+
+function _loadDrawOrComputeSaveDrawJuliaFromChunkToDataArray(
+  props: FractalProps,
+  canvas,
+  context,
+  chunkCoords: number[],
+  chunkToDataArray,
+  setChunkToDataArray,
+  setCanvasPixelDimensions,
+) {
+  // Load Julia
+  let dataInChunkArray = _getValueInChunkArrayAtCoords(
+    chunkToDataArray,
+    props.chunksPerAxis,
+    chunkCoords,
+  );
 
   let imageData = context.createImageData(canvas.width, canvas.height);
+
+  if (dataInChunkArray == undefined) {
+    _debug(
+      'computing new values for chunk %d, %d',
+      chunkCoords[0],
+      chunkCoords[1],
+    );
+    // if Julia not yet computed, compute save Julia
+    dataInChunkArray = _computeDataArrayAtChunkCoords(
+      props,
+      canvas,
+      context,
+      chunkCoords,
+    );
+    _storeValueInChunkArrayAtCoords(
+      props,
+      dataInChunkArray,
+      chunkToDataArray,
+      chunkCoords,
+    );
+    setChunkToDataArray(chunkToDataArray);
+  } else {
+    _debug(
+      'loading old values for chunk %d, %d',
+      chunkCoords[0],
+      chunkCoords[1],
+    );
+    // Julia is already loaded, check for resize
+    _breakToHandleResizeIfNeeded(
+      dataInChunkArray,
+      canvas,
+      setCanvasPixelDimensions,
+    );
+  }
+  // Draw Julia
   for (var i = 0; i < dataInChunkArray.length; i++) {
     imageData.data[i] = dataInChunkArray[i];
   }
-
-  _debug('drawdata for chunk %d, %d', chunkCoords[0], chunkCoords[1]);
-  // _debug(imageData);
+  // _debug('drawdata for chunk %d, %d', chunkCoords[0], chunkCoords[1]);
   context.putImageData(imageData, 0, 0);
   context.draw;
-}
-
-function _computeAndSaveNewDataArray(
-  props,
-  canvas,
-  context,
-  setChunkToDataArray,
-) {
-  // initialize new chunkToDataArray with canvasPixelDimensions
-  // fill new chunkToDataArray with data from computation
-  const chunkToDataArray = _createAndFillChunkToDataArray(
-    props,
-    canvas,
-    context,
-  );
-  // use setChunkToDataArray to save new array in state
-  setChunkToDataArray(chunkToDataArray);
 }
 
 function Fractal(props: FractalProps) {
@@ -287,9 +301,10 @@ function Fractal(props: FractalProps) {
 
   React.useEffect(() => {
     if (canvasRef.current !== null) {
+      // If size changes, wipe chunkArray
       [canvas, context] = _findCanvasAndContext(canvasRef);
-      _debug('Computing new array');
-      _computeAndSaveNewDataArray(props, canvas, context, setChunkToDataArray);
+      _debug('Wiping old array');
+      setChunkToDataArray(new Array(props.chunksPerAxis ** 2));
       setRecomputeCounter(recomputeCounter + 1);
     }
   }, [canvasPixelDimensions]);
@@ -299,8 +314,8 @@ function Fractal(props: FractalProps) {
     if (canvasRef.current !== null) {
       [canvas, context] = _findCanvasAndContext(canvasRef);
       // If canvas dimensions are different from state, set new dimensions and return
-      // Else, if array computed, draw julia
-      //        else, pass?
+      // Else, if chunk coords array computed, draw julia
+      //        else, compute juilia and draw and save it
       if (
         _areCanvasDimensionsDifferentFromState(canvas, canvasPixelDimensions)
       ) {
@@ -308,12 +323,13 @@ function Fractal(props: FractalProps) {
         setCanvasPixelDimensions([canvas.width, canvas.height]);
       } else {
         if (recomputeCounter > 1) {
-          _drawJuliaFromChunkToDataArray(
+          _loadDrawOrComputeSaveDrawJuliaFromChunkToDataArray(
             props,
             canvas,
             context,
             chunkCoords,
             chunkToDataArray,
+            setChunkToDataArray,
             setCanvasPixelDimensions,
           );
         }
