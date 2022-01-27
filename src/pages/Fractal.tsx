@@ -114,126 +114,6 @@ function _areCanvasDimensionsDifferentFromState(canvas, canvasPixelDimensions) {
   );
 }
 
-function Fractal(props: FractalProps) {
-  if (props.disabled) {
-    return (
-      <div
-        className={
-          props.classSuffix
-            ? canvasClassName + '-' + props.classSuffix
-            : canvasClassName
-        }
-      />
-    );
-  }
-
-  const [chunkCoords, setChunkCoords] = React.useState([
-    0,
-    Math.floor(props.chunksPerAxis / 2),
-  ]);
-  const [canvasPixelDimensions, setCanvasPixelDimensions] = React.useState([
-    1, 1,
-  ]);
-  const [chunkToDataArray, setChunkToDataArray] = React.useState(
-    new Array(props.chunksPerAxis ** 2),
-  );
-  const [hasComputedChunkToDataArray, setHasComputedChunkToDataArray] =
-    React.useState(false);
-
-  const canvasRef = React.useRef(null);
-
-  let canvas;
-  let context;
-
-  // React.useEffect(() => {canvasRef.current});
-
-  React.useEffect(() => {
-    _debug('test');
-    const resized = () => {
-      _debug('resized!');
-    };
-    const canvas = canvasRef.current;
-    window.addEventListener('resize', resized);
-  });
-
-  React.useEffect(() => {
-    // INITIAL RENDER
-    if (canvasRef.current !== null) {
-      _debug('first check');
-      [canvas, context] = _findCanvasAndContext(canvasRef);
-      if (
-        _areCanvasDimensionsDifferentFromState(canvas, canvasPixelDimensions)
-      ) {
-        _debug(
-          'new canvas pixel dimensions to %d, %d',
-          canvas.width,
-          canvas.height,
-        );
-        setCanvasPixelDimensions([canvas.width, canvas.height]);
-      }
-      // if (hasComputedChunkToDataArray) {
-      //   setChunkToDataArray(_createChunkToDataArray(props, canvas, context));
-      //   setHasComputedChunkToDataArray(true);
-      // }
-    }
-  }, [canvasRef.current]);
-
-  React.useEffect(() => {
-    if (canvasRef.current !== null) {
-      [canvas, context] = _findCanvasAndContext(canvasRef);
-      if (hasComputedChunkToDataArray) {
-        _drawJuliaFromChunkToDataArray(
-          props,
-          canvas,
-          context,
-          chunkCoords,
-          chunkToDataArray,
-        );
-      }
-    }
-  }, [chunkCoords]);
-
-  return (
-    <>
-      <canvas
-        ref={canvasRef}
-        className={
-          props.classSuffix
-            ? canvasClassName + '-' + props.classSuffix
-            : canvasClassName
-        }
-        onMouseMove={(e) => {
-          _calculateNewChunkCoordsFromCursorCoords(
-            props,
-            [e.clientX, e.clientY],
-            chunkCoords,
-            setChunkCoords,
-            canvasRef,
-          );
-        }}
-        width={
-          props.resolution != null
-            ? props.resolution
-            : canvasRef.current != null
-            ? props.resolutionFraction
-              ? canvasRef.current.offsetWidth * props.resolutionFraction
-              : canvasRef.current.offsetWidth
-            : 1
-        }
-        height={
-          props.resolution != null
-            ? props.resolution
-            : canvasRef.current != null
-            ? props.resolutionFraction
-              ? canvasRef.current.offsetHeight * props.resolutionFraction
-              : canvasRef.current.offsetHeight
-            : 1
-        }
-      ></canvas>
-    </>
-  );
-}
-
 function _iterateJuliaIntoResultDataArray(
   props: FractalProps,
   canvas,
@@ -329,6 +209,7 @@ function _drawJuliaFromChunkToDataArray(
   context,
   chunkCoords: number[],
   chunkToDataArray,
+  setCanvasPixelDimensions,
 ) {
   const dataInChunkArray = _getValueInChunkArrayAtCoords(
     chunkToDataArray,
@@ -337,7 +218,10 @@ function _drawJuliaFromChunkToDataArray(
   );
 
   if (dataInChunkArray.length != canvas.width * canvas.height * 4) {
-    throw 'Data size mismatch: saved data does not match expected canvas size';
+    _debug(
+      'Data size mismatch: saved data does not match expected canvas size',
+    );
+    setCanvasPixelDimensions(canvas.width, canvas.height);
   }
 
   const imageData = context.createImageData(canvas.width, canvas.height);
@@ -350,3 +234,113 @@ function _drawJuliaFromChunkToDataArray(
 }
 
 export { Fractal, FractalProps };
+
+function Fractal(props: FractalProps) {
+  if (props.disabled) {
+    return (
+      <div
+        className={
+          props.classSuffix
+            ? canvasClassName + '-' + props.classSuffix
+            : canvasClassName
+        }
+      />
+    );
+  }
+
+  const [chunkCoords, setChunkCoords] = React.useState([
+    0,
+    Math.floor(props.chunksPerAxis / 2),
+  ]);
+  const [canvasPixelDimensions, setCanvasPixelDimensions] = React.useState([
+    1, 1,
+  ]);
+  const [chunkToDataArray, setChunkToDataArray] = React.useState(
+    new Array(props.chunksPerAxis ** 2),
+  );
+  const [hasComputedChunkToDataArray, setHasComputedChunkToDataArray] =
+    React.useState(false);
+
+  const canvasRef = React.useRef(null);
+
+  let canvas;
+  let context;
+
+  React.useEffect(() => {
+    // INITIAL RENDER
+    if (canvasRef.current !== null) {
+      _debug('first check');
+      [canvas, context] = _findCanvasAndContext(canvasRef);
+      if (
+        _areCanvasDimensionsDifferentFromState(canvas, canvasPixelDimensions)
+      ) {
+        _debug(
+          'new canvas pixel dimensions to %d, %d',
+          canvas.width,
+          canvas.height,
+        );
+        setCanvasPixelDimensions([canvas.width, canvas.height]);
+      }
+      // if (hasComputedChunkToDataArray) {
+      //   setChunkToDataArray(_createChunkToDataArray(props, canvas, context));
+      //   setHasComputedChunkToDataArray(true);
+      // }
+    }
+  }, [canvasRef.current]);
+
+  React.useEffect(() => {
+    if (canvasRef.current !== null) {
+      [canvas, context] = _findCanvasAndContext(canvasRef);
+      if (hasComputedChunkToDataArray) {
+        _drawJuliaFromChunkToDataArray(
+          props,
+          canvas,
+          context,
+          chunkCoords,
+          chunkToDataArray,
+          setCanvasPixelDimensions,
+        );
+      }
+    }
+  }, [chunkCoords]);
+
+  return (
+    <>
+      <canvas
+        ref={canvasRef}
+        className={
+          props.classSuffix
+            ? canvasClassName + '-' + props.classSuffix
+            : canvasClassName
+        }
+        onMouseMove={(e) => {
+          _calculateNewChunkCoordsFromCursorCoords(
+            props,
+            [e.clientX, e.clientY],
+            chunkCoords,
+            setChunkCoords,
+            canvasRef,
+          );
+        }}
+        width={
+          props.resolution != null
+            ? props.resolution
+            : canvasRef.current != null
+            ? props.resolutionFraction
+              ? canvasRef.current.offsetWidth * props.resolutionFraction
+              : canvasRef.current.offsetWidth
+            : 1
+        }
+        height={
+          props.resolution != null
+            ? props.resolution
+            : canvasRef.current != null
+            ? props.resolutionFraction
+              ? canvasRef.current.offsetHeight * props.resolutionFraction
+              : canvasRef.current.offsetHeight
+            : 1
+        }
+      ></canvas>
+    </>
+  );
+}
