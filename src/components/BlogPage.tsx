@@ -13,7 +13,6 @@ function BlogPage(props: BlogPageProps): JSX.Element {
   React.useEffect(() => {
     fetch(props.importedMarkdownObject)
       .then((result) => {
-        console.log(props.importedMarkdownObject);
         return result.text();
       })
       .then((markdownSourceFileContents) => {
