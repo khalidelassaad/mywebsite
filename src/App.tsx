@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { Link, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
+import { BlogPage } from './components/BlogPage';
 import HeaderBar from './header/HeaderBar';
 import { Fractal, FractalProps } from './pages/Fractal';
-import Home from './pages/Home';
+import HomeMarkdown from './pages/markdown/Home.md';
 
 const bodystring: string = 'Welcome to KE Land! This is the best place.';
 const error404string: string = 'Uh oh! Nothing to see here, move along...';
@@ -74,7 +75,10 @@ function App() {
         </div>
         <div className="App-body">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route
+              path="/"
+              element={<BlogPage importedMarkdownObject={HomeMarkdown} />}
+            />
             <Route path="/codefolio" element={'CODE!!! :>'} />
             <Route path="/athletics" element={'SPORTS!!! :>'} />
             <Route path="/contact" element={"Don't talk to me!!! :>"} />
