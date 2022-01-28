@@ -31,7 +31,7 @@ function App() {
       endX: 1.5,
       endY: 1,
     },
-    transformSpeedModifier: 1.4,
+    transformSpeedModifier: 1,
     classSuffix: 'main',
     colorMax: 200,
     captionText:
@@ -41,16 +41,16 @@ function App() {
 
   const backgroundFractalProps: FractalProps = {
     colorStep: 4,
-    chunksPerAxis: 50,
-    resolution: 70,
+    chunksPerAxis: 25,
+    resolution: 100,
     maxIterations: 100,
     viewportCoords: {
-      startX: -1.5,
-      startY: -1.5,
-      endX: 1.5,
-      endY: 1.5,
+      startX: -1.2,
+      startY: 0.2,
+      endX: -1.0,
+      endY: 0.4,
     },
-    transformSpeedModifier: 2,
+    transformSpeedModifier: 0.5,
     classSuffix: 'background',
     cursorCoords: cursorPosition,
   };
