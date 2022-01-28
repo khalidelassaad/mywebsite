@@ -18,7 +18,7 @@ function BlogPage(props: BlogPageProps): JSX.Element {
       .then((markdownSourceFileContents) => {
         setMarkdownSourceCode(markdownSourceFileContents);
       });
-  }, []);
+  }, [props.importedMarkdownObject]);
 
   return (
     <div className={blogPageClassName}>
