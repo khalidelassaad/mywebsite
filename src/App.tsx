@@ -7,39 +7,6 @@ import { Fractal, FractalProps } from './pages/Fractal';
 const bodystring: string = 'Welcome to KE Land! This is the best place.';
 const error404string: string = 'Uh oh! Nothing to see here, move along...';
 
-const fractalProps: FractalProps = {
-  colorStep: 3,
-  chunksPerAxis: 40,
-  resolutionFraction: 0.5,
-  maxIterations: 100,
-  viewportCoords: {
-    startX: -1.5,
-    startY: -1,
-    endX: 1.5,
-    endY: 1,
-  },
-  transformSpeedModifier: 1.4,
-  classSuffix: 'main',
-  colorMax: 200,
-  captionText:
-    'This Julia set computation uses dynamic programming to save previous renders.',
-};
-
-const backgroundFractalProps: FractalProps = {
-  colorStep: 4,
-  chunksPerAxis: 40,
-  resolutionFraction: 0.2,
-  maxIterations: 100,
-  viewportCoords: {
-    startX: -1.5,
-    startY: -1.5,
-    endX: 1.5,
-    endY: 1.5,
-  },
-  transformSpeedModifier: 1,
-  classSuffix: 'background',
-};
-
 const navButtons: [string, string][] = [
   ['HOME', '/'],
   ['CODEFOLIO', '/codefolio'],
@@ -51,8 +18,48 @@ const navButtons: [string, string][] = [
 function App() {
   const location = useLocation();
 
+  const [cursorPosition, setCursorPosition] = React.useState([0, 0]);
+
+  const fractalProps: FractalProps = {
+    colorStep: 3,
+    chunksPerAxis: 40,
+    resolutionFraction: 0.5,
+    maxIterations: 100,
+    viewportCoords: {
+      startX: -1.5,
+      startY: -1,
+      endX: 1.5,
+      endY: 1,
+    },
+    transformSpeedModifier: 1.4,
+    classSuffix: 'main',
+    colorMax: 200,
+    captionText:
+      'This Julia set computation uses dynamic programming to save previous renders.',
+    cursorCoords: cursorPosition,
+  };
+
+  const backgroundFractalProps: FractalProps = {
+    colorStep: 4,
+    chunksPerAxis: 40,
+    resolutionFraction: 0.2,
+    maxIterations: 100,
+    viewportCoords: {
+      startX: -1.5,
+      startY: -1.5,
+      endX: 1.5,
+      endY: 1.5,
+    },
+    transformSpeedModifier: 1,
+    classSuffix: 'background',
+    cursorCoords: cursorPosition,
+  };
+
   return (
-    <div className="backdrop">
+    <div
+      className="backdrop"
+      onMouseMove={(e) => setCursorPosition([e.screenX, e.screenY])}
+    >
       <Fractal
         {...backgroundFractalProps}
         disabled={location.pathname.indexOf('/fractal') != -1}

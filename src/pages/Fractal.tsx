@@ -19,6 +19,7 @@ interface ViewportCoords {
 }
 
 interface FractalProps {
+  cursorCoords: number[];
   resolution?: number;
   resolutionFraction?: number;
   colorStep: number;
@@ -81,7 +82,6 @@ function _getValueInChunkArrayAtCoords(
 
 function _calculateNewChunkCoordsFromCursorCoords(
   props: FractalProps,
-  newCursorCoords: number[],
   chunkCoords: number[],
   setChunkCoords: {
     (value: React.SetStateAction<number[]>): void;
@@ -93,8 +93,8 @@ function _calculateNewChunkCoordsFromCursorCoords(
   const canvasY: number = canvasRef.current.offsetHeight;
 
   const newCursorX =
-    newCursorCoords[0] - canvasRef.current.offsetParent.offsetLeft;
-  const newCursorY = newCursorCoords[1] - canvasRef.current.offsetTop;
+    props.cursorCoords[0] - canvasRef.current.offsetParent.offsetLeft;
+  const newCursorY = props.cursorCoords[1] - canvasRef.current.offsetTop;
 
   const [oldChunkX, oldChunkY] = chunkCoords;
 
@@ -299,6 +299,15 @@ function Fractal(props: FractalProps) {
   let context;
 
   React.useEffect(() => {
+    _calculateNewChunkCoordsFromCursorCoords(
+      props,
+      chunkCoords,
+      setChunkCoords,
+      canvasRef,
+    );
+  }, [props.cursorCoords]);
+
+  React.useEffect(() => {
     if (canvasRef.current !== null) {
       // If size changes, wipe chunkArray
       [canvas, context] = _findCanvasAndContext(canvasRef);
@@ -353,16 +362,6 @@ function Fractal(props: FractalProps) {
               ? canvasClassName + '-' + props.classSuffix
               : canvasClassName
           }
-          onMouseMove={(e) => {
-            //console.log('MOUSEOVER');
-            _calculateNewChunkCoordsFromCursorCoords(
-              props,
-              [e.clientX, e.clientY],
-              chunkCoords,
-              setChunkCoords,
-              canvasRef,
-            );
-          }}
           width={
             props.resolution != null
               ? props.resolution
