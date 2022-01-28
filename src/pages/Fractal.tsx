@@ -92,7 +92,8 @@ function _calculateNewChunkCoordsFromCursorCoords(
   const canvasX: number = canvasRef.current.offsetWidth;
   const canvasY: number = canvasRef.current.offsetHeight;
 
-  const newCursorX = newCursorCoords[0] - canvasRef.current.offsetLeft;
+  const newCursorX =
+    newCursorCoords[0] - canvasRef.current.offsetParent.offsetLeft;
   const newCursorY = newCursorCoords[1] - canvasRef.current.offsetTop;
 
   const [oldChunkX, oldChunkY] = chunkCoords;

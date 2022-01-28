@@ -40,8 +40,8 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  /* margin-inline: 10vw;  */
-  padding-inline: 10vw;
+  margin-inline: 10vw;
+  /* padding-inline: 10vw; */
   /* padding makes background not work, margin makes cursor offset shitty */
   z-index: 1;
 }
