@@ -129,9 +129,11 @@ function _iterateJuliaIntoResultDataArray(
   y0,
   resultDataArray,
 ) {
+  const colorMax = props.colorMax ? props.colorMax : 255;
+
   const maxIterations = Math.min(
     props.maxIterations,
-    Math.floor(props.colorMax / props.colorStep),
+    Math.floor(colorMax / props.colorStep),
   );
 
   for (var i = 0; i < canvas.height; i++) {
@@ -156,7 +158,7 @@ function _iterateJuliaIntoResultDataArray(
       resultDataArray[i * canvas.width * 4 + j * 4 + 3] = 255;
     }
   }
-
+  _debug(resultDataArray);
   return resultDataArray;
 }
 
@@ -275,15 +277,7 @@ function _loadDrawOrComputeSaveDrawJuliaFromChunkToDataArray(
 
 function Fractal(props: FractalProps) {
   if (props.disabled) {
-    return (
-      <div
-        className={
-          props.classSuffix
-            ? canvasClassName + '-' + props.classSuffix
-            : canvasClassName
-        }
-      />
-    );
+    return <></>;
   }
 
   const [chunkCoords, setChunkCoords] = React.useState([
@@ -359,6 +353,7 @@ function Fractal(props: FractalProps) {
               : canvasClassName
           }
           onMouseMove={(e) => {
+            //console.log('MOUSEOVER');
             _calculateNewChunkCoordsFromCursorCoords(
               props,
               [e.clientX, e.clientY],

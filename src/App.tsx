@@ -9,7 +9,7 @@ const error404string: string = 'Uh oh! Nothing to see here, move along...';
 
 const fractalProps: FractalProps = {
   colorStep: 3,
-  chunksPerAxis: 60,
+  chunksPerAxis: 40,
   resolutionFraction: 0.5,
   maxIterations: 100,
   viewportCoords: {
@@ -27,8 +27,8 @@ const fractalProps: FractalProps = {
 
 const backgroundFractalProps: FractalProps = {
   colorStep: 4,
-  chunksPerAxis: 70,
-  resolutionFraction: 0.25,
+  chunksPerAxis: 40,
+  resolutionFraction: 0.2,
   maxIterations: 100,
   viewportCoords: {
     startX: -1.5,
