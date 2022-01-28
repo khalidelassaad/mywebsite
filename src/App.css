@@ -140,6 +140,7 @@
   flex-direction: column;
   padding: 5vmin;
   overflow-y: scroll;
+  overflow-x: clip;
   text-align: left;
   font-size: 3vmin;
   font-weight: 200;

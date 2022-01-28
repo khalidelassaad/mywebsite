@@ -2,4 +2,6 @@
 
 Welcome to my website! This here site is my pride and joy dontcha know?
 
-![test](../../../public/kelogo.png)
+![test](../kelogo.png)
+
+<!-- ![test](../rowingteamheaderpic.JPG) -->
