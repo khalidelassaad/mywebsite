@@ -167,3 +167,7 @@
 hr {
   width: 100%;
 }
+
+pre {
+  background-color: #353535b0;
+}
