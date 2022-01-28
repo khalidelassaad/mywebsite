@@ -9,9 +9,9 @@ Welcome to my website! This here site is my **pride** and **joy** dontcha know?
 `TEST`
 
 ```
-test
-test
-stetst
+function hello() {
+  hello world
+}
 ```
 
 <!-- ![test](../rowingteamheaderpic.JPG) -->
