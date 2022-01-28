@@ -130,8 +130,9 @@
   background-color: #000000b0;
   height: 75vh;
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  align-content: stretch;
+  text-align: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
@@ -141,10 +142,7 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  margin-top: 5vh;
-  margin-bottom: 5vh;
-  margin-inline: 1.5vw;
-  padding-inline: 4.5vw;
+  padding-inline: 5vw;
   overflow-x: clip;
   overflow-y: auto;
   text-align: left;
