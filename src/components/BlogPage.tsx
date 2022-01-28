@@ -20,7 +20,7 @@ interface BlogImage {
 type BlogContentItem = BlogText | BlogURL | BlogImage;
 
 interface BlogPageProps {
-  contents: any[];
+  contents: BlogContentItem[];
 }
 
 function BlogPage(props: BlogPageProps) {
