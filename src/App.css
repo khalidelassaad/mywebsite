@@ -107,6 +107,8 @@
   font-weight: 600;
   color: #aaaaaa;
   background-color: rgba(0, 0, 0, 0.479);
+  display: flex;
+  text-align: center;
 }
 
 .Fractal-container-background {

@@ -1,10 +1,5 @@
 import * as React from 'react';
 
-// TODO for this class:
-// Make background detect mouse movement on top of everything
-
-// Beautiful region at -0.8, 0.2
-
 const canvasClassName = 'Fractal-canvas';
 const captionTextClassName = 'Fractal-caption';
 const fractalContainerClassName = 'Fractal-container';
