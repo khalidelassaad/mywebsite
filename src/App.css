@@ -65,7 +65,7 @@
   font-weight: 200;
   background-color: rgba(0, 184, 0, 0.7);
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   user-select: none;
 }
 
