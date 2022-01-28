@@ -103,7 +103,11 @@ interface BlogPageProps {
 }
 
 function BlogPage(props: BlogPageProps): JSX.Element {
-  return _blogContentItemsArrayJSX(props.contentItems);
+  return (
+    <div className={blogPageClassName}>
+      {_blogContentItemsArrayJSX(props.contentItems)}
+    </div>
+  );
 }
 
 export { BlogPage, BlogPageProps, BlogContentType };
