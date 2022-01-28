@@ -58,7 +58,7 @@ function App() {
   return (
     <div
       className="backdrop"
-      onMouseMove={(e) => setCursorPosition([e.screenX, e.screenY])}
+      onMouseMove={(e) => setCursorPosition([e.clientX, e.clientY])}
     >
       <Fractal
         {...backgroundFractalProps}
