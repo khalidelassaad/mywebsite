@@ -93,7 +93,12 @@ function _blogContentItemsArrayJSX(
   return (
     <>
       {contentItems.map((contentItem, index) => {
-        return _blogContentItemJSX(contentItem, index);
+        return (
+          <>
+            {_blogContentItemJSX(contentItem, index)}
+            <br />
+          </>
+        );
       })}
     </>
   );

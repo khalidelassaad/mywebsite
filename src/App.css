@@ -134,3 +134,13 @@
 .backdrop {
   background-color: black;
 }
+
+.BlogPage {
+  display: flex;
+  flex-direction: column;
+  padding: 5vmin;
+  overflow-y: scroll;
+  text-align: left;
+  font-size: 3vmin;
+  font-weight: 200;
+}

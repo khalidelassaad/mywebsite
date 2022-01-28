@@ -14,6 +14,30 @@ function Home(props: HomeProps) {
           },
         },
         {
+          type: BlogContentType.Text,
+          content: {
+            text: 'Part 2 lorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsum',
+          },
+        },
+        {
+          type: BlogContentType.Text,
+          content: {
+            text: 'Part 2 lorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsum',
+          },
+        },
+        {
+          type: BlogContentType.Text,
+          content: {
+            text: 'Part 2 lorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsum',
+          },
+        },
+        {
+          type: BlogContentType.Text,
+          content: {
+            text: 'Part 2 lorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsumorem ipsum',
+          },
+        },
+        {
           type: BlogContentType.URL,
           content: { text: 'Part 3', targetURL: 'http://google.com' },
         },
