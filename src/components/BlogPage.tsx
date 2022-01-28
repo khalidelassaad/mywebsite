@@ -17,7 +17,16 @@ interface BlogImage {
   altText?: string;
 }
 
-type BlogContentItem = BlogText | BlogURL | BlogImage;
+enum BlogContentType {
+  Text,
+  URL,
+  Image,
+}
+
+type BlogContentItem = {
+  type: BlogContentType;
+  content: BlogText | BlogURL | BlogImage;
+};
 
 interface BlogPageProps {
   contents: BlogContentItem[];
@@ -27,4 +36,4 @@ function BlogPage(props: BlogPageProps) {
   return <div className={blogPageClassName}>Part 1</div>;
 }
 
-export { BlogPage, BlogPageProps };
+export { BlogPage, BlogPageProps, BlogContentType };
