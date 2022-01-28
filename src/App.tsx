@@ -3,6 +3,7 @@ import { Link, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
 import HeaderBar from './header/HeaderBar';
 import { Fractal, FractalProps } from './pages/Fractal';
+import Home from './pages/Home';
 
 const bodystring: string = 'Welcome to KE Land! This is the best place.';
 const error404string: string = 'Uh oh! Nothing to see here, move along...';
@@ -73,7 +74,7 @@ function App() {
         </div>
         <div className="App-body">
           <Routes>
-            <Route path="/" element={bodystring} />
+            <Route path="/" element={<Home />} />
             <Route path="/codefolio" element={'CODE!!! :>'} />
             <Route path="/athletics" element={'SPORTS!!! :>'} />
             <Route path="/contact" element={"Don't talk to me!!! :>"} />

@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 const blogPageClassName = 'BlogPage';
 
 interface BlogText {
@@ -21,6 +23,8 @@ interface BlogPageProps {
   contents: any[];
 }
 
-function BlogPage(props: BlogPageProps) {}
+function BlogPage(props: BlogPageProps) {
+  return <div className={blogPageClassName}>Part 1</div>;
+}
 
 export { BlogPage, BlogPageProps };
