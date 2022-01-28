@@ -8,7 +8,10 @@ function Home(props: HomeProps) {
     <BlogPage
       contents={[
         { type: BlogContentType.Text, content: { text: 'Part 2' } },
-        { type: BlogContentType.Text, content: { text: 'Part 3' } },
+        {
+          type: BlogContentType.URL,
+          content: { text: 'Part 3', targetURL: 'http://google.com' },
+        },
       ]}
     />
   );
