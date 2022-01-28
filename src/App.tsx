@@ -4,6 +4,7 @@ import './App.css';
 import { BlogPage } from './components/BlogPage';
 import HeaderBar from './header/HeaderBar';
 import { Fractal, FractalProps } from './pages/Fractal';
+import ContactMarkdown from './pages/markdown/Contact.md';
 import HomeMarkdown from './pages/markdown/Home.md';
 
 const bodystring: string = 'Welcome to KE Land! This is the best place.';
@@ -81,7 +82,10 @@ function App() {
             />
             <Route path="/codefolio" element={'CODE!!! :>'} />
             <Route path="/athletics" element={'SPORTS!!! :>'} />
-            <Route path="/contact" element={"Don't talk to me!!! :>"} />
+            <Route
+              path="/contact"
+              element={<BlogPage importedMarkdownObject={ContactMarkdown} />}
+            />
             <Route path="/fractal" element={<Fractal {...fractalProps} />} />
             <Route
               path="/404"
