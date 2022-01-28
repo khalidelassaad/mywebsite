@@ -6,7 +6,7 @@ interface HomeProps {}
 function Home(props: HomeProps) {
   return (
     <BlogPage
-      contents={[
+      contentItems={[
         { type: BlogContentType.Text, content: { text: 'Part 2' } },
         {
           type: BlogContentType.URL,

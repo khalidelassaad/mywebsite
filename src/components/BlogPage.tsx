@@ -41,10 +41,6 @@ type BlogContentItem =
       content: BlogImage;
     };
 
-interface BlogPageProps {
-  contents: BlogContentItem[];
-}
-
 function _blogTextJSX(content: BlogText, key: number): JSX.Element {
   return (
     <div className={blogTextClassName} key={key}>
@@ -73,8 +69,41 @@ function _blogImageJSX(content: BlogImage, key: number): JSX.Element {
   );
 }
 
+function _blogContentItemJSX(
+  contentItem: BlogContentItem,
+  key: number,
+): JSX.Element {
+  switch (contentItem.type) {
+    case BlogContentType.Text: {
+      return _blogTextJSX(contentItem.content, key);
+    }
+    case BlogContentType.URL: {
+      return _blogURLJSX(contentItem.content, key);
+    }
+    case BlogContentType.Image: {
+      return _blogImageJSX(contentItem.content, key);
+    }
+  }
+}
+
+function _blogContentItemsArrayJSX(
+  contentItems: BlogContentItem[],
+): JSX.Element {
+  return (
+    <>
+      {contentItems.map((contentItem, index) => {
+        return _blogContentItemJSX(contentItem, index);
+      })}
+    </>
+  );
+}
+
+interface BlogPageProps {
+  contentItems: BlogContentItem[];
+}
+
 function BlogPage(props: BlogPageProps): JSX.Element {
-  return <div className={blogPageClassName}>Part 1</div>;
+  return _blogContentItemsArrayJSX(props.contentItems);
 }
 
 export { BlogPage, BlogPageProps, BlogContentType };
