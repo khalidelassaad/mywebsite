@@ -61,10 +61,11 @@ function _blogImageJSX(content: BlogImage, key: number): JSX.Element {
   return (
     <div className={blogImageClassName} key={key}>
       <img src={content.filePath} alt={content.altText} />
-      content.caption ?{' '}
-      <div className={blogImageCaptionClassName}>
-        {content.captionText}
-      </div> : <></>
+      {content.captionText ? (
+        <div className={blogImageCaptionClassName}>{content.captionText}</div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }
