@@ -4,6 +4,8 @@ import './App.css';
 import { BlogPage } from './components/BlogPage';
 import HeaderBar from './header/HeaderBar';
 import { Fractal, FractalProps } from './pages/Fractal';
+import Code1Markdown from './pages/markdown/Code-1.md';
+import Code2Markdown from './pages/markdown/Code-2.md';
 import ContactMarkdown from './pages/markdown/Contact.md';
 import HomeMarkdown from './pages/markdown/Home.md';
 
@@ -81,6 +83,14 @@ function App() {
               element={<BlogPage importedMarkdownObject={HomeMarkdown} />}
             />
             <Route path="/codefolio" element={'CODE!!! :>'} />
+            <Route
+              path="/codefolio/code-1"
+              element={<BlogPage importedMarkdownObject={Code1Markdown} />}
+            />
+            <Route
+              path="/codefolio/code-2"
+              element={<BlogPage importedMarkdownObject={Code2Markdown} />}
+            />
             <Route path="/athletics" element={'SPORTS!!! :>'} />
             <Route
               path="/contact"
