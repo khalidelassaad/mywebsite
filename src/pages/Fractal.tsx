@@ -132,8 +132,8 @@ function _iterateJuliaIntoResultDataArray(
     Math.floor(colorMax / props.colorStep),
   );
 
-  for (var i = 0; i < canvas.height; i++) {
-    for (var j = 0; j < canvas.width; j++) {
+  for (let i = 0; i < canvas.height; i++) {
+    for (let j = 0; j < canvas.width; j++) {
       // limit the axis
       let x = xAxisLength * -0.5 + (j * xAxisLength) / canvas.width + xOffset;
       let y = yAxisLength * -0.5 + (i * yAxisLength) / canvas.height + yOffset;
@@ -263,7 +263,7 @@ function _loadDrawOrComputeSaveDrawJuliaFromChunkToDataArray(
     );
   }
   // Draw Julia
-  for (var i = 0; i < dataInChunkArray.length; i++) {
+  for (let i = 0; i < dataInChunkArray.length; i++) {
     imageData.data[i] = dataInChunkArray[i];
   }
   // _debug('drawdata for chunk %d, %d', chunkCoords[0], chunkCoords[1]);
