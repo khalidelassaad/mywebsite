@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { HeaderButtonProps } from './HeaderButton';
+import { HeaderButton, HeaderButtonProps } from './HeaderButton';
 
 const hoverMenuClassName: string = 'HoverMenu';
+const hoverMenuButtonClassSuffix: string = '-hoverMenu';
 
 interface HeaderHoverMenuProps {
   childButtonPropsList: HeaderButtonProps[];
@@ -24,7 +25,15 @@ function HeaderHoverMenu(props: HeaderHoverMenuProps) {
       onMouseEnter={onMouseOver}
       onMouseLeave={onMouseOut}
     >
-      {' hoverchild'}
+      {props.childButtonPropsList.map((childButtonProps) => {
+        return (
+          <HeaderButton
+            {...childButtonProps}
+            key={childButtonProps.label}
+            classNameSuffix={hoverMenuButtonClassSuffix}
+          />
+        );
+      })}
     </div>
   ) : (
     <></>

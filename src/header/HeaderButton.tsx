@@ -8,6 +8,7 @@ interface HeaderButtonProps {
   label: string;
   linkTo: string;
   hoverMenuButtonPropsList?: HeaderButtonProps[];
+  classNameSuffix?: string;
 }
 
 function HeaderButton(props: HeaderButtonProps) {
@@ -17,7 +18,8 @@ function HeaderButton(props: HeaderButtonProps) {
     return (
       <div
         className={buttonClassName}
-        onClick={() => {
+        onClick={(event) => {
+          event.stopPropagation();
           navigate(props.linkTo);
         }}
       >
@@ -39,6 +41,7 @@ function HeaderButton(props: HeaderButtonProps) {
     <div
       className={buttonClassName}
       onClick={() => {
+        console.log('%s clicked', props.label);
         navigate(props.linkTo);
       }}
       onMouseEnter={onMouseEnter}

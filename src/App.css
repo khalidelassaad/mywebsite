@@ -48,13 +48,6 @@
   }
 }
 
-.headerBar-list {
-  display: flex;
-  justify-content: space-evenly;
-  height: 5vh;
-  background-color: rgba(0, 0, 0, 0.24);
-}
-
 .Fractal-container-main {
   display: flex;
   flex-direction: column;
@@ -153,31 +146,40 @@ pre {
   background-color: #353535b0;
 }
 
+.headerBar-list {
+  display: flex;
+  justify-content: space-evenly;
+  height: 5vh;
+  background-color: rgba(0, 0, 0, 0.24);
+}
+
 .headerBar-button {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 15vw;
+  width: 12vw;
   height: 3vh;
   padding: 1vh;
   font-weight: 200;
   font-size: 3vmin;
-  background-color: rgba(0, 184, 0, 0.7);
+  background-color: rgb(18, 146, 18);
   user-select: none;
-  margin-inline: 1vw;
 }
 
 .headerBar-button:hover {
   color: white;
   font-weight: 300;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.699);
   cursor: pointer;
 }
 
 .HoverMenu {
   position: absolute;
   top: 100%;
-  background-color: blue;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: rgb(0, 0, 0);
 }
