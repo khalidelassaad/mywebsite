@@ -3,6 +3,7 @@ import { Link, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
 import { BlogPage } from './components/BlogPage';
 import HeaderBar from './header/HeaderBar';
+import { HeaderButtonProps } from './header/HeaderButton';
 import { Fractal, FractalProps } from './pages/Fractal';
 import Code1Markdown from './pages/markdown/Code-1.md';
 import Code2Markdown from './pages/markdown/Code-2.md';
@@ -12,9 +13,14 @@ import HomeMarkdown from './pages/markdown/Home.md';
 const bodystring: string = 'Welcome to KE Land! This is the best place.';
 const error404string: string = 'Uh oh! Nothing to see here, move along...';
 
-const navButtons: [string, string][] = [
+const codeFolioHoverButtonPropsList: HeaderButtonProps[] = [
+  { label: 'CODE 1', linkTo: '/codefolio/code-1' },
+  { label: 'CODE 2', linkTo: '/codefolio/code-2' },
+];
+
+const navButtons: [string, string, HeaderButtonProps[]?][] = [
   ['HOME', '/'],
-  ['CODEFOLIO', '/codefolio'],
+  ['CODEFOLIO', '/codefolio', codeFolioHoverButtonPropsList],
   ['ATHLETICS', '/athletics'],
   ['CONTACT', '/contact'],
   ['FRACTAL', '/fractal'],
