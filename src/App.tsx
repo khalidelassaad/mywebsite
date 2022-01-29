@@ -8,7 +8,7 @@ import AthleticsMarkdown from './pages/markdown/Athletics.md';
 import CodefolioMarkdown from './pages/markdown/Codefolio.md';
 import ContactMarkdown from './pages/markdown/Contact.md';
 import HomeMarkdown from './pages/markdown/Home.md';
-import { WebsiteStructure } from './WebsiteStructure';
+import { NavBarPage, WebsiteStructure } from './WebsiteStructure';
 
 const error404string: string = 'Uh oh! Nothing to see here, move along...';
 
@@ -25,14 +25,20 @@ const navButtons1: [string, string, HeaderButtonProps[]?][] = [
   ['FRACTAL', '/fractal'],
 ];
 
+function _generateRouteFromNavBarPageObject(
+  navBarPageObject: NavBarPage,
+): JSX.Element {
+  return <></>;
+}
+
 function _generateRoutesFromWebsiteStructureObject(
-  websiteStructure: WebsiteStructure,
+  websiteStructureObject: WebsiteStructure,
 ): JSX.Element {
   return <></>;
 }
 
 function _generateNavButtonsFromWebsiteStructureObject(
-  websiteStructure,
+  websiteStructureObject,
 ): [string, string, HeaderButtonProps[]?][] {
   return [];
 }

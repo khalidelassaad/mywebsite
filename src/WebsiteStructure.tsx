@@ -32,4 +32,4 @@ type NavBarPageWithChildren = NavBarPageLeaf &
 
 type NavBarPage = NavBarPageLeaf | NavBarPageWithChildren;
 
-export { WebsiteStructure };
+export { WebsiteStructure, NavBarPage };
