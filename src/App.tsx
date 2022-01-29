@@ -19,6 +19,7 @@ import {
 
 const error404string: string = 'Uh oh! Nothing to see here, move along...';
 
+// TODO: Find and fix bug with console error about `key`
 function _generateRouteFromNavBarPageObject(
   navBarPageObject: NavBarPage,
 ): JSX.Element {
@@ -188,39 +189,46 @@ function App() {
     _generateRoutesFromWebsiteStructureObject(myWebsiteStructure);
 
   return (
-    <div
-      className="backdrop"
-      onMouseMove={(e) => setCursorPosition([e.clientX, e.clientY])}
-    >
-      <Fractal
-        {...backgroundFractalProps}
-        disabled={location.pathname.indexOf('/fractal') != -1}
-      />
-      <div className="App-sleeve">
-        <div className="App">
-          <header className="App-header">
-            <img src="../kelogo.png" className="App-logo" alt="logo" />
-          </header>
-          <HeaderBar navButtons={navButtons} />
-        </div>
-        <div className="App-body">
-          <Routes>
-            {generatedRoutes}
-            <Route
-              path="/404"
-              element={
-                <>
-                  <h1>404</h1>
-                  {error404string}
-                  <Link to="/">Back to home page</Link>
-                </>
-              }
-            />
-            <Route path="/*" element={<Navigate replace to="/404" />} />
-          </Routes>
+    <React.StrictMode>
+      <div
+        className="backdrop"
+        onMouseMove={(e) => setCursorPosition([e.clientX, e.clientY])}
+      >
+        <Fractal
+          {...backgroundFractalProps}
+          disabled={location.pathname.indexOf('/fractal') != -1}
+        />
+        <div className="App-sleeve">
+          <div className="App">
+            <header className="App-header">
+              <img src="../kelogo.png" className="App-logo" alt="logo" />
+            </header>
+            <HeaderBar navButtons={navButtons} />
+          </div>
+          <div className="App-body">
+            <Routes>
+              {generatedRoutes}
+              <Route
+                path="/404"
+                key="404"
+                element={
+                  <>
+                    <h1>404</h1>
+                    {error404string}
+                    <Link to="/">Back to home page</Link>
+                  </>
+                }
+              />
+              <Route
+                path="/*"
+                key="catch-all"
+                element={<Navigate replace to="/404" />}
+              />
+            </Routes>
+          </div>
         </div>
       </div>
-    </div>
+    </React.StrictMode>
   );
 }
 
