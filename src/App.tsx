@@ -6,6 +6,8 @@ import HeaderBar from './header/HeaderBar';
 import { HeaderButtonProps } from './header/HeaderButton';
 import { Fractal, FractalProps } from './pages/Fractal';
 import AthleticsMarkdown from './pages/markdown/Athletics.md';
+import Code1Markdown from './pages/markdown/Code-1.md';
+import Code2Markdown from './pages/markdown/Code-2.md';
 import CodefolioMarkdown from './pages/markdown/Codefolio.md';
 import ContactMarkdown from './pages/markdown/Contact.md';
 import HomeMarkdown from './pages/markdown/Home.md';
@@ -25,6 +27,18 @@ const navButtons: [string, string, HeaderButtonProps[]?][] = [
   ['CONTACT', '/contact'],
   ['FRACTAL', '/fractal'],
 ];
+
+function _generateRoutesFromWebsiteStructureObject(
+  websiteStructure: WebsiteStructure,
+): JSX.Element {
+  return <></>;
+}
+
+function _generateNavButtonsFromWebsiteStructureObject(
+  websiteStructure,
+): [string, string, HeaderButtonProps[]?][] {
+  return [];
+}
 
 function App() {
   const location = useLocation();
