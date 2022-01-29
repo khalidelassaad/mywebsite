@@ -128,11 +128,11 @@
   /* display: none; */
   width: 0.5rem;
   /* border-radius: 1vw; */
-  background-color: rgba(255, 255, 255, 0.144);
+  background-color: rgba(255, 255, 255, 0.075);
 }
 
 .BlogPage::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 170, 0, 0.363);
+  background-color: rgba(0, 170, 0, 0.616);
   /* border-radius: 1vw; */
   border: 3px;
 }
