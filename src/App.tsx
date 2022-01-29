@@ -11,7 +11,11 @@ import Code2Markdown from './pages/markdown/Code-2.md';
 import CodefolioMarkdown from './pages/markdown/Codefolio.md';
 import ContactMarkdown from './pages/markdown/Contact.md';
 import HomeMarkdown from './pages/markdown/Home.md';
-import { NavBarPage, WebsiteStructure } from './WebsiteStructure';
+import {
+  NavBarPage,
+  NavBarPageLeaf,
+  WebsiteStructure,
+} from './WebsiteStructure';
 
 const error404string: string = 'Uh oh! Nothing to see here, move along...';
 
@@ -31,13 +35,47 @@ const navButtons1: [string, string, HeaderButtonProps[]?][] = [
 function _generateRouteFromNavBarPageObject(
   navBarPageObject: NavBarPage,
 ): JSX.Element {
-  return <></>;
+  let returnElements: JSX.Element[] = [];
+
+  if ('importedMarkdownObject' in navBarPageObject) {
+    returnElements.push(
+      <Route
+        path={navBarPageObject.pageURL}
+        element={
+          <BlogPage
+            importedMarkdownObject={navBarPageObject.importedMarkdownObject}
+          />
+        }
+      />,
+    );
+  } else if ('element' in navBarPageObject) {
+    returnElements.push(
+      <Route
+        path={navBarPageObject.pageURL}
+        element={navBarPageObject.element}
+      />,
+    );
+  }
+
+  if ('childPages' in navBarPageObject) {
+    navBarPageObject.childPages.map((childPage: NavBarPageLeaf) => {
+      returnElements.push(_generateRouteFromNavBarPageObject(childPage));
+    });
+  }
+
+  return <>{returnElements}</>;
 }
 
 function _generateRoutesFromWebsiteStructureObject(
   websiteStructureObject: WebsiteStructure,
 ): JSX.Element {
-  return <></>;
+  let returnElements: JSX.Element[] = [];
+
+  websiteStructureObject.navBarPages.map((navBarPage) => {
+    returnElements.push(_generateRouteFromNavBarPageObject(navBarPage));
+  });
+
+  return <>{returnElements}</>;
 }
 
 function _generateNavButtonsFromWebsiteStructureObject(
@@ -153,14 +191,6 @@ function App() {
         <div className="App-body">
           <Routes>
             {generatedRoutes}
-            <Route
-              path="/codefolio"
-              element={<BlogPage importedMarkdownObject={CodefolioMarkdown} />}
-            />
-            <Route
-              path="/codefolio/code-1"
-              element={<BlogPage importedMarkdownObject={Code1Markdown} />}
-            />
             <Route
               path="/404"
               element={
