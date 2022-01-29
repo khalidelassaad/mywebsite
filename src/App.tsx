@@ -32,6 +32,7 @@ function _generateRouteFromNavBarPageObject(
   if ('importedMarkdownObject' in navBarPageObject) {
     returnElements.push(
       <Route
+        key={navBarPageObject.navBarButtonLabel}
         path={navBarPageObject.pageURL}
         element={
           <BlogPage
@@ -43,6 +44,7 @@ function _generateRouteFromNavBarPageObject(
   } else if ('element' in navBarPageObject) {
     returnElements.push(
       <Route
+        key={navBarPageObject.navBarButtonLabel}
         path={navBarPageObject.pageURL}
         element={navBarPageObject.element}
       />,
@@ -64,7 +66,9 @@ function _generateRoutesFromWebsiteStructureObject(
   let returnElements: JSX.Element[] = [];
 
   websiteStructureObject.navBarPages.map((navBarPage) => {
-    returnElements.push(_generateRouteFromNavBarPageObject(navBarPage));
+    let navBarRoute = _generateRouteFromNavBarPageObject(navBarPage);
+    // navBarRoute.key = navBarPage.navBarButtonLabel;
+    returnElements.push(navBarRoute);
   });
 
   return <>{returnElements}</>;
