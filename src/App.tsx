@@ -52,8 +52,8 @@ function App() {
 
   const backgroundFractalProps: FractalProps = {
     colorStep: 4,
-    chunksPerAxis: 25,
-    resolution: 100,
+    chunksPerAxis: 50,
+    resolution: 50,
     maxIterations: 100,
     viewportCoords: {
       startX: -1.2,
