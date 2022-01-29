@@ -22,4 +22,4 @@ function HeaderButton({ label, linkTo }: HeaderButtonProps) {
   );
 }
 
-export default HeaderButton;
+export { HeaderButton, HeaderButtonProps };

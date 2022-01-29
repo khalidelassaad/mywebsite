@@ -1,5 +1,5 @@
 import * as React from 'react';
-import HeaderButton from './HeaderButton';
+import { HeaderButton } from './HeaderButton';
 
 const listClassName: string = 'headerBar-list';
 
@@ -10,7 +10,7 @@ interface Props {
 function HeaderBar({ navButtons }: Props) {
   return (
     <div className={listClassName}>
-      {navButtons.map(([label, linkTo], index) => {
+      {navButtons.map(([label, linkTo]) => {
         return <HeaderButton key={label} label={label} linkTo={linkTo} />;
       })}
     </div>
