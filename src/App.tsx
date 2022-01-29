@@ -1,10 +1,13 @@
 import * as React from 'react';
 import { Link, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
+import { BlogPage } from './components/BlogPage';
 import HeaderBar from './header/HeaderBar';
 import { HeaderButtonProps } from './header/HeaderButton';
 import { Fractal, FractalProps } from './pages/Fractal';
 import AthleticsMarkdown from './pages/markdown/Athletics.md';
+import Code1Markdown from './pages/markdown/Code-1.md';
+import Code2Markdown from './pages/markdown/Code-2.md';
 import CodefolioMarkdown from './pages/markdown/Codefolio.md';
 import ContactMarkdown from './pages/markdown/Contact.md';
 import HomeMarkdown from './pages/markdown/Home.md';
@@ -98,12 +101,12 @@ function App() {
           {
             navBarButtonLabel: 'CODE 1',
             pageURL: '/codefolio/code_1',
-            importedMarkdownObject: HomeMarkdown,
+            importedMarkdownObject: Code1Markdown,
           },
           {
             navBarButtonLabel: 'CODE 2',
             pageURL: '/codefolio/code_2',
-            importedMarkdownObject: HomeMarkdown,
+            importedMarkdownObject: Code2Markdown,
           },
         ],
       },
@@ -150,6 +153,14 @@ function App() {
         <div className="App-body">
           <Routes>
             {generatedRoutes}
+            <Route
+              path="/codefolio"
+              element={<BlogPage importedMarkdownObject={CodefolioMarkdown} />}
+            />
+            <Route
+              path="/codefolio/code-1"
+              element={<BlogPage importedMarkdownObject={Code1Markdown} />}
+            />
             <Route
               path="/404"
               element={
