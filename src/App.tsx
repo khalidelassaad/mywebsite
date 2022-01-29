@@ -10,6 +10,9 @@ import Code2Markdown from './pages/markdown/Code-2.md';
 import ContactMarkdown from './pages/markdown/Contact.md';
 import HomeMarkdown from './pages/markdown/Home.md';
 
+// TODO: - Create a structure file that has all button names, URLs, and markdown
+//       - Import from the structure file into here
+
 const bodystring: string = 'Welcome to KE Land! This is the best place.';
 const error404string: string = 'Uh oh! Nothing to see here, move along...';
 

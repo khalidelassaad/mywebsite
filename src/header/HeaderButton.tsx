@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { HeaderHoverMenu } from './HeaderHoverMenu';
 
 const buttonClassNameBase: string = 'headerBar-button';
+const buttonContainerClassName: string = 'headerBar-container';
 
 interface HeaderButtonProps {
   label: string;
@@ -19,13 +20,15 @@ function HeaderButton(props: HeaderButtonProps) {
 
   if (props.hoverMenuButtonPropsList == undefined) {
     return (
-      <div
-        className={buttonClassName}
-        onClick={() => {
-          navigate(props.linkTo);
-        }}
-      >
-        {props.label}
+      <div className={buttonContainerClassName}>
+        <div
+          className={buttonClassName}
+          onClick={() => {
+            navigate(props.linkTo);
+          }}
+        >
+          {props.label}
+        </div>
       </div>
     );
   }
@@ -40,16 +43,18 @@ function HeaderButton(props: HeaderButtonProps) {
   };
 
   return (
-    <div
-      className={buttonClassName}
-      onClick={() => {
-        navigate(props.linkTo);
-        askHoverMenuToClose();
-      }}
-      onMouseEnter={askHoverMenuToOpen}
-      onMouseLeave={askHoverMenuToClose}
-    >
-      {props.label}
+    <div className={buttonContainerClassName}>
+      <div
+        className={buttonClassName}
+        onClick={() => {
+          navigate(props.linkTo);
+          askHoverMenuToClose();
+        }}
+        onMouseEnter={askHoverMenuToOpen}
+        onMouseLeave={askHoverMenuToClose}
+      >
+        {props.label}
+      </div>
       <HeaderHoverMenu
         childButtonPropsList={props.hoverMenuButtonPropsList}
         mouseIsOverParent={isMouseHover}

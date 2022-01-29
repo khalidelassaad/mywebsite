@@ -186,3 +186,7 @@ div[class^='headerBar-button']:hover {
 div[class^='headerBar-button-hoverMenu'] {
   margin-top: 0.5vh;
 }
+
+.headerBar-container {
+  position: relative;
+}
