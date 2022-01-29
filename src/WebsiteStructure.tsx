@@ -2,14 +2,6 @@ interface WebsiteStructure {
   navBarPages: NavBarPage[];
 }
 
-interface NavBarPageProperties {
-  navBarButtonLabel: string;
-  pageURL: string;
-  importedMarkdownObject?: string;
-  element?: JSX.Element;
-  childPages?: NavBarPage[];
-}
-
 interface NavBarPageBase {
   navBarButtonLabel: string;
   pageURL: string;
@@ -27,9 +19,15 @@ interface NavBarElementPage extends NavBarPageBase {
 
 type NavBarPageLeaf = NavBarBlogPage | NavBarElementPage;
 
-type NavBarPageWithChildren = NavBarPageLeaf &
-  Required<Pick<NavBarPageProperties, 'childPages'>>;
+type NavBarPageWithChildren = NavBarPageLeaf & { childPages: NavBarPageLeaf[] };
 
-type NavBarPage = NavBarPageLeaf | NavBarPageWithChildren;
+type NavBarPage = NavBarPageWithChildren | NavBarPageLeaf;
+
+// const test: NavBarPage = {
+//   navBarButtonLabel: 's',
+//   pageURL: 's',
+//   importedMarkdownObject: 's',
+//   childPages: [],
+// };
 
 export { WebsiteStructure, NavBarPage };
