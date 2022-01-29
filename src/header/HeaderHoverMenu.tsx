@@ -2,7 +2,7 @@ import * as React from 'react';
 import { HeaderButton, HeaderButtonProps } from './HeaderButton';
 
 const hoverMenuClassName: string = 'HoverMenu';
-const hoverMenuButtonClassSuffix: string = '-hoverMenu';
+const hoverMenuButtonClassSuffix: string = 'hoverMenu';
 
 interface HeaderHoverMenuProps {
   childButtonPropsList: HeaderButtonProps[];

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { HeaderHoverMenu } from './HeaderHoverMenu';
 
-const buttonClassName: string = 'headerBar-button';
+const buttonClassNameBase: string = 'headerBar-button';
 
 interface HeaderButtonProps {
   label: string;
@@ -13,6 +13,9 @@ interface HeaderButtonProps {
 
 function HeaderButton(props: HeaderButtonProps) {
   const navigate = useNavigate();
+  const buttonClassName = props.classNameSuffix
+    ? buttonClassNameBase + '-' + props.classNameSuffix
+    : buttonClassNameBase;
 
   if (props.hoverMenuButtonPropsList == undefined) {
     return (

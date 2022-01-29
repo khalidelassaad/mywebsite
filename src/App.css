@@ -153,7 +153,7 @@ pre {
   background-color: rgba(0, 0, 0, 0.24);
 }
 
-.headerBar-button {
+div[class^='headerBar-button'] {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -163,15 +163,14 @@ pre {
   height: 3vh;
   padding: 1vh;
   font-weight: 200;
-  font-size: 3vmin;
+  font-size: 2vw;
   background-color: rgb(18, 146, 18);
+  transition: 0.3s;
   user-select: none;
 }
 
-.headerBar-button:hover {
-  color: white;
-  font-weight: 300;
-  background-color: rgba(0, 0, 0, 0.699);
+div[class^='headerBar-button']:hover {
+  background-color: rgba(255, 255, 255, 0.699);
   cursor: pointer;
 }
 
@@ -181,5 +180,9 @@ pre {
   display: flex;
   flex-direction: column;
   width: 100%;
-  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.623);
+}
+
+div[class^='headerBar-button-hoverMenu'] {
+  margin-top: 0.5vh;
 }
