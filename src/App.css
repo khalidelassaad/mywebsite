@@ -4,8 +4,8 @@
 
 .App-logo {
   height: 20vh;
-  pointer-events: none;
   user-select: none;
+  pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -15,24 +15,24 @@
 }
 
 .App-header {
-  background: rgba(0, 150, 0, 0.4) 50%;
-  height: 20vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  height: 20vh;
   color: white;
+  font-size: calc(10px + 2vmin);
+  background: rgba(0, 150, 0, 0.4) 50%;
 }
 
 .App-sleeve {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  margin-inline: 10vw;
   /* padding-inline: 10vw; */
   /* padding makes background not work, margin makes cursor offset shitty */
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  margin-inline: 10vw;
 }
 
 .App-link {
@@ -49,38 +49,17 @@
 }
 
 .headerBar-list {
-  background-color: rgba(0, 0, 0, 0.24);
-  height: 5vh;
   display: flex;
   justify-content: space-evenly;
-}
-
-.headerBar-button {
-  display: flex;
-  padding: 1vh;
-  margin-inline: 1vw;
-  width: 15vw;
-  height: 3vh;
-  font-size: 3vmin;
-  font-weight: 200;
-  background-color: rgba(0, 184, 0, 0.7);
-  align-items: center;
-  justify-content: center;
-  user-select: none;
-}
-
-.headerBar-button:hover {
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  font-weight: 300;
-  cursor: pointer;
+  height: 5vh;
+  background-color: rgba(0, 0, 0, 0.24);
 }
 
 .Fractal-container-main {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   width: 80vw;
   height: 75vh;
 }
@@ -93,26 +72,26 @@
 
 .Fractal-caption-main {
   position: absolute;
-  font-size: 1.5vh;
   bottom: 0px;
-  font-weight: 600;
-  color: #aaaaaa;
-  background-color: rgba(0, 0, 0, 0.479);
   display: flex;
+  color: #aaaaaa;
+  font-weight: 600;
+  font-size: 1.5vh;
   text-align: center;
+  background-color: rgba(0, 0, 0, 0.479);
 }
 
 .Fractal-container-background {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   width: 100vw;
   height: 100vh;
-  position: absolute;
-  z-index: 0;
-  left: 0px;
-  top: 0px;
   background-color: black;
 }
 
@@ -127,28 +106,28 @@
 }
 
 .App-body {
-  background-color: #000000b0;
-  height: 75vh;
   display: flex;
   flex-direction: column;
   align-content: stretch;
-  text-align: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  height: 75vh;
   color: white;
+  font-size: calc(10px + 2vmin);
+  text-align: center;
+  background-color: #000000b0;
 }
 
 .BlogPage {
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding-inline: 5vw;
+  max-height: 100%;
   overflow-x: clip;
   overflow-y: auto;
-  text-align: left;
-  font-size: 3vmin;
   font-weight: 200;
-  max-height: 100%;
+  font-size: 3vmin;
+  text-align: left;
+  padding-inline: 5vw;
   scrollbar-width: none;
 }
 
@@ -160,9 +139,9 @@
 }
 
 .BlogPage::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 170, 0, 0.568);
   /* border-radius: 1vw; */
   border: 3px;
-  background-color: rgba(0, 170, 0, 0.568);
 }
 
 hr {
@@ -170,10 +149,35 @@ hr {
 }
 
 pre {
-  background-color: #353535b0;
   padding: 1rem;
+  background-color: #353535b0;
+}
+
+.headerBar-button {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 15vw;
+  height: 3vh;
+  padding: 1vh;
+  font-weight: 200;
+  font-size: 3vmin;
+  background-color: rgba(0, 184, 0, 0.7);
+  user-select: none;
+  margin-inline: 1vw;
+}
+
+.headerBar-button:hover {
+  color: white;
+  font-weight: 300;
+  background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
 }
 
 .HoverMenu {
+  position: absolute;
+  top: 5vh;
   background-color: blue;
 }
