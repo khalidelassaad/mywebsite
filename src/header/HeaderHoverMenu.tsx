@@ -21,10 +21,10 @@ function HeaderHoverMenu(props: HeaderHoverMenuProps) {
   return props.mouseIsOverParent || isMouseOver ? (
     <div
       className={hoverMenuClassName}
-      onMouseOver={onMouseOver}
-      onMouseOut={onMouseOut}
+      onMouseEnter={onMouseOver}
+      onMouseLeave={onMouseOut}
     >
-      YAY
+      {' hoverchild'}
     </div>
   ) : (
     <></>

@@ -26,13 +26,13 @@ function HeaderButton(props: HeaderButtonProps) {
     );
   }
 
-  const [isMouseOver, setIsMouseOver] = React.useState(false);
+  const [isMouseHover, setIsMouseHover] = React.useState(false);
 
-  const onMouseOver = () => {
-    setIsMouseOver(true);
+  const onMouseEnter = () => {
+    setIsMouseHover(true);
   };
-  const onMouseOut = () => {
-    setIsMouseOver(false);
+  const onMouseLeave = () => {
+    setIsMouseHover(false);
   };
 
   return (
@@ -41,13 +41,13 @@ function HeaderButton(props: HeaderButtonProps) {
       onClick={() => {
         navigate(props.linkTo);
       }}
-      onMouseOver={onMouseOver}
-      onMouseOut={onMouseOut}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
     >
       {props.label}
       <HeaderHoverMenu
         childButtonPropsList={props.hoverMenuButtonPropsList}
-        mouseIsOverParent={isMouseOver}
+        mouseIsOverParent={isMouseHover}
       />
     </div>
   );
