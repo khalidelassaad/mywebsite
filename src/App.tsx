@@ -62,32 +62,16 @@ function _generateRoutesFromWebsiteStructureObject(
 
   websiteStructureObject.navBarPages.map((navBarPage) => {
     let navBarRoute = _generateRouteFromNavBarPageObject(navBarPage);
-    // navBarRoute.key = navBarPage.navBarButtonLabel;
     returnElements.push(navBarRoute);
   });
 
   return <>{returnElements}</>;
 }
 
-const codeFolioHoverButtonPropsList: HeaderButtonProps[] = [
-  { label: 'CODE 1', linkTo: '/codefolio/code-1' },
-  { label: 'CODE 2', linkTo: '/codefolio/code-2' },
-];
-
-const navButtons1: [string, string, HeaderButtonProps[]?][] = [
-  ['HOME', '/'],
-  ['CODEFOLIO', '/codefolio', codeFolioHoverButtonPropsList],
-  ['ATHLETICS', '/athletics'],
-  ['CONTACT', '/contact'],
-  ['FRACTAL', '/fractal'],
-];
-
 function _generateNavButtonsFromWebsiteStructureObject(
   websiteStructureObject: WebsiteStructure,
 ): [string, string, HeaderButtonProps[]?][] {
   let returnNavButtons: [string, string, HeaderButtonProps[]?][] = [];
-
-  // TODO: make HeaderButtonProps generate if childpages exists
 
   websiteStructureObject.navBarPages.map((navBarPage) => {
     if ('childPages' in navBarPage) {
