@@ -44,6 +44,8 @@ function _generateRouteFromNavBarPageObject(
         element={navBarPageObject.element}
       />,
     );
+  } else {
+    throw 'ERROR: Expected either importedMarkdownObject or element in websiteStructure';
   }
 
   if ('childPages' in navBarPageObject) {
