@@ -1,13 +1,34 @@
 import * as React from 'react';
 import { HeaderButtonProps } from './HeaderButton';
 
+const hoverMenuClassName: string = 'HoverMenu';
+
 interface HeaderHoverMenuProps {
   childButtonPropsList: HeaderButtonProps[];
-  visible: boolean;
+  mouseIsOverParent: boolean;
 }
 
 function HeaderHoverMenu(props: HeaderHoverMenuProps) {
-  return props.visible ? <div>YAY</div> : <></>;
+  const [isMouseOver, setIsMouseOver] = React.useState(false);
+
+  const onMouseOver = () => {
+    setIsMouseOver(true);
+  };
+  const onMouseOut = () => {
+    setIsMouseOver(false);
+  };
+
+  return props.mouseIsOverParent || isMouseOver ? (
+    <div
+      className={hoverMenuClassName}
+      onMouseOver={onMouseOver}
+      onMouseOut={onMouseOut}
+    >
+      YAY
+    </div>
+  ) : (
+    <></>
+  );
 }
 
 export { HeaderHoverMenu, HeaderHoverMenuProps };
