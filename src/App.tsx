@@ -5,12 +5,12 @@ import { BlogPage } from './components/BlogPage';
 import HeaderBar from './header/HeaderBar';
 import { HeaderButtonProps } from './header/HeaderButton';
 import { Fractal, FractalProps } from './pages/Fractal';
+import AthleticsMarkdown from './pages/markdown/Athletics.md';
+import CodefolioMarkdown from './pages/markdown/Codefolio.md';
+import ContactMarkdown from './pages/markdown/Contact.md';
 import HomeMarkdown from './pages/markdown/Home.md';
+import { WebsiteStructure } from './WebsiteStructure';
 
-// TODO: - Create a structure file that has all button names, URLs, and markdown
-//       - Import from the structure file into here
-
-const bodystring: string = 'Welcome to KE Land! This is the best place.';
 const error404string: string = 'Uh oh! Nothing to see here, move along...';
 
 const codeFolioHoverButtonPropsList: HeaderButtonProps[] = [
@@ -64,6 +64,48 @@ function App() {
     transformSpeedModifier: 0.5,
     classSuffix: 'background',
     cursorCoords: cursorPosition,
+  };
+
+  const myWebsiteStructure: WebsiteStructure = {
+    navBarPages: [
+      {
+        navBarButtonLabel: 'HOME',
+        pageURL: '/',
+        importedMarkdownObject: HomeMarkdown,
+      },
+      {
+        navBarButtonLabel: 'CODEFOLIO',
+        pageURL: '/codefolio',
+        importedMarkdownObject: CodefolioMarkdown,
+        childPages: [
+          {
+            navBarButtonLabel: 'CODE 1',
+            pageURL: '/codefolio/code_1',
+            importedMarkdownObject: HomeMarkdown,
+          },
+          {
+            navBarButtonLabel: 'CODE 2',
+            pageURL: '/codefolio/code_2',
+            importedMarkdownObject: HomeMarkdown,
+          },
+        ],
+      },
+      {
+        navBarButtonLabel: 'ATHLETICS',
+        pageURL: '/athletics',
+        importedMarkdownObject: AthleticsMarkdown,
+      },
+      {
+        navBarButtonLabel: 'CONTACT',
+        pageURL: '/contact',
+        importedMarkdownObject: ContactMarkdown,
+      },
+      {
+        navBarButtonLabel: 'FRACTAL',
+        pageURL: '/fractal',
+        element: <Fractal {...fractalProps} />,
+      },
+    ],
   };
 
   return (
