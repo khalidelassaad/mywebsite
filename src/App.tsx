@@ -1,13 +1,10 @@
 import * as React from 'react';
 import { Link, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
-import { BlogPage } from './components/BlogPage';
 import HeaderBar from './header/HeaderBar';
 import { HeaderButtonProps } from './header/HeaderButton';
 import { Fractal, FractalProps } from './pages/Fractal';
 import AthleticsMarkdown from './pages/markdown/Athletics.md';
-import Code1Markdown from './pages/markdown/Code-1.md';
-import Code2Markdown from './pages/markdown/Code-2.md';
 import CodefolioMarkdown from './pages/markdown/Codefolio.md';
 import ContactMarkdown from './pages/markdown/Contact.md';
 import HomeMarkdown from './pages/markdown/Home.md';
@@ -20,7 +17,7 @@ const codeFolioHoverButtonPropsList: HeaderButtonProps[] = [
   { label: 'CODE 2', linkTo: '/codefolio/code-2' },
 ];
 
-const navButtons: [string, string, HeaderButtonProps[]?][] = [
+const navButtons1: [string, string, HeaderButtonProps[]?][] = [
   ['HOME', '/'],
   ['CODEFOLIO', '/codefolio', codeFolioHoverButtonPropsList],
   ['ATHLETICS', '/athletics'],
@@ -122,6 +119,12 @@ function App() {
     ],
   };
 
+  const navButtons =
+    _generateNavButtonsFromWebsiteStructureObject(myWebsiteStructure);
+
+  const generatedRoutes =
+    _generateRoutesFromWebsiteStructureObject(myWebsiteStructure);
+
   return (
     <div
       className="backdrop"
@@ -140,31 +143,7 @@ function App() {
         </div>
         <div className="App-body">
           <Routes>
-            <Route
-              path="/"
-              element={<BlogPage importedMarkdownObject={HomeMarkdown} />}
-            />
-            <Route
-              path="/codefolio"
-              element={<BlogPage importedMarkdownObject={CodefolioMarkdown} />}
-            />
-            <Route
-              path="/codefolio/code-1"
-              element={<BlogPage importedMarkdownObject={Code1Markdown} />}
-            />
-            <Route
-              path="/codefolio/code-2"
-              element={<BlogPage importedMarkdownObject={Code2Markdown} />}
-            />
-            <Route
-              path="/athletics"
-              element={<BlogPage importedMarkdownObject={AthleticsMarkdown} />}
-            />
-            <Route
-              path="/contact"
-              element={<BlogPage importedMarkdownObject={ContactMarkdown} />}
-            />
-            <Route path="/fractal" element={<Fractal {...fractalProps} />} />
+            {generatedRoutes}
             <Route
               path="/404"
               element={
