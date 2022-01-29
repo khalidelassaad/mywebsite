@@ -18,8 +18,7 @@ function HeaderButton(props: HeaderButtonProps) {
     return (
       <div
         className={buttonClassName}
-        onClick={(event) => {
-          event.stopPropagation();
+        onClick={() => {
           navigate(props.linkTo);
         }}
       >
@@ -30,10 +29,10 @@ function HeaderButton(props: HeaderButtonProps) {
 
   const [isMouseHover, setIsMouseHover] = React.useState(false);
 
-  const onMouseEnter = () => {
+  const askHoverMenuToOpen = () => {
     setIsMouseHover(true);
   };
-  const onMouseLeave = () => {
+  const askHoverMenuToClose = () => {
     setIsMouseHover(false);
   };
 
@@ -41,16 +40,19 @@ function HeaderButton(props: HeaderButtonProps) {
     <div
       className={buttonClassName}
       onClick={() => {
-        console.log('%s clicked', props.label);
         navigate(props.linkTo);
+        askHoverMenuToClose();
       }}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
+      onMouseEnter={askHoverMenuToOpen}
+      onMouseLeave={askHoverMenuToClose}
     >
       {props.label}
       <HeaderHoverMenu
         childButtonPropsList={props.hoverMenuButtonPropsList}
         mouseIsOverParent={isMouseHover}
+        triggerCloseMenu={() => {
+          askHoverMenuToClose();
+        }}
       />
     </div>
   );

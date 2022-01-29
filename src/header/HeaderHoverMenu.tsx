@@ -7,6 +7,7 @@ const hoverMenuButtonClassSuffix: string = '-hoverMenu';
 interface HeaderHoverMenuProps {
   childButtonPropsList: HeaderButtonProps[];
   mouseIsOverParent: boolean;
+  triggerCloseMenu;
 }
 
 function HeaderHoverMenu(props: HeaderHoverMenuProps) {
@@ -24,6 +25,11 @@ function HeaderHoverMenu(props: HeaderHoverMenuProps) {
       className={hoverMenuClassName}
       onMouseEnter={onMouseOver}
       onMouseLeave={onMouseOut}
+      onClick={(event) => {
+        event.stopPropagation();
+        onMouseOut();
+        props.triggerCloseMenu();
+      }}
     >
       {props.childButtonPropsList.map((childButtonProps) => {
         return (
