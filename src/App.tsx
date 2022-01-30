@@ -22,7 +22,7 @@ const error404string: string = 'Uh oh! Nothing to see here, move along...';
 // TODO: Find and fix bug with console error about `key`
 function _generateRouteFromNavBarPageObject(
   navBarPageObject: NavBarPage,
-): JSX.Element {
+): JSX.Element[] {
   let returnElements: JSX.Element[] = [];
 
   if ('importedMarkdownObject' in navBarPageObject) {
@@ -51,11 +51,13 @@ function _generateRouteFromNavBarPageObject(
 
   if ('childPages' in navBarPageObject) {
     navBarPageObject.childPages.map((childPage: NavBarPageLeaf) => {
-      returnElements.push(_generateRouteFromNavBarPageObject(childPage));
+      returnElements = returnElements.concat(
+        _generateRouteFromNavBarPageObject(childPage),
+      );
     });
   }
 
-  return <>{returnElements}</>;
+  return returnElements;
 }
 
 function _generateRoutesFromWebsiteStructureObject(
@@ -64,8 +66,9 @@ function _generateRoutesFromWebsiteStructureObject(
   let returnElements: JSX.Element[] = [];
 
   websiteStructureObject.navBarPages.map((navBarPage) => {
-    let navBarRoute = _generateRouteFromNavBarPageObject(navBarPage);
-    returnElements.push(navBarRoute);
+    let navBarRoutesList: JSX.Element[] =
+      _generateRouteFromNavBarPageObject(navBarPage);
+    returnElements = returnElements.concat(navBarRoutesList);
   });
 
   return <>{returnElements}</>;
