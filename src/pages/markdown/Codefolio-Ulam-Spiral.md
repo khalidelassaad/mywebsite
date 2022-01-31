@@ -14,4 +14,4 @@ This is a simple pair of scripts written that produce an Ulam spiral and a rando
 
 I watched the YouTube video linked above and thought it was interesting, so I decided to recreate it.
 
-![Ulam Spiral](./public/oldWebsiteContents/ulam_ulamspiral.png)
+![Ulam Spiral](../oldWebsiteContents/pics/ulam_ulamspiral.png)
