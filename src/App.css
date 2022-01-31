@@ -147,6 +147,7 @@ pre {
 }
 
 code:not(pre > code) {
+  padding-inline: 1rem;
   background-color: #353535b0;
 }
 
