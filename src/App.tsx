@@ -22,7 +22,7 @@ import {
 
 const error404string: string = 'Uh oh! Nothing to see here, move along...';
 
-// TODO: Find and fix bug with console error about `key`
+// TODO: Fix styling bug overflowing button labels
 function _generateRouteFromNavBarPageObject(
   navBarPageObject: NavBarPage,
 ): JSX.Element[] {
