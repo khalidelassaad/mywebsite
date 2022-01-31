@@ -206,5 +206,12 @@ a:hover {
 }
 
 p {
-  text-indent: 2vw;
+  /* text-indent: 2vw; */
+  /* TODO: Figure out how to make this apply only to text */
+}
+
+p > img {
+  max-width: 70vw;
+  /* TODO: Figure out how to center image */
+  /* TODO: Figure out how to do captions */
 }
