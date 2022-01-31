@@ -174,7 +174,7 @@ function App() {
             importedMarkdownObject: CodefolioDNAMarkdown,
           },
           {
-            navBarButtonLabel: 'MISCELLANEOUS ANIMATIONS',
+            navBarButtonLabel: 'MISC. ANIMATIONS',
             pageURL: '/codefolio/miscellaneous_animations',
             importedMarkdownObject: CodefolioAnimationsMarkdown,
           },
