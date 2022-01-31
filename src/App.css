@@ -146,6 +146,10 @@ pre {
   background-color: #353535b0;
 }
 
+code:not(pre > code) {
+  background-color: #353535b0;
+}
+
 .headerBar-list {
   display: flex;
   justify-content: space-evenly;
