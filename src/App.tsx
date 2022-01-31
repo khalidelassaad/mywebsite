@@ -6,8 +6,11 @@ import HeaderBar from './header/HeaderBar';
 import { HeaderButtonProps } from './header/HeaderButton';
 import { Fractal, FractalProps } from './pages/Fractal';
 import AthleticsMarkdown from './pages/markdown/Athletics.md';
-import Code1Markdown from './pages/markdown/Code-1.md';
-import Code2Markdown from './pages/markdown/Code-2.md';
+import CodefolioDNAMarkdown from './pages/markdown/Codefolio-DNA.md';
+import CodefolioGrassMarkdown from './pages/markdown/Codefolio-Grass-In-The-Wind.md';
+import CodefolioAnimationsMarkdown from './pages/markdown/Codefolio-Miscellaneous-Animations.md';
+import CodefolioEcologyMarkdown from './pages/markdown/Codefolio-Simulated-Ecology.md';
+import CodefolioUlamMarkdown from './pages/markdown/Codefolio-Ulam-Spiral.md';
 import CodefolioMarkdown from './pages/markdown/Codefolio.md';
 import ContactMarkdown from './pages/markdown/Contact.md';
 import HomeMarkdown from './pages/markdown/Home.md';
@@ -156,14 +159,29 @@ function App() {
         importedMarkdownObject: CodefolioMarkdown,
         childPages: [
           {
-            navBarButtonLabel: 'CODE 1',
-            pageURL: '/codefolio/code_1',
-            importedMarkdownObject: Code1Markdown,
+            navBarButtonLabel: 'ULAM SPIRAL',
+            pageURL: '/codefolio/ulam_spiral',
+            importedMarkdownObject: CodefolioUlamMarkdown,
           },
           {
-            navBarButtonLabel: 'CODE 2',
-            pageURL: '/codefolio/code_2',
-            importedMarkdownObject: Code2Markdown,
+            navBarButtonLabel: 'SIMULATED ECOLOGY',
+            pageURL: '/codefolio/simulated_ecology',
+            importedMarkdownObject: CodefolioEcologyMarkdown,
+          },
+          {
+            navBarButtonLabel: 'DNA',
+            pageURL: '/codefolio/dna',
+            importedMarkdownObject: CodefolioDNAMarkdown,
+          },
+          {
+            navBarButtonLabel: 'MISCELLANEOUS ANIMATIONS',
+            pageURL: '/codefolio/miscellaneous_animations',
+            importedMarkdownObject: CodefolioAnimationsMarkdown,
+          },
+          {
+            navBarButtonLabel: 'GRASS IN THE WIND',
+            pageURL: '/codefolio/grass_in_the_wind',
+            importedMarkdownObject: CodefolioGrassMarkdown,
           },
         ],
       },
