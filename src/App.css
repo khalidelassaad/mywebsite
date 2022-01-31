@@ -205,13 +205,14 @@ a:hover {
   background-color: rgba(255, 255, 255, 0.226);
 }
 
-p {
-  /* text-indent: 2vw; */
-  /* TODO: Figure out how to make this apply only to text */
+p:empty {
+  text-indent: 2vw;
 }
 
 p > img {
   max-width: 70vw;
+  /* text-indent: 0; */
+
   /* TODO: Figure out how to center image */
   /* TODO: Figure out how to do captions */
 }
