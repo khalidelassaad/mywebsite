@@ -107,7 +107,7 @@
   color: white;
   font-size: calc(10px + 2vmin);
   text-align: center;
-  background-color: #000000b0;
+  background-color: #000000c7;
 }
 
 .BlogPage {
@@ -189,4 +189,18 @@ div[class^='headerBar-button-hoverMenu'] {
 
 .headerBar-container {
   position: relative;
+}
+
+a {
+  font-weight: 600;
+  color: rgb(122, 255, 122);
+}
+
+a:visited {
+  color: rgb(0, 129, 0);
+}
+
+a:hover {
+  font-weight: 700;
+  background-color: rgba(255, 255, 255, 0.11);
 }
