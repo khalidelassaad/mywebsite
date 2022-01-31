@@ -2,28 +2,10 @@
 
 ---
 
-Welcome to my website! This here site is my **pride** and **joy** dontcha know?
+### Welcome to my website!
 
-![test](../kelogo.png)
+This beauty was recently built from scratch using [React](https://reactjs.org/)! I'm archiving the content from [my old Wordpress site](https://khalidelassaad.wordpress.com) here, as well as working on adding new stuff.
 
-`TEST`
+Have a look around! There's lots to see, old and new.
 
-```
-function hello() {
-  hello world
-}
-```
-
-<!-- ![test](../rowingteamheaderpic.JPG) -->
-
-what
-
-you
-
-know
-
-about
-
-css
-
-dawg?
+-Khalid E.
