@@ -2,11 +2,11 @@
 
 ---
 
-[GitHub Repo: spiral](https://github.com/khalidelassaad/spiral)
+#### [GitHub Repo: spiral](https://github.com/khalidelassaad/spiral)
 
-[Wikipedia: Ulam Spiral](https://en.wikipedia.org/wiki/Ulam_spiral)
+#### [Wikipedia: Ulam Spiral](https://en.wikipedia.org/wiki/Ulam_spiral)
 
-[YouTube: Prime Spirals - Numberphile](https://www.youtube.com/watch?v=iFuR97YcSLM)
+#### [YouTube: Prime Spirals - Numberphile](https://www.youtube.com/watch?v=iFuR97YcSLM)
 
 Do ya like prime numbers?
 
