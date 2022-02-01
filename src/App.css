@@ -160,10 +160,10 @@ div[class^='headerBar-button'] {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 12vw;
+  width: 14vw;
   padding: 1vh;
   font-weight: 200;
-  font-size: 2vw;
+  font-size: 2.5vmin;
   background-color: rgb(18, 146, 18);
   transition: 0.3s;
   user-select: none;
@@ -176,7 +176,7 @@ div[class='headerBar-button'] {
 div[class^='headerBar-button-hoverMenu'] {
   margin-top: 0.5vh;
   display: block;
-  overflow: auto;
+  overflow: hidden;
 }
 
 div[class^='headerBar-button']:hover {

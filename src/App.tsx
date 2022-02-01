@@ -5,7 +5,6 @@ import { BlogPage } from './components/BlogPage';
 import HeaderBar from './header/HeaderBar';
 import { HeaderButtonProps } from './header/HeaderButton';
 import { Fractal, FractalProps } from './pages/Fractal';
-import AthleticsMarkdown from './pages/markdown/Athletics.md';
 import CodefolioDNAMarkdown from './pages/markdown/Codefolio-DNA.md';
 import CodefolioGrassMarkdown from './pages/markdown/Codefolio-Grass-In-The-Wind.md';
 import CodefolioAnimationsMarkdown from './pages/markdown/Codefolio-Miscellaneous-Animations.md';
@@ -185,11 +184,11 @@ function App() {
           },
         ],
       },
-      {
-        navBarButtonLabel: 'ATHLETICS',
-        pageURL: '/athletics',
-        importedMarkdownObject: AthleticsMarkdown,
-      },
+      // {
+      //   navBarButtonLabel: 'ATHLETICS',
+      //   pageURL: '/athletics',
+      //   importedMarkdownObject: AthleticsMarkdown,
+      // },
       {
         navBarButtonLabel: 'CONTACT',
         pageURL: '/contact',
