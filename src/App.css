@@ -206,10 +206,17 @@ a:hover {
   background-color: rgba(255, 255, 255, 0.226);
 }
 
+p {
+  text-indent: 2vw;
+  position: relative;
+}
+
 p > img {
+  /* This applies to the image that is a child of p */
   max-width: 70vw;
   object-fit: scale-down;
   background-size: cover;
+  position: relative;
 
   /* TODO: Figure out how to indent leaf node p */
   /* TODO: Figure out how to do captions */
