@@ -156,12 +156,12 @@ code:not(pre > code) {
 
 div[class^='headerBar-button'] {
   position: relative;
-  display: flex;
+  display: block;
+  overflow: auto;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 12vw;
-  height: 3vh;
   padding: 1vh;
   font-weight: 200;
   font-size: 2vw;
