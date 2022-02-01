@@ -156,8 +156,7 @@ code:not(pre > code) {
 
 div[class^='headerBar-button'] {
   position: relative;
-  display: block;
-  overflow: auto;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -168,6 +167,16 @@ div[class^='headerBar-button'] {
   background-color: rgb(18, 146, 18);
   transition: 0.3s;
   user-select: none;
+}
+
+div[class='headerBar-button'] {
+  height: 3vh;
+}
+
+div[class^='headerBar-button-hoverMenu'] {
+  margin-top: 0.5vh;
+  display: block;
+  overflow: auto;
 }
 
 div[class^='headerBar-button']:hover {
@@ -182,10 +191,6 @@ div[class^='headerBar-button']:hover {
   flex-direction: column;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.623);
-}
-
-div[class^='headerBar-button-hoverMenu'] {
-  margin-top: 0.5vh;
 }
 
 .headerBar-container {
