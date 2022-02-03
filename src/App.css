@@ -143,8 +143,8 @@ pre {
 }
 
 code:not(pre > code) {
-  padding-inline: 1rem;
   background-color: #353535b0;
+  padding-inline: 1rem;
 }
 
 .headerBar-list {
@@ -174,8 +174,8 @@ div[class='headerBar-button'] {
 }
 
 div[class^='headerBar-button-hoverMenu'] {
-  margin-top: 0.5vh;
   display: block;
+  margin-top: 0.5vh;
   overflow: hidden;
 }
 
@@ -198,24 +198,20 @@ div[class^='headerBar-button']:hover {
 }
 
 a {
-  font-weight: 600;
   color: rgb(0, 167, 0);
+  font-weight: 600;
 }
 
 a:hover {
   background-color: rgba(255, 255, 255, 0.226);
 }
 
-p {
-  text-indent: 2vw;
-}
-
 p > img {
+  position: relative;
   /* This applies to the image that is a child of p */
   max-width: 70vw;
   object-fit: scale-down;
   background-size: cover;
-  position: relative;
 
   /* TODO: Figure out how to indent leaf node p */
   /* TODO: Figure out how to do captions */
@@ -224,8 +220,8 @@ p > img {
 blockquote {
   display: flex;
   flex-direction: column;
-  font-style: italic;
   align-items: center;
   font-size: 2vmin;
+  font-style: italic;
   /* TODO: Figure out how to remove top margin from p > block quote */
 }
