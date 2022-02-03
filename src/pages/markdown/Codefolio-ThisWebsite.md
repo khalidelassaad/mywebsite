@@ -42,9 +42,9 @@ Creating a Markdown-oriented blog site is pretty handy, but can we take it a ste
 
 So that's what I did!
 
-I declare the website structure in WebsiteStructure.tsx to be a JSON object that contains pages. Each page either has children or it doesn't. Each page either renders a blog page, or it renders some other JSX Element (like the [Fractal](../fractal) page)
+I declare the website structure in [WebsiteStructure.tsx](https://github.com/khalidelassaad/mywebsite/blob/main/src/WebsiteStructure.tsx) to be a JSON object that contains pages. Each page either has children or it doesn't. Each page either renders a blog page, or it renders some other JSX Element (like the [Fractal](../fractal) page)
 
-Then, in App.tsx, I actually define the website structure, ordering my blog pages and nesting them in the appropriate parent, and voila! Automatically generated webpages with navigation, hierarchy, and content (Markdown or otherwise)!
+Then, in [App.tsx](https://github.com/khalidelassaad/mywebsite/blob/main/src/App.tsx), I actually define the website structure, ordering my blog pages and nesting them in the appropriate parent, and voila! Automatically generated webpages with navigation, hierarchy, and content (Markdown or otherwise)!
 
 ---
 
@@ -61,7 +61,7 @@ Or something like that!
 I've always loved fractals and I thought it would be really cool to have the background be some fractal that shifts as you move the cursor around. So, I grabbed code from this
 [github repo](https://github.com/delimitry/fractals-js/blob/master/js/fractals.js), thanks delimitry, and got to work.
 
-Fractal.tsx breaks down an HTML5 canvas into chunks, and receives the mouse cursor coordinates as a prop. When the cursor moves into a new chunk, Fractal.tsx renders the Julia set using the new mouse coordinates to generate the x0 and y0 values.
+[Fractal.tsx](https://github.com/khalidelassaad/mywebsite/blob/main/src/pages/Fractal.tsx) breaks down an HTML5 canvas into chunks, and receives the mouse cursor coordinates as a prop. When the cursor moves into a new chunk, Fractal.tsx renders the Julia set using the new mouse coordinates to generate the x0 and y0 values.
 
 To make this more performant, I added props to scale down the resolution. I also implemented dynamic programming to save previous renders. That means if the mouse enters a chunk that was previously visited, the app will load the previous render from memory instead of iterating all those pixels again to generate the drawing.
 
