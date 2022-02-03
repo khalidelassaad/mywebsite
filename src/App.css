@@ -206,19 +206,15 @@ a:hover {
   background-color: rgba(255, 255, 255, 0.226);
 }
 
-p {
-  text-indent: 2vw;
-}
-
 p > img {
   /* This applies to the image that is a child of p */
   max-width: 70vw;
   object-fit: scale-down;
   background-size: cover;
   position: relative;
-
-  /* TODO: Figure out how to indent leaf node p */
-  /* TODO: Figure out how to do captions */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 blockquote {
@@ -226,6 +222,11 @@ blockquote {
   flex-direction: column;
   font-style: italic;
   align-items: center;
+  text-align: center;
   font-size: 2vmin;
-  /* TODO: Figure out how to remove top margin from p > block quote */
+  margin-top: 0px;
+}
+
+blockquote > p {
+  margin-top: 0px;
 }
