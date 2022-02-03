@@ -20,7 +20,7 @@ Since leaving, I've been diving into the world of web3 and getting my hands dirt
 
 I speak English, Arabic, and Spanish.
 
-In my free time, I like to read, play chess, rollerblade, make music, practice Brazilian Jiu Jitsu, practice yoga, go backpacking, and of course, spend time with my dog Hammer!
+In my free time, I like to read, play chess, rollerblade, make music, practice Brazilian Jiu Jitsu, practice yoga, go backpacking, breathe deeply, and of course, spend time with my dog Hammer!
 
 ![Hammer](../oldWebsiteContents/pics/hammer.jpg)
 
