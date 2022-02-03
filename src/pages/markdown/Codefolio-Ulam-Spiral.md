@@ -18,8 +18,6 @@ I watched the YouTube video linked above and thought it was interesting, so I de
 
 > An Ulam spiral, starting from the red square in the middle. Prime numbers are white, non-prime are black. Note the diagonals that emerge in the distribution of the prime numbers.
 
-It's so baffling! Why do these patterns emerge?
-
 Here is a random spiral, where each number has the same probability of showing up white as any other number. That probability is the number of white cells over number of total cells in the above image.
 
 ![Random Spiral](../oldWebsiteContents/pics/ulam_randomspiral.png)
@@ -28,4 +26,4 @@ Here is a random spiral, where each number has the same probability of showing u
 
 Neat!
 
-Also included in `spiral.py` is a function that takes an integer and returns a hexcode. Passing incrementing numbers to this function sweeps through a rainbow of colors.
+Also included in `spiral.py` is a function that takes an integer and returns a hexcode. Passing incrementing numbers to this function sweeps through a rainbow of colors. I cannot for the life of me remember why I made this.
