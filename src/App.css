@@ -140,6 +140,7 @@ hr {
 pre {
   padding: 1rem;
   background-color: #353535b0;
+  overflow-x: auto;
 }
 
 code:not(pre > code) {
