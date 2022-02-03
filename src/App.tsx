@@ -5,6 +5,7 @@ import { BlogPage } from './components/BlogPage';
 import HeaderBar from './header/HeaderBar';
 import { HeaderButtonProps } from './header/HeaderButton';
 import { Fractal, FractalProps } from './pages/Fractal';
+import AboutMeMarkdown from './pages/markdown/AboutMe.md';
 import CodefolioDNAMarkdown from './pages/markdown/Codefolio-DNA.md';
 import CodefolioGrassMarkdown from './pages/markdown/Codefolio-Grass-In-The-Wind.md';
 import CodefolioAnimationsMarkdown from './pages/markdown/Codefolio-Miscellaneous-Animations.md';
@@ -13,6 +14,7 @@ import CodefolioUlamMarkdown from './pages/markdown/Codefolio-Ulam-Spiral.md';
 import CodefolioMarkdown from './pages/markdown/Codefolio.md';
 import ContactMarkdown from './pages/markdown/Contact.md';
 import HomeMarkdown from './pages/markdown/Home.md';
+import RowingMarkdown from './pages/markdown/Rowing.md';
 import {
   NavBarPage,
   NavBarPageLeaf,
@@ -190,9 +192,21 @@ function App() {
       //   importedMarkdownObject: AthleticsMarkdown,
       // },
       {
-        navBarButtonLabel: 'CONTACT',
-        pageURL: '/contact',
-        importedMarkdownObject: ContactMarkdown,
+        navBarButtonLabel: 'ABOUT ME',
+        pageURL: '/aboutme',
+        importedMarkdownObject: AboutMeMarkdown,
+        childPages: [
+          {
+            navBarButtonLabel: 'ROWING',
+            pageURL: '/aboutme/rowing',
+            importedMarkdownObject: RowingMarkdown,
+          },
+          {
+            navBarButtonLabel: 'CONTACT',
+            pageURL: '/aboutme/contact',
+            importedMarkdownObject: ContactMarkdown,
+          },
+        ],
       },
       {
         navBarButtonLabel: 'FRACTAL',
