@@ -15,6 +15,7 @@ import CodefolioMarkdown from './pages/markdown/Codefolio.md';
 import ContactMarkdown from './pages/markdown/Contact.md';
 import HomeMarkdown from './pages/markdown/Home.md';
 import RowingMarkdown from './pages/markdown/Rowing.md';
+import ThisWebsiteMarkdown from './pages/markdown/ThisWebsite.md';
 import {
   NavBarPage,
   NavBarPageLeaf,
@@ -184,13 +185,13 @@ function App() {
             pageURL: '/codefolio/grass_in_the_wind',
             importedMarkdownObject: CodefolioGrassMarkdown,
           },
+          {
+            navBarButtonLabel: 'THIS WEBSITE',
+            pageURL: '/codefolio/this_website',
+            importedMarkdownObject: ThisWebsiteMarkdown,
+          },
         ],
       },
-      // {
-      //   navBarButtonLabel: 'ATHLETICS',
-      //   pageURL: '/athletics',
-      //   importedMarkdownObject: AthleticsMarkdown,
-      // },
       {
         navBarButtonLabel: 'ABOUT ME',
         pageURL: '/aboutme',
