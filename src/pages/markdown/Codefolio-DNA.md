@@ -20,7 +20,7 @@ The resulting file can be found in the GitHub repo, [DNA.py3](https://github.com
 
 Pretty cool, eh?
 
-I soon learned about the curses library while working on [another project](./codefolio/simulated_ecology), and decided to try implementing the same animation with it. This means no more endless printing into the terminal, the animation would just happen on one window of one set size. The code can be found in the GitHub repo, “DNAcurses.py3”. It looks like this when running:
+I soon learned about the curses library while working on [another project](./simulated_ecology), and decided to try implementing the same animation with it. This means no more endless printing into the terminal, the animation would just happen on one window of one set size. The code can be found in the GitHub repo, “DNAcurses.py3”. It looks like this when running:
 
 ![DNA v2 - curses](../oldWebsiteContents/pics/dnacurses.gif)
 

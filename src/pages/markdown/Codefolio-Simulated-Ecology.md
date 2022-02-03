@@ -38,7 +38,7 @@ The specifications are simple, and summarized briefly below
 
 And that’s it! Easy right?
 
-Well… no… This is a project that I tried when it first came out. If you look at the date of the reddit post, you’ll notice that it was published in the summer of 2014. This is the summer before I began my undergraduate education at UC Irvine. As explained in the [“DNA” codefolio entry](./codefolio/dna), I used this summer to learn Python on my own. My first attempt at this challenge was clumsy and weak. I had not yet developed the kind of organized, sanitary coding habits that I learned while doing school projects. My code was not modular or clean and I failed to figure out an effective way to model all the behaviors listed in the specification.
+Well… no… This is a project that I tried when it first came out. If you look at the date of the reddit post, you’ll notice that it was published in the summer of 2014. This is the summer before I began my undergraduate education at UC Irvine. As explained in the [“DNA” codefolio entry](./dna), I used this summer to learn Python on my own. My first attempt at this challenge was clumsy and weak. I had not yet developed the kind of organized, sanitary coding habits that I learned while doing school projects. My code was not modular or clean and I failed to figure out an effective way to model all the behaviors listed in the specification.
 
 But when you get knocked down, you gotta get back up.
 
@@ -96,7 +96,7 @@ Enough joking around, this is a _serious_ website. And nothing is more serious t
 
 > "Damn straight."
 
-In late April of 2017, I was fiddling with this simulation on the road from Irvine to Sacramento to compete with [my team](https://ucirowing.org/). A teammate of mine was sitting next to me in the van, watching me code. He thought it was really cool that I could take ideas for behavior of several different units, implement them in a program, and watch the results unfold live before my eyes. I thought so, too, so I told him that we could try to take one of his ideas and implement it.
+In late April of 2017, I was fiddling with this simulation on the road from Irvine to Sacramento to compete with [my team](../aboutme/rowing). A teammate of mine was sitting next to me in the van, watching me code. He thought it was really cool that I could take ideas for behavior of several different units, implement them in a program, and watch the results unfold live before my eyes. I thought so, too, so I told him that we could try to take one of his ideas and implement it.
 
 “Could you make, like, forest fires happen?”
 

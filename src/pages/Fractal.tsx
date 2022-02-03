@@ -125,6 +125,8 @@ function _iterateJuliaIntoResultDataArray(
   y0,
   resultDataArray,
 ) {
+  // Thanks delimitry for this code
+  // https://github.com/delimitry/fractals-js/blob/master/js/fractals.js
   const colorMax = props.colorMax ? props.colorMax : 255;
 
   const maxIterations = Math.min(
