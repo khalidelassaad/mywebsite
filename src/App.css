@@ -143,8 +143,8 @@ pre {
 }
 
 code:not(pre > code) {
-  padding-inline: 1rem;
   background-color: #353535b0;
+  padding-inline: 1rem;
 }
 
 .headerBar-list {
@@ -174,8 +174,8 @@ div[class='headerBar-button'] {
 }
 
 div[class^='headerBar-button-hoverMenu'] {
-  margin-top: 0.5vh;
   display: block;
+  margin-top: 0.5vh;
   overflow: hidden;
 }
 
@@ -189,8 +189,8 @@ div[class^='headerBar-button']:hover {
 }
 
 a {
-  font-weight: 600;
   color: rgb(0, 167, 0);
+  font-weight: 600;
 }
 
 a:hover {
@@ -198,6 +198,7 @@ a:hover {
 }
 
 p > img {
+  position: relative;
   /* This applies to the image that is a child of p */
   max-width: 70vw;
   object-fit: scale-down;
@@ -211,7 +212,6 @@ p > img {
 blockquote {
   display: flex;
   flex-direction: column;
-  font-style: italic;
   align-items: center;
   text-align: center;
   font-size: 2vmin;
