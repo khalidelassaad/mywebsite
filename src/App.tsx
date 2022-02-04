@@ -24,7 +24,9 @@ import {
 
 const error404string: string = 'Uh oh! Nothing to see here, move along...';
 
-// TODO: Fix styling bug overflowing button labels
+// TODO: Fix trailing / breaking logo load and redirects
+// TODO: Fix linking from one markdown to another breaking
+
 function _generateRouteFromNavBarPageObject(
   navBarPageObject: NavBarPage,
 ): JSX.Element[] {
