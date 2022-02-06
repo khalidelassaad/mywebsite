@@ -44,7 +44,7 @@ But when you get knocked down, you gotta get back up.
 
 In my 3rd year, I revisited this problem, this time with a lot more skill and experience to leverage against it. The result is [Forest.py3](https://github.com/khalidelassaad/simulatedecology/blob/master/Forest.py3). Here’s what it looks like:
 
-![Forest v1](../oldWebsiteContents/pics/ecology_forest.gif)
+![Forest v1](/oldWebsiteContents/pics/ecology_forest.gif)
 
 > This simulation lasts 616 months. The output is printed to the terminal, which allows you to scroll up to review it.
 
@@ -52,11 +52,11 @@ I was very excited when this came together. The color coding gives the simulatio
 
 However, this output system of printing everything to the terminal did not satisfy me. It especially failed to display the yearly reports that generate every 12 ticks, since the simulation would scroll past them in the blink of an eye. I wanted everything to stay in one window, so I did some research and quickly found the curses library. After some testing, I was able to throw together [Forestcurses.py3](https://github.com/khalidelassaad/simulatedecology/blob/master/Forestcurses.py3). Here it is:
 
-![Forest v2 - curses](../oldWebsiteContents/pics/ecology_forestcurses1.gif)
+![Forest v2 - curses](/oldWebsiteContents/pics/ecology_forestcurses1.gif)
 
 > The curses library allows for a very pretty display. The yearly report is steadily visible. The user can easily keep an eye on entity populations and yearly changes to lumberjack and bear populations due to the year’s events.
 
-![Forest v2 - deforestation](../oldWebsiteContents/pics/ecology_deforestation.png)
+![Forest v2 - deforestation](/oldWebsiteContents/pics/ecology_deforestation.png)
 
 > The final screen of a simulation (separate from the animated one above). A sad end to a beautiful world.
 
@@ -64,13 +64,13 @@ Very, very cool. A change I made in this program was to display the “T” of t
 
 The curses version of this program scales with the window size. Unfortunately so does the time it takes to compute each tick. A happy compromise between a tiny forest and a slow forest (run on an early 2014 13-inch MacBook Air) rests in the 15×15 to the 21×21 zone. For your consideration, 652 months of a 17×17 forest:
 
-![Forest v2 - large render](../oldWebsiteContents/pics/ecology_forestcurses3.gif)
+![Forest v2 - large render](/oldWebsiteContents/pics/ecology_forestcurses3.gif)
 
 > With a larger forest size, tree growth and demolition patterns are more easily observed.
 
 Included below is a still of a 30×30 forest.
 
-![Forest v2 - large still](../oldWebsiteContents/pics/ecology_forestcurses3.png)
+![Forest v2 - large still](/oldWebsiteContents/pics/ecology_forestcurses3.png)
 
 > Note the organic grouping of trees. This was an immediate consequence of random generation of saplings and random wandering of tree-removing lumberjacks.
 
@@ -92,7 +92,7 @@ Unrelated to any of this, I am now banned from attending environmental sustainab
 
 Enough joking around, this is a _serious_ website. And nothing is more serious than forest fires.
 
-![Smokey](../oldWebsiteContents/pics/ecology_smokey.png)
+![Smokey](/oldWebsiteContents/pics/ecology_smokey.png)
 
 > "Damn straight."
 
@@ -127,7 +127,7 @@ Looping over every square and running these functions on each one is an inexcusa
 
 But enough self-whittling analysis. Let’s see it in action!
 
-![Forest v3 - fire](../oldWebsiteContents/pics/ecology_forestfirecurses.gif)
+![Forest v3 - fire](/oldWebsiteContents/pics/ecology_forestfirecurses.gif)
 
 > We don’t need no water let the blank blank burn. Burn blank blank. Burn.
 

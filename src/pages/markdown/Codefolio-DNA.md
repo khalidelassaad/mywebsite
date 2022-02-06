@@ -14,7 +14,7 @@ The code I wrote that day has not been recovered. I suspect I overwrote the file
 
 The resulting file can be found in the GitHub repo, [DNA.py3](https://github.com/khalidelassaad/dna/blob/master/DNA.py3). It looks like this when running:
 
-![DNA v1](../oldWebsiteContents/pics/dna.gif)
+![DNA v1](/oldWebsiteContents/pics/dna.gif)
 
 > DNA is continuously printed into the terminal
 
@@ -22,13 +22,13 @@ Pretty cool, eh?
 
 I soon learned about the curses library while working on [another project](/codefolio/simulated_ecology), and decided to try implementing the same animation with it. This means no more endless printing into the terminal, the animation would just happen on one window of one set size. The code can be found in the GitHub repo, “DNAcurses.py3”. It looks like this when running:
 
-![DNA v2 - curses](../oldWebsiteContents/pics/dnacurses.gif)
+![DNA v2 - curses](/oldWebsiteContents/pics/dnacurses.gif)
 
 > With the curses library, the output stays on the screen. No more scrolling through miles of DNA!
 
 Cool, so I can use `curses` but that’s pretty much the same as the first animation. Then I had an idea. What if instead of scrolling down base pairs (A–T, G–C, etc…), the same pair stayed on the same line, and only the line scaled wide and narrow sinusoidally. Could I trick my eyes into perceiving the ASCII output as a 3D rotating double-helix? My attempt is in the GitHub repo as [DNAcurses2.py3](https://github.com/khalidelassaad/dna/blob/master/DNAcurses2.py3). See the effect for yourself:
 
-![DNA v3 - rotation](../oldWebsiteContents/pics/dnacurses21.gif)
+![DNA v3 - rotation](/oldWebsiteContents/pics/dnacurses21.gif)
 
 > Try to see this as a 3-dimensional double helix. Unfocusing your eyes slightly may help!
 
@@ -42,7 +42,7 @@ As a 3rd year at UCI, I began to pursue research on campus in the field of compu
 
 Then, I told my roommates that the way this works is they breathe into the 3.5 mm audio port. Their breath will carry saliva particles and cheek cells into the port, where they will be electronically read by the programming. The program can decipher the resulting electronic waveforms to sequence their DNA. Then, the program will read their DNA and print out a profile of their physical traits, include sex, height, and even age (which isn’t even encoded in DNA…). This is what the program looks like.
 
-![DNA profiler](../oldWebsiteContents/pics/dnaprofiler.gif)
+![DNA profiler](/oldWebsiteContents/pics/dnaprofiler.gif)
 
 > A sample execution of the prank program. It really looks like it’s working on something. Presenting this and maintaining a straight face was extremely challenging.
 

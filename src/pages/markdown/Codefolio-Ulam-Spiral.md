@@ -14,13 +14,13 @@ This is a simple pair of scripts written that produce an Ulam spiral and a rando
 
 I watched the YouTube video linked above and thought it was interesting, so I decided to recreate it.
 
-![Ulam Spiral](../oldWebsiteContents/pics/ulam_ulamspiral.png)
+![Ulam Spiral](/oldWebsiteContents/pics/ulam_ulamspiral.png)
 
 > An Ulam spiral, starting from the red square in the middle. Prime numbers are white, non-prime are black. Note the diagonals that emerge in the distribution of the prime numbers.
 
 Here is a random spiral, where each number has the same probability of showing up white as any other number. That probability is the number of white cells over number of total cells in the above image.
 
-![Random Spiral](../oldWebsiteContents/pics/ulam_randomspiral.png)
+![Random Spiral](/oldWebsiteContents/pics/ulam_randomspiral.png)
 
 > No diagonals emerge! Prime numbers, seemingly patternless, actually exhibit some predictability and order compared to [(not so) true randomness](https://en.wikipedia.org/wiki/Pseudorandom_number_generator).
 

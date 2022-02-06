@@ -4,7 +4,7 @@
 
 My name is **Khalid Elassaad**.
 
-![Me!](../oldWebsiteContents/pics/me.jpg)
+![Me!](/oldWebsiteContents/pics/me.jpg)
 
 > Hello there!
 
@@ -22,7 +22,7 @@ I speak English, Arabic, and Spanish.
 
 In my free time, I like to read, play chess, rollerblade, make music, practice Brazilian Jiu Jitsu, practice yoga, go backpacking, breathe deeply, and of course, spend time with my dog Hammer!
 
-![Hammer](../oldWebsiteContents/pics/hammer.jpg)
+![Hammer](/oldWebsiteContents/pics/hammer.jpg)
 
 > 💚🔨🐕
 

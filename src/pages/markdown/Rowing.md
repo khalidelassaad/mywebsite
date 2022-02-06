@@ -4,7 +4,7 @@
 
 I walked on UC Irvine’s Men’s Rowing team in Fall, 2014.
 
-![The Team](../oldWebsiteContents/pics/rowing_theteam.jpg)
+![The Team](/oldWebsiteContents/pics/rowing_theteam.jpg)
 
 > The 2014-2015 Irvine Crew in Fall. Several athletes will quit the team before the end of the year.
 
@@ -12,7 +12,7 @@ Coming into college, I was not an athlete. Chubby and out-of-shape, I joined the
 
 Never have I had so much fun.
 
-![WIRA 2015](../oldWebsiteContents/pics/rowing_wirafinals2015.jpg)
+![WIRA 2015](/oldWebsiteContents/pics/rowing_wirafinals2015.jpg)
 
 > Western Intercollegiate Rowing Association 2015 Championships. The Irvine Novice 8+ places 4th in the region. From left to right: Mukesh Kastala, Anthony Lewis, Tony Cui, Khalid Elassaad, Arnav Malawade, Ved Kirloskar, Matthew Gill, Grant Simms, Charos Bakhromova
 
@@ -20,7 +20,7 @@ In my freshman year, I lost 25 pounds. For the first time in my life, I could se
 
 My second year culminated in my first major victory.
 
-![ACRA 2016](../oldWebsiteContents/pics/rowing_acrafinals2016.jpg)
+![ACRA 2016](/oldWebsiteContents/pics/rowing_acrafinals2016.jpg)
 
 > American Collegiate Rowing Association National Championship 2016. Irvine places 1st in the MV4+. From left to right, Head Coach A.J. Brooks, Cole McGuire, Khalid Elassaad, Alyssa Ford, Mike Galanif, Anthony Lewis.
 
