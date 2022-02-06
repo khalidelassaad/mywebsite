@@ -38,7 +38,7 @@ The specifications are simple, and summarized briefly below
 
 And that’s it! Easy right?
 
-Well… no… This is a project that I tried when it first came out. If you look at the date of the reddit post, you’ll notice that it was published in the summer of 2014. This is the summer before I began my undergraduate education at UC Irvine. As explained in the [“DNA” codefolio entry](./dna), I used this summer to learn Python on my own. My first attempt at this challenge was clumsy and weak. I had not yet developed the kind of organized, sanitary coding habits that I learned while doing school projects. My code was not modular or clean and I failed to figure out an effective way to model all the behaviors listed in the specification.
+Well… no… This is a project that I tried when it first came out. If you look at the date of the reddit post, you’ll notice that it was published in the summer of 2014. This is the summer before I began my undergraduate education at UC Irvine. As explained in the [“DNA” codefolio entry](/codefolio/dna), I used this summer to learn Python on my own. My first attempt at this challenge was clumsy and weak. I had not yet developed the kind of organized, sanitary coding habits that I learned while doing school projects. My code was not modular or clean and I failed to figure out an effective way to model all the behaviors listed in the specification.
 
 But when you get knocked down, you gotta get back up.
 

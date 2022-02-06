@@ -4,7 +4,7 @@
 
 #### [GitHub Repo: mywebsite](https://github.com/khalidelassaad/mywebsite)
 
-This is a page on my website, about my website, where you can find [a page about my website](./this_website) on my website...
+This is a page on my website, about my website, where you can find [a page about my website](/codefolio/this_website) on my website...
 
 > 🐢(🐢(🐢(🐢(...))))
 
