@@ -22,9 +22,9 @@ I speak English, Arabic, and Spanish.
 
 In my free time, I like to read, play chess, rollerblade, make music, practice Brazilian Jiu Jitsu, practice yoga, go backpacking, breathe deeply, and of course, spend time with my dog Hammer!
 
-![Hammer](/oldWebsiteContents/pics/hammer.jpg)
+![Hammer](/oldWebsiteContents/pics/hammer.jpeg)
 
-> 💚🔨🐕
+> 💚 🔨 🐕
 
 And yes, my favorite color is, in fact, green!
 
