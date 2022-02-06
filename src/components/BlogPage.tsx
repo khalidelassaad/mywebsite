@@ -27,4 +27,4 @@ function BlogPage(props: BlogPageProps): JSX.Element {
   );
 }
 
-export { BlogPage, BlogPageProps };
+export { BlogPage, BlogPageProps, blogPageClassName };
