@@ -96,7 +96,7 @@ Enough joking around, this is a _serious_ website. And nothing is more serious t
 
 > "Damn straight."
 
-In late April of 2017, I was fiddling with this simulation on the road from Irvine to Sacramento to compete with [my team](../aboutme/rowing). A teammate of mine was sitting next to me in the van, watching me code. He thought it was really cool that I could take ideas for behavior of several different units, implement them in a program, and watch the results unfold live before my eyes. I thought so, too, so I told him that we could try to take one of his ideas and implement it.
+In late April of 2017, I was fiddling with this simulation on the road from Irvine to Sacramento to compete with [my team](/aboutme/rowing). A teammate of mine was sitting next to me in the van, watching me code. He thought it was really cool that I could take ideas for behavior of several different units, implement them in a program, and watch the results unfold live before my eyes. I thought so, too, so I told him that we could try to take one of his ideas and implement it.
 
 “Could you make, like, forest fires happen?”
 

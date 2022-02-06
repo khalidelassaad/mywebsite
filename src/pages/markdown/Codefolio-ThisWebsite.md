@@ -16,7 +16,7 @@ So why rebuild it on my own? There's a couple reasons:
 2. Knock the rust off my coding skills and get back into the flow of regularly committing code.
 3. Have a space on the internet that is mine, where I can express myself, experiment with web apps, and just have fun!
 
-The majority of the content in the [Codefolio](../codefolio) is directly copied over from my [WordPress site](http://khalidelassaad.wordpress.com), which I typed up in 2018. I've left the content unchanged - an attempt to preserve a digital artifact from my past self.
+The majority of the content in the [Codefolio](/codefolio) is directly copied over from my [WordPress site](http://khalidelassaad.wordpress.com), which I typed up in 2018. I've left the content unchanged - an attempt to preserve a digital artifact from my past self.
 
 I had a few goals to accomplish with this project:
 
@@ -42,7 +42,7 @@ Creating a Markdown-oriented blog site is pretty handy, but can we take it a ste
 
 So that's what I did!
 
-I declare the website structure in [WebsiteStructure.tsx](https://github.com/khalidelassaad/mywebsite/blob/main/src/WebsiteStructure.tsx) to be a JSON object that contains pages. Each page either has children or it doesn't. Each page either renders a blog page, or it renders some other JSX Element (like the [Fractal](../fractal) page)
+I declare the website structure in [WebsiteStructure.tsx](https://github.com/khalidelassaad/mywebsite/blob/main/src/WebsiteStructure.tsx) to be a JSON object that contains pages. Each page either has children or it doesn't. Each page either renders a blog page, or it renders some other JSX Element (like the [Fractal](/fractal) page)
 
 Then, in [App.tsx](https://github.com/khalidelassaad/mywebsite/blob/main/src/App.tsx), I actually define the website structure, ordering my blog pages and nesting them in the appropriate parent, and voila! Automatically generated webpages with navigation, hierarchy, and content (Markdown or otherwise)!
 
@@ -65,7 +65,7 @@ I've always loved fractals and I thought it would be really cool to have the bac
 
 To make this more performant, I added props to scale down the resolution. I also implemented dynamic programming to save previous renders. That means if the mouse enters a chunk that was previously visited, the app will load the previous render from memory instead of iterating all those pixels again to generate the drawing.
 
-So why does the fractal on the [Fractal](../fractal) page look so different from the one in the background? Well, it's the same fractal, the Julia set, but zoomed in on a specific region, and with the mouse coordinates bound to a smaller region of the plane.
+So why does the fractal on the [Fractal](/fractal) page look so different from the one in the background? Well, it's the same fractal, the Julia set, but zoomed in on a specific region, and with the mouse coordinates bound to a smaller region of the plane.
 
 In order to make the background fractal even more performant (so your computer's fans don't launch your laptop into orbit while you read a blog post), I made its resolution very small and used CSS to blur the render. This keeps things running smoothly AND serves to keep the resulting animation "behind" everything, so that even as the background shifts, you aren't so distracted from the words in front of you!
 
