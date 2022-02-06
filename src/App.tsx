@@ -24,8 +24,6 @@ import {
 
 const error404string: string = 'Uh oh! Nothing to see here, move along...';
 
-// TODO: Fix trailing / breaking logo load and redirects
-
 function _generateRouteFromNavBarPageObject(
   navBarPageObject: NavBarPage,
 ): JSX.Element[] {
@@ -237,7 +235,11 @@ function App() {
         <div className="App-sleeve">
           <div className="App">
             <header className="App-header">
-              <img src="../kelogo.png" className="App-logo" alt="logo" />
+              <img
+                src={process.env.PUBLIC_URL + '/kelogo.png'}
+                className="App-logo"
+                alt="logo"
+              />
             </header>
             <HeaderBar navButtons={navButtons} />
           </div>
