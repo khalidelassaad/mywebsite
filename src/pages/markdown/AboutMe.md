@@ -27,3 +27,8 @@ In my free time, I like to read, play chess, rollerblade, make music, practice B
 > 💚🔨🐕
 
 And yes, my favorite color is, in fact, green!
+
+---
+
+- [Rowing](/aboutme/rowing)
+- [Contact](/aboutme/contact)
