@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Link, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
 import { BlogPage } from './components/BlogPage';
+import ScrollToTop from './components/ScrollToTop';
 import HeaderBar from './header/HeaderBar';
 import { HeaderButtonProps } from './header/HeaderButton';
 import { Fractal, FractalProps } from './pages/Fractal';
@@ -244,25 +245,27 @@ function App() {
             <HeaderBar navButtons={navButtons} />
           </div>
           <div className="App-body">
-            <Routes>
-              {generatedRoutes}
-              <Route
-                path="/404"
-                key="404"
-                element={
-                  <>
-                    <h1>404</h1>
-                    {error404string}
-                    <Link to="/">Back to home page</Link>
-                  </>
-                }
-              />
-              <Route
-                path="/*"
-                key="catch-all"
-                element={<Navigate replace to="/404" />}
-              />
-            </Routes>
+            <ScrollToTop>
+              <Routes>
+                {generatedRoutes}
+                <Route
+                  path="/404"
+                  key="404"
+                  element={
+                    <>
+                      <h1>404</h1>
+                      {error404string}
+                      <Link to="/">Back to home page</Link>
+                    </>
+                  }
+                />
+                <Route
+                  path="/*"
+                  key="catch-all"
+                  element={<Navigate replace to="/404" />}
+                />
+              </Routes>
+            </ScrollToTop>
           </div>
         </div>
       </div>
