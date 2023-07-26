@@ -4,8 +4,8 @@
 
 ### Welcome to my website!
 
-This beauty was recently built from scratch using [React](https://reactjs.org/)! I'm archiving the content from [my old Wordpress site](https://khalidelassaad.wordpress.com) here, as well as working on adding new stuff.
+This beauty was recently built from scratch using [React](https://reactjs.org/)!
 
-So welcome! Nice to have you here, please, have a look around!
+Nice to have you here, please, have a look around!
 
 -Khalid E.
