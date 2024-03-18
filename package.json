@@ -9,7 +9,7 @@
     "@types/jest": "^29.5.3",
     "@types/node": "^20.11.17",
     "@types/react": "^18.2.15",
-    "@types/react-dom": "^18.2.7",
+    "@types/react-dom": "^18.2.22",
     "minimist": "^1.2.8",
     "npm-check-updates": "^16.14.15",
     "nth-check": "^2.1.1",
